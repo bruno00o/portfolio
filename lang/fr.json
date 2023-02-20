@@ -1,3 +1,8 @@
 {
-    "welcome": "Welcome to the world of tomorrow!"
+    "main-text": "Etudiant en 3ème année de Licence Informatique à l'Université Gustave Eiffel",
+    "about-me": "À propos de moi",
+    "l3-title": "3ème année de licence informatique à l'Université Gustave Eiffel, en alternance chez Kynova",
+    "l3-text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web.",
+    "l1-l2-title": "1ère et 2ème année de licence informatique à l'Université Gustave Eiffel",
+    "l1-l2-text": "J'ai choisi de faire ma première et ma deuxième année de licence informatique à l'Université Gustave Eiffel afin de pouvoir acquérir des bases solides en informatique."
 }
