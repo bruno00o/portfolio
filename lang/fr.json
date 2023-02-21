@@ -1,8 +1,44 @@
 {
     "main-text": "Etudiant en 3ème année de Licence Informatique à l'Université Gustave Eiffel",
     "about-me": "À propos de moi",
-    "l3-title": "3ème année de licence informatique à l'Université Gustave Eiffel, en alternance chez Kynova",
-    "l3-text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web.",
-    "l1-l2-title": "1ère et 2ème année de licence informatique à l'Université Gustave Eiffel",
-    "l1-l2-text": "J'ai choisi de faire ma première et ma deuxième année de licence informatique à l'Université Gustave Eiffel afin de pouvoir acquérir des bases solides en informatique."
+    "school-career-title": "Formation",
+    "school-career": {
+        "l3": {
+            "id": "l3",
+            "images": [
+                {
+                    "src": "img/universite-gustave-eiffel.jpg",
+                    "alt": "Logo de l'université Gustave Eiffel"
+                },
+                {
+                    "src": "img/logo-carre-kynova.jpg",
+                    "alt": "Logo de Kynova"
+                }
+            ],
+            "title": "3ème année de licence informatique à l'Université Gustave Eiffel, en alternance chez Kynova",
+            "text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web."
+        },
+        "l1-l2": {
+            "id": "l1-l2",
+            "images": [
+                {
+                    "src": "img/universite-gustave-eiffel.jpg",
+                    "alt": "Logo de l'université Gustave Eiffel"
+                }
+            ],
+            "title": "1ère et 2ème année de licence informatique à l'Université Gustave Eiffel",
+            "text": "J'ai choisi de faire ma première et ma deuxième année de licence informatique à l'Université Gustave Eiffel afin de pouvoir acquérir des bases solides en informatique."
+        },
+        "lycee": {
+            "id": "lycee",
+            "images": [
+                {
+                    "src": "img/lycee-champlain.webp",
+                    "alt": "Lycée Champlain"
+                }
+            ],
+            "title": "Baccalauréat scientifique au lycée Champlain",
+            "text": "J'ai choisi de faire mon baccalauréat scientifique au lycée Champlain afin de pouvoir acquérir des bases solides en mathématiques"
+        }
+    }
 }
