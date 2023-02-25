@@ -2,15 +2,9 @@
 export default defineNuxtConfig({
     app: {
         head: {
-            title: 'My Nuxt App',
+            title: 'Bruno Seilliebert - Portfolio',
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            meta: [
-                { hid: 'description', name: 'description', content: 'My custom Nuxt.js project' },
-            ],
-            htmlAttrs: {
-                lang: 'en',
-            },
             link: [{
                 rel: 'preconnect',
                 href: 'https://fonts.googleapis.com'
@@ -23,7 +17,12 @@ export default defineNuxtConfig({
             {
                 href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap",
                 rel: "stylesheet"
-            }]
+            },
+            {
+                href: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap',
+                rel: 'stylesheet'
+            },
+        ]
         },
     },
     modules: [
@@ -55,6 +54,7 @@ export default defineNuxtConfig({
         lazy: true,
         langDir: 'lang/',
         defaultLocale: 'fr',
+        baseUrl: 'http://localhost:3000',
     },
     tailwindcss: {
         cssPath: '~/assets/css/tailwind.css',

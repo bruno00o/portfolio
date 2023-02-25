@@ -1,7 +1,30 @@
-<script setup>
+<script setup lang="ts">
 
-const schoolCareer = ref({})
-const langJson = "~/lang/fr.json"
+const i18n = useI18n()
+
+const i18nHead = useLocaleHead({
+  addSeoAttributes: {
+    canonicalQueries: ['foo']
+  }
+})
+
+const meta = i18nHead.value.meta || []
+meta.push({ hid: 'description', name: 'description', content: i18n.t('meta.description') })
+meta.push({ hid: 'og:description', name: 'og:description', content: i18n.t('meta.description') })
+
+useHead({
+  htmlAttrs: {
+    lang: i18nHead.value.htmlAttrs!.lang
+  },
+  link: [...(i18nHead.value.link || [])],
+  meta: [...meta]
+})
+
+const schoolCareer = ref({} as any)
+
+const schoolModal = ref(false)
+const textSchoolModal = ref("")
+const titleSchoolModal = ref("")
 
 const darkBlobsColors = [
     "#9E4770",
@@ -19,15 +42,15 @@ const lightBlobsColors = [
     "#9E4770",
 ]
 
-const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
 
 onBeforeMount(async () => {
-    const blobs = document.querySelectorAll('#main-bg svg')
+    const blobs = document.querySelectorAll('#main-bg svg') as NodeListOf<SVGElement>
     const colors = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? darkBlobsColors
         : lightBlobsColors
 
-    let usedColors = []
+    let usedColors = [] as string[]
 
     blobs.forEach((blob, i) => {
         const width = random(300, 600)
@@ -49,12 +72,11 @@ onBeforeMount(async () => {
         // blob.style.transform = `translate(0, 0)`
     })
 
-    const api = (await $fetch("/api")).api
+    const api = (await $fetch("/api")).api as any
 
-    schoolCareer.value = api["school-career"]
+    schoolCareer.value = api["school-career"] as any
 
-    console.log(schoolCareer.value)
-
+    window.addEventListener('scroll', scroll)
 })
 
 /* const { x, y } = useMouse()
@@ -66,12 +88,52 @@ watchEffect(() => {
     })
 }) */
 
+const scroll = () => {
+    const main = document.querySelector('#top') as HTMLElement
+    /* blur main */
+    const blur = (window.scrollY / 100)
+    main.style.filter = `blur(${blur}px)`
+    main.style.webkitFilter = `blur(${blur}px)`
+
+    main.style.scale = 1 + (window.scrollY / 20000) + ''
+}
+
+
 </script>
 
 <template>
-    <main>
-        <section id="main"
-            class="grid justify-center items-center h-screen w-screen relative bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50">
+    <main id="main">
+        <header class="fixed relative w-full flex justify-center h-12 z-10 pt-4 animate-pop-in-late">
+            <div
+                class="text-slate-900 dark:text-slate-50 h-12 z-10 fixed w-full max-w-[90vw] sm:max-w-xl rounded-xl before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-50 before:dark:bg-slate-800 z-0 before:rounded-xl before:opacity-90 before:border-2 before:border-slate-300 before:dark:border-slate-700 before:z-0">
+                <nav class="h-full z-10 relative">
+                    <ul class="flex justify-around items-center h-full">
+                        <li class="flex justify-center items-center h-full">
+                            <NuxtLink to="#main" class="flex justify-center items-center h-full w-full">
+                                <span>{{ $t('nav.main') }}</span>
+                            </NuxtLink>
+                        </li>
+                        <li class="flex justify-center items-center h-full">
+                            <NuxtLink to="#about" class="flex justify-center items-center h-full w-full">
+                                <span>{{ $t('nav.about') }}</span>
+                            </NuxtLink>
+                        </li>
+                        <li class="flex justify-center items-center h-full">
+                            <NuxtLink to="#projects" class="flex justify-center items-center h-full w-full">
+                                <span>{{ $t('nav.projects') }}</span>
+                            </NuxtLink>
+                        </li>
+                        <li class="flex justify-center items-center h-full">
+                            <NuxtLink to="#contact" class="flex justify-center items-center h-full w-full">
+                                <span>{{ $t('nav.contact') }}</span>
+                            </NuxtLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section id="top"
+            class="grid justify-center items-center h-screen w-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 fixed min-h-screen overflow-hidden left-0 top-0">
             <div id="main-bg" class="h-screen w-screen absolute top-0 left-0 z-0 blur-xl overflow-hidden">
                 <svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg"
                     style="top: -5%; left: -5%; transform: scale(0);">
@@ -102,34 +164,107 @@ watchEffect(() => {
                     {{ $t('main-text') }}
                 </p>
             </div>
+            <div class="flex gap-4 absolute bottom-4 md:right-8 left-4 md:left-auto">
+                <NuxtLink to="https://github.com/bruno00o" target="_blank" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 fill-slate-900 hover:fill-slate-700 dark:fill-slate-100 dark:hover:fill-slate-300 animate-[pop-in-late_1s_ease-in-out]"
+                        viewBox="0 0 496 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+                    </svg>
+                </NuxtLink>
+                <NuxtLink to="https://codepen.io/bruno00o" target="_blank" aria-label="Codepen">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 fill-slate-900 hover:fill-slate-700 dark:fill-slate-100 dark:hover:fill-slate-300 animate-[pop-in-late_1.5s_ease-in-out]"
+                        viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M502.285 159.704l-234-156c-7.987-4.915-16.511-4.96-24.571 0l-234 156C3.714 163.703 0 170.847 0 177.989v155.999c0 7.143 3.714 14.286 9.715 18.286l234 156.022c7.987 4.915 16.511 4.96 24.571 0l234-156.022c6-3.999 9.715-11.143 9.715-18.286V177.989c-.001-7.142-3.715-14.286-9.716-18.285zM278 63.131l172.286 114.858-76.857 51.429L278 165.703V63.131zm-44 0v102.572l-95.429 63.715-76.857-51.429L234 63.131zM44 219.132l55.143 36.857L44 292.846v-73.714zm190 229.715L61.714 333.989l76.857-51.429L234 346.275v102.572zm22-140.858l-77.715-52 77.715-52 77.715 52-77.715 52zm22 140.858V346.275l95.429-63.715 76.857 51.429L278 448.847zm190-156.001l-55.143-36.857L468 219.132v73.714z" />
+                    </svg>
+                </NuxtLink>
+                <NuxtLink to="https://www.linkedin.com/in/bruno-seilliebert" target="_blank" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 fill-slate-900 hover:fill-slate-700 dark:fill-slate-100 dark:hover:fill-slate-300 animate-[pop-in-late_2s_ease-in-out]"
+                        viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                            d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
+                    </svg>
+                </NuxtLink>
+            </div>
         </section>
-        <section
-            class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 sm:py-24 relative">
-            <h2 class="text-3xl font-bold sm:text-4xl mb-10">
-                {{ $t('about-me') }}
-            </h2>
-            <table
-                class="max-w-5xl border-separate table-fixed border-spacing-y-5 flex flex-col w-full gap-5 mt-5 md:gap-0 md:block md:mt-0">
-                <h3 class="text-xl font-bold sm:text-2xl self-start">
-                    {{ $t('school-career-title') }}
-                </h3>
-                <tr v-for="year in schoolCareer" :key="year.id"
-                    class="flex flex-col md:table-row justify-center items-center w-full hover:animate-pulse hover:cursor-pointer shadow">
-                    <td
-                        class="flex py-3 md:py-0 w-full gap-5 justify-center items-center md:h-40 px-10 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-t-xl md:rounded-l-xl md:rounded-r-none">
-                        <div v-for="image in year.images" :key="image"
-                            class="timeline-icon rounded-full overflow-hidden w-20 h-20 bg-white p-3">
-                            <img :src="image.src" :alt="image.alt" />
-                        </div>
-                    </td>
-                    <td
-                        class="pb-3 md:pb-0 md:rounded-r-xl rounded-b-xl md:rounded-l-none bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-50 px-5 md:px-0 md:pr-10">
-                        <h4 class="text-xl font-bold text-center md:text-left">
-                            {{ $t(year.title) }}
-                        </h4>
-                    </td>
-                </tr>
-            </table>
-        </section>
+        <div class="absolute top-full w-full">
+            <section id="about"
+                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
+                <h2 class="text-3xl font-bold sm:text-4xl mb-0 md:mb-10">
+                    {{ $t('about-me') }}
+                </h2>
+                <table
+                    class="max-w-5xl border-separate table-fixed border-spacing-y-5 flex flex-col w-full gap-5 mt-5 md:gap-0 md:block md:mt-0">
+                    <tr class="text-xl font-bold sm:text-2xl self-start">
+                        <td colspan="2">
+                            <h3>{{ $t('school-career-title') }}</h3>
+                        </td>
+                    </tr>
+                    <tr v-for="year in schoolCareer" :key="year.id"
+                        class="flex flex-col md:table-row justify-center items-center w-full hover:animate-pulse hover:cursor-pointer"
+                        @click="schoolModal = true, textSchoolModal = $t(`school-career.${year.id}.text`), titleSchoolModal = $t(`school-career.${year.id}.title`)">
+                        <td
+                            class="flex py-3 md:py-0 w-full gap-5 justify-center items-center md:h-40 px-10 bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-t-xl md:rounded-l-xl md:rounded-r-none w-full">
+                            <div v-for="image in year.images" :key="image"
+                                class="timeline-icon rounded-full overflow-hidden w-20 h-20 bg-white p-3">
+                                <img :src="image.src" :alt="image.alt" />
+                            </div>
+                        </td>
+                        <td
+                            class="pb-3 md:pb-0 md:rounded-r-xl rounded-b-xl md:rounded-l-none bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 px-5 md:px-0 md:pr-10 w-full">
+                            <p class="text-xl font-bold text-center md:text-left">
+                                {{ $t(`school-career.${year.id}.title`) }}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section id="projects"
+                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 sm:py-24">
+                <h2 class="text-3xl font-bold sm:text-4xl mb-10">
+                    {{ $t('projects-title') }}
+                </h2>
+            </section>
+            <section id="contact"
+                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 sm:py-24">
+                <h2 class="text-3xl font-bold sm:text-4xl mb-10">
+                    {{ $t('contact-me-title') }}
+                </h2>
+            </section>
+            <footer class="flex justify-center items-center w-full h-20 bg-slate-900 text-slate-50">
+                Test
+            </footer>
+        </div>
     </main>
+    <Teleport to="body">
+        <Transition name="modal" appear>
+            <div v-if="schoolModal" class="fixed inset-0 z-40 flex items-center justify-center">
+                <div class="absolute inset-0 bg-black opacity-70" @click="schoolModal = false"></div>
+                <div class="bg-white rounded-lg shadow-lg p-5 z-50 w-11/12 max-w-2xl dark:bg-slate-900 dark:text-slate-50">
+                    <div class="flex flex-col gap-5">
+                        <h3 class="text-xl font-bold sm:text-xl self-start">
+                            {{ titleSchoolModal }}
+                        </h3>
+                        <p class="text-justify font-serif text-lg" v-html="textSchoolModal"></p>
+                    </div>
+                </div>
+            </div>
+        </Transition>
+    </Teleport>
 </template>
+
+<style scoped lang="scss">
+.modal-enter-active,
+.modal-leave-active {
+    transition: all 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+    opacity: 0;
+}
+</style>

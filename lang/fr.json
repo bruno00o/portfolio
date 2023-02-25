@@ -1,4 +1,13 @@
 {
+    "meta": {
+        "description": "Portfolio de Bruno Seilliebert, étudiant en 3ème année de licence informatique à l'Université Gustave Eiffel"
+    },
+    "nav": {
+        "main": "Accueil",
+        "about": "À propos",
+        "projects": "Projets",
+        "contact": "Contact"
+    },
     "main-text": "Etudiant en 3ème année de Licence Informatique à l'Université Gustave Eiffel",
     "about-me": "À propos de moi",
     "school-career-title": "Formation",
@@ -16,7 +25,7 @@
                 }
             ],
             "title": "3ème année de licence informatique à l'Université Gustave Eiffel, en alternance chez Kynova",
-            "text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web."
+            "text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web.<br>Parallellement à mon alternance, je suis des cours de programmation avancée en C et en base de données, je découvre le Java ainsi que la programmation fonctionnelle en Haskell. Je suis également des cours de compilation, de réseaux et d'algorithmique des graphes."
         },
         "l1-l2": {
             "id": "l1-l2",
@@ -27,7 +36,7 @@
                 }
             ],
             "title": "1ère et 2ème année de licence informatique à l'Université Gustave Eiffel",
-            "text": "J'ai choisi de faire ma première et ma deuxième année de licence informatique à l'Université Gustave Eiffel afin de pouvoir acquérir des bases solides en informatique."
+            "text": "En septembre 2020, j'intègre l'Université Gustave Eiffel pour faire une licence informatique.<br>La première année étant commune à la licence de mathématiques, j'ai pu suivre des cours de mathématiques ainsi que des cours de programmation et d'algorithmique en Python et JavaScript.<br>La deuxième année est plus orientée informatique, j'y ai donc pu débuter le C, poursuivre le Python mais aussi découvrir la base de données, les automates ou encore l'algorithmique des arbres."
         },
         "lycee": {
             "id": "lycee",
@@ -38,7 +47,18 @@
                 }
             ],
             "title": "Baccalauréat scientifique au lycée Champlain",
-            "text": "J'ai choisi de faire mon baccalauréat scientifique au lycée Champlain afin de pouvoir acquérir des bases solides en mathématiques"
+            "text": "En 2019, j'obtiens mon baccalauréat scientifique option sciences de la vie et de la terre. Suite à cela, j'intègre la première année commune aux études de santé (PACES) à l'Université Paris-Est Créteil. Cependant, je décide de changer de voie et de faire une licence informatique à l'Université Gustave Eiffel."
         }
-    }
+    },
+    "projects-title": "Projets",
+    "projects": {
+        "school": {
+            "id": "school",
+            "title": "Projets Universitaires",
+            "text": "Voici une liste de projets que j'ai réalisé dans le cadre de mes études.",
+            "projects": []
+        },
+        "personal": {}
+    },
+    "contact-me-title": "Contact"
 }
