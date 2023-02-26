@@ -135,7 +135,7 @@ onBeforeMount(async () => {
                 </table>
             </section>
             <section id="projects"
-                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 sm:py-24">
+                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-10">
                     {{ $t('projects-title') }}
                 </h2>
@@ -156,7 +156,7 @@ onBeforeMount(async () => {
                 <Carousel class="w-screen h-full max-w-[95vw] lg:max-w-5xl mt-10">
                     <Slide v-for="project, index in projects[projectTypeSelected].projects" :key="project.id">
                         <div
-                            class="w-full h-full bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-lg p-10 flex gap-5 items-center justify-center flex-col md:flex-row">
+                            class="w-full h-full bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-lg p-10 flex gap-5 items-center justify-center flex-col-reverse md:flex-row">
                             <picture class="flex-shrink-0">
                                 <source :srcset="project.images[0].src + '.webp'" type="image/webp" />
                                 <source :srcset="project.images[0].src + '.png'" type="image/png" />
@@ -186,7 +186,7 @@ onBeforeMount(async () => {
                 </Carousel>
             </section>
             <section id="contact"
-                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 sm:py-24">
+                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-10">
                     {{ $t('contact-me-title') }}
                 </h2>

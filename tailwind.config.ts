@@ -29,8 +29,8 @@ module.exports = {
                 },
             },
             animation: {
-                'scaling-up': 'scaling-up 0.5s ease-in-out',
-                'pop-in-late': 'pop-in-late 0.5s ease-in-out',
+                'scaling-up': 'scaling-up 1s ease-in-out',
+                'pop-in-late': 'pop-in-late 1s ease-in-out',
 
             },
             fontFamily: {

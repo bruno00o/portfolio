@@ -4,7 +4,7 @@ export default defineNuxtConfig({
         head: {
             title: 'Bruno Seilliebert - Portfolio',
             charset: 'utf-8',
-            viewport: 'width=device-width, initial-scale=1',
+            viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
             link: [{
                 rel: 'preconnect',
                 href: 'https://fonts.googleapis.com'

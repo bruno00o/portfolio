@@ -95,6 +95,11 @@ const placeBlobs = () => {
     blob4.style.right = '-5%';
 
     setColors(selectedBlobs);
+
+    for (let i = 0; i < selectedBlobs.length; i++) {
+        const blob = selectedBlobs[i];
+        blob.classList.add('animate-scaling-up');
+    }
 };
 
 placeBlobs();
