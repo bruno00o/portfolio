@@ -1,0 +1,64 @@
+{
+    "meta": {
+        "description": "Portfolio of Bruno Seilliebert, 3rd year computer science student at Gustave Eiffel University"
+    },
+    "nav": {
+        "main": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "main-text": "3rd year Computer Science student at Gustave Eiffel University",
+    "about-me": "About me",
+    "school-career-title": "Education",
+    "school-career": {
+        "l3": {
+            "id": "l3",
+            "images": [
+                {
+                    "src": "img/universite-gustave-eiffel.jpg",
+                    "alt": "Gustave Eiffel University logo"
+                },
+                {
+                    "src": "img/logo-carre-kynova.jpg",
+                    "alt": "Kynova logo"
+                }
+            ],
+            "title": "3rd year Computer Science student at Gustave Eiffel University, working at Kynova as an apprentice",
+            "text": "I chose to do my third year as an apprentice so that I could apply what I learned in class and gain experience in the workplace. Therefore, I chose to do my apprenticeship at Kynova, a communication agency where I was hired as a web developer.<br>Parallel to my apprenticeship, I am taking advanced programming courses in C and database, discovering Java as well as functional programming in Haskell. I am also taking courses in compilation, networks, and graph algorithms."
+        },
+        "l1-l2": {
+            "id": "l1-l2",
+            "images": [
+                {
+                    "src": "img/universite-gustave-eiffel.jpg",
+                    "alt": "Gustave Eiffel University logo"
+                }
+            ],
+            "title": "1st and 2nd year Computer Science student at Gustave Eiffel University",
+            "text": "In September 2020, I joined Gustave Eiffel University to do a Computer Science degree.<br>The first year being common to the Mathematics degree, I was able to take courses in mathematics as well as programming and algorithms in Python and JavaScript.<br>The second year is more focused on computer science, so I was able to start learning C, continue with Python, but also discover databases, automata, and tree algorithms."
+        },
+        "lycee": {
+            "id": "lycee",
+            "images": [
+                {
+                    "src": "img/lycee-champlain.webp",
+                    "alt": "Champlain High School"
+                }
+            ],
+            "title": "Bachelor of Science from Champlain High School",
+            "text": "In 2019, I obtained my Bachelor of Science with an option in Life and Earth Sciences. Following that, I joined the first year of common health studies (PACES) at the University of Paris-Est Créteil. However, I decided to change paths and do a Computer Science degree at Gustave Eiffel University."
+        }
+    },
+    "projects-title": "Projects",
+    "projects": {
+        "school": {
+            "id": "school",
+            "title": "Projets Universitaires",
+            "text": "Voici une liste de projets que j'ai réalisé dans le cadre de mes études.",
+            "projects": []
+        },
+        "personal": {}
+    },
+    "contact-me-title": "Contact"
+}

@@ -1,0 +1,159 @@
+{
+    "meta": {
+        "description": "Portfolio de Bruno Seilliebert, étudiant en 3ème année de licence informatique à l'Université Gustave Eiffel"
+    },
+    "nav": {
+        "main": "Accueil",
+        "about": "À propos",
+        "projects": "Projets",
+        "contact": "Contact"
+    },
+    "main-text": "Etudiant en 3ème année de Licence Informatique à l'Université Gustave Eiffel",
+    "about-me": "À propos de moi",
+    "school-career-title": "Formation",
+    "school-career": {
+        "l3": {
+            "id": "l3",
+            "images": [
+                {
+                    "src": "img/universite-gustave-eiffel",
+                    "alt": "Logo de l'université Gustave Eiffel"
+                },
+                {
+                    "src": "img/logo-carre-kynova",
+                    "alt": "Logo de Kynova"
+                }
+            ],
+            "title": "3ème année de licence informatique à l'Université Gustave Eiffel, en alternance chez Kynova",
+            "text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web.<br>Parallellement à mon alternance, je suis des cours de programmation avancée en C et en base de données, je découvre le Java ainsi que la programmation fonctionnelle en Haskell. Je suis également des cours de compilation, de réseaux et d'algorithmique des graphes."
+        },
+        "l1-l2": {
+            "id": "l1-l2",
+            "images": [
+                {
+                    "src": "img/universite-gustave-eiffel",
+                    "alt": "Logo de l'université Gustave Eiffel"
+                }
+            ],
+            "title": "1ère et 2ème année de licence informatique à l'Université Gustave Eiffel",
+            "text": "En septembre 2020, j'intègre l'Université Gustave Eiffel pour faire une licence informatique.<br>La première année étant commune à la licence de mathématiques, j'ai pu suivre des cours de mathématiques ainsi que des cours de programmation et d'algorithmique en Python et JavaScript.<br>La deuxième année est plus orientée informatique, j'y ai donc pu débuter le C, poursuivre le Python mais aussi découvrir la base de données, les automates ou encore l'algorithmique des arbres."
+        },
+        "lycee": {
+            "id": "lycee",
+            "images": [
+                {
+                    "src": "img/lycee-champlain",
+                    "alt": "Lycée Champlain"
+                }
+            ],
+            "title": "Baccalauréat scientifique au lycée Champlain",
+            "text": "En 2019, j'obtiens mon baccalauréat scientifique option sciences de la vie et de la terre. Suite à cela, j'intègre la première année commune aux études de santé (PACES) à l'Université Paris-Est Créteil. Cependant, je décide de changer de voie et de faire une licence informatique à l'Université Gustave Eiffel."
+        }
+    },
+    "projects-title": "Projets",
+    "projects": {
+        "school": {
+            "id": "school",
+            "small-title": "Universitaires",
+            "title": "Projets Universitaires",
+            "text": "Voici une liste de projets que j'ai réalisé dans le cadre de mes études.",
+            "projects": [
+                {
+                    "id": "stealth",
+                    "title": "Jeu d'infiltration en 2D",
+                    "languages": [
+                        "C"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/stealth",
+                            "alt": "Capture d'écran du jeu Stealth"
+                        }
+                    ],
+                    "text": "Jeu d'infiltration en 2D réalisé en C avec la bibliothèque graphique de l'université basée sur SDL2. Le but du jeu est de récupérer les objets dans la pièce sans se faire repérer par les gardes. Le joueur ramasse du mana en se déplaçant et peut utiliser des sorts pour se déplacer plus rapidement ou pour devenir invisible.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/stealth",
+                            "text": "Voir le code source"
+                        }
+                    ]
+                },
+                {
+                    "id": "patchwork",
+                    "title": "Jeu du Patchwork",
+                    "languages": [
+                        "Java"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/patchwork",
+                            "alt": "Capture d'écran du jeu Patchwork"
+                        }
+                    ],
+                    "text": "Version du jeu du Patchwork réalisée en Java. Le but du jeu est de remplir son plateau de tuiles et de déplacer son pion jusqu'à la ligne d'arrivée.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/Patchwork",
+                            "text": "Voir le code source"
+                        }
+                    ]
+                }
+            ]
+        },
+        "personal": {
+            "id": "personal",
+            "small-title": "Personnels",
+            "title": "Projets Personnels",
+            "text": "Voici une liste de projets que j'ai réalisé en dehors de mes études.",
+            "projects": [
+                {
+                    "id": "aroma-uge",
+                    "title": "Site web permettant aux étudiants de l'Université Gustave Eiffel de consulter leur emploi du temps et celui de leurs amis",
+                    "languages": [
+                        "Vue.js",
+                        "Node.js",
+                        "Express.js"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/aroma-uge",
+                            "alt": "Capture d'écran du site web Aroma UGE"
+                        }
+                    ],
+                    "text": "Site web permettant aux étudiants de l'Université Gustave Eiffel de consulter leur emploi du temps et celui de leurs amis. Le site web est réalisé en Vue.js et Node.js avec Express.js. Les données sont récupérées automatiquement depuis l'ENT de l'université",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/aroma-uge",
+                            "text": "Voir le code source"
+                        },
+                        {
+                            "href": "https://aroma-uge.tech",
+                            "text": "Voir le site web"
+                        }
+                    ]
+                },
+                {
+                    "id": "signal-home",
+                    "title": "Script Python envoyant un message sur Signal lorsqu'un membre de la famille rentre à la maison",
+                    "languages": [
+                        "Python"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/signal-home",
+                            "alt": "Capture d'écran du script Signal Home"
+                        }
+                    ],
+                    "text": "Script python envoyant un message sur Signal lorsqu'un membre de la famille rentre à la maison. Le script est réalisé en Python et utilise l'api de la Freebox ainsi qu'un <a href=\"https://github.com/bbernhard/signal-cli-rest-api\">repo GitHub</a> permettant d'utiliser Signal sur un serveur.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/signal-home",
+                            "text": "Voir le code source"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "contact-me-title": "Contact"
+}
