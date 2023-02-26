@@ -11,7 +11,7 @@ const titleSchoolModal = ref("")
 
 const projectTypeSelected = ref("")
 
-const api = (await $fetch("/api") as any).api as any
+const api = (await $fetch("/api") as any) as any
 schoolCareer.value = api["school-career"] as any
 projects.value = api.projects as any
 

@@ -52,7 +52,7 @@ export default defineNuxtConfig({
             },
         ],
         lazy: true,
-        langDir: 'lang/',
+        langDir: './lang/',
         defaultLocale: 'fr',
         baseUrl: 'http://localhost:3000',
     },

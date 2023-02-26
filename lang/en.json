@@ -54,11 +54,106 @@
     "projects": {
         "school": {
             "id": "school",
-            "title": "Projets Universitaires",
-            "text": "Voici une liste de projets que j'ai réalisé dans le cadre de mes études.",
-            "projects": []
+            "small-title": "Academic",
+            "title": "Academic Projects",
+            "text": "Here is a list of projects I have completed as part of my studies.",
+            "projects": [
+                {
+                    "id": "stealth",
+                    "title": "2D Stealth Game",
+                    "languages": [
+                        "C"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/stealth",
+                            "alt": "Screenshot of the Stealth game"
+                        }
+                    ],
+                    "text": "2D stealth game made in C with the university's graphic library based on SDL2. The objective of the game is to collect objects in the room without being detected by the guards. The player collects mana while moving and can use spells to move faster or become invisible.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/stealth",
+                            "text": "View source code"
+                        }
+                    ]
+                },
+                {
+                    "id": "patchwork",
+                    "title": "Patchwork Game",
+                    "languages": [
+                        "Java"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/patchwork",
+                            "alt": "Screenshot of the Patchwork game"
+                        }
+                    ],
+                    "text": "Version of the Patchwork game made in Java. The goal of the game is to fill the board with tiles and move the pawn to the finish line.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/Patchwork",
+                            "text": "View source code"
+                        }
+                    ]
+                }
+            ]
         },
-        "personal": {}
+        "personal": {
+            "id": "personal",
+            "small-title": "Personal",
+            "title": "Personal Projects",
+            "text": "Here is a list of projects I have completed outside of my studies.",
+            "projects": [
+                {
+                    "id": "aroma-uge",
+                    "title": "Website allowing University Gustave Eiffel students to view their schedules and those of their friends",
+                    "languages": [
+                        "Vue.js",
+                        "Node.js",
+                        "Express.js"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/aroma-uge",
+                            "alt": "Screenshot of the Aroma UGE website"
+                        }
+                    ],
+                    "text": "Website allowing University Gustave Eiffel students to view their schedules and those of their friends. The website is made with Vue.js and Node.js with Express.js. The data is automatically retrieved from the university's ENT",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/aroma-uge",
+                            "text": "View source code"
+                        },
+                        {
+                            "href": "https://aroma-uge.tech",
+                            "text": "View website"
+                        }
+                    ]
+                },
+                {
+                    "id": "signal-home",
+                    "title": "Python script sending a message on Signal when a family member returns home",
+                    "languages": [
+                        "Python"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/signal-home",
+                            "alt": "Screenshot of the Signal Home script"
+                        }
+                    ],
+                    "text": "Python script sending a message on Signal when a family member returns home. The script is made in Python and uses the Freebox API as well as a <a href=\"https://github.com/bbernhard/signal-cli-rest-api\">GitHub repository</a> allowing to use Signal on a server.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/signal-home",
+                            "text": "View source code"
+                        }
+                    ]
+                }
+            ]
+        }
     },
     "contact-me-title": "Contact"
 }
