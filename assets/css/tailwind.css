@@ -31,13 +31,21 @@
             transform: scale(1);
             rotate: 0deg;
         }
+
         50% {
             transform: scale(1.1);
             rotate: 180deg;
         }
+
         100% {
             transform: scale(1);
             rotate: 360deg;
         }
+    }
+}
+
+@layer components {
+    #projects-nav li.active {
+        @apply bg-slate-300 dark:bg-slate-700;
     }
 }

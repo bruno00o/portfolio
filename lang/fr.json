@@ -16,11 +16,11 @@
             "id": "l3",
             "images": [
                 {
-                    "src": "img/universite-gustave-eiffel.jpg",
+                    "src": "img/universite-gustave-eiffel",
                     "alt": "Logo de l'université Gustave Eiffel"
                 },
                 {
-                    "src": "img/logo-carre-kynova.jpg",
+                    "src": "img/logo-carre-kynova",
                     "alt": "Logo de Kynova"
                 }
             ],
@@ -31,7 +31,7 @@
             "id": "l1-l2",
             "images": [
                 {
-                    "src": "img/universite-gustave-eiffel.jpg",
+                    "src": "img/universite-gustave-eiffel",
                     "alt": "Logo de l'université Gustave Eiffel"
                 }
             ],
@@ -42,7 +42,7 @@
             "id": "lycee",
             "images": [
                 {
-                    "src": "img/lycee-champlain.webp",
+                    "src": "img/lycee-champlain",
                     "alt": "Lycée Champlain"
                 }
             ],
@@ -54,11 +54,106 @@
     "projects": {
         "school": {
             "id": "school",
+            "small-title": "Universitaires",
             "title": "Projets Universitaires",
             "text": "Voici une liste de projets que j'ai réalisé dans le cadre de mes études.",
-            "projects": []
+            "projects": [
+                {
+                    "id": "stealth",
+                    "title": "Jeu d'infiltration en 2D",
+                    "languages": [
+                        "C"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/stealth",
+                            "alt": "Capture d'écran du jeu Stealth"
+                        }
+                    ],
+                    "text": "Jeu d'infiltration en 2D réalisé en C avec la bibliothèque graphique de l'université basée sur SDL2. Le but du jeu est de récupérer les objets dans la pièce sans se faire repérer par les gardes. Le joueur ramasse du mana en se déplaçant et peut utiliser des sorts pour se déplacer plus rapidement ou pour devenir invisible.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/stealth",
+                            "text": "Voir le code source"
+                        }
+                    ]
+                },
+                {
+                    "id": "patchwork",
+                    "title": "Jeu du Patchwork",
+                    "languages": [
+                        "Java"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/patchwork",
+                            "alt": "Capture d'écran du jeu Patchwork"
+                        }
+                    ],
+                    "text": "Version du jeu du Patchwork réalisée en Java. Le but du jeu est de remplir son plateau de tuiles et de déplacer son pion jusqu'à la ligne d'arrivée.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/Patchwork",
+                            "text": "Voir le code source"
+                        }
+                    ]
+                }
+            ]
         },
-        "personal": {}
+        "personal": {
+            "id": "personal",
+            "small-title": "Personnels",
+            "title": "Projets Personnels",
+            "text": "Voici une liste de projets que j'ai réalisé en dehors de mes études.",
+            "projects": [
+                {
+                    "id": "aroma-uge",
+                    "title": "Site web permettant aux étudiants de l'Université Gustave Eiffel de consulter leur emploi du temps et celui de leurs amis",
+                    "languages": [
+                        "Vue.js",
+                        "Node.js",
+                        "Express.js"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/aroma-uge",
+                            "alt": "Capture d'écran du site web Aroma UGE"
+                        }
+                    ],
+                    "text": "Site web permettant aux étudiants de l'Université Gustave Eiffel de consulter leur emploi du temps et celui de leurs amis. Le site web est réalisé en Vue.js et Node.js avec Express.js. Les données sont récupérées automatiquement depuis l'ENT de l'université",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/aroma-uge",
+                            "text": "Voir le code source"
+                        },
+                        {
+                            "href": "https://aroma-uge.tech",
+                            "text": "Voir le site web"
+                        }
+                    ]
+                },
+                {
+                    "id": "signal-home",
+                    "title": "Script Python envoyant un message sur Signal lorsqu'un membre de la famille rentre à la maison",
+                    "languages": [
+                        "Python"
+                    ],
+                    "images": [
+                        {
+                            "src": "img/signal-home",
+                            "alt": "Capture d'écran du script Signal Home"
+                        }
+                    ],
+                    "text": "Script python envoyant un message sur Signal lorsqu'un membre de la famille rentre à la maison. Le script est réalisé en Python et utilise l'api de la Freebox ainsi qu'un <a href=\"https://github.com/bbernhard/signal-cli-rest-api\">repo GitHub</a> permettant d'utiliser Signal sur un serveur.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/signal-home",
+                            "text": "Voir le code source"
+                        }
+                    ]
+                }
+            ]
+        }
     },
     "contact-me-title": "Contact"
 }
