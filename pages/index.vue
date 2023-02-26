@@ -79,8 +79,8 @@ const availableLocales = computed(() => {
             </div>
         </header>
         <section id="top"
-            class="grid justify-center items-center h-screen w-full bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 fixed min-h-screen overflow-hidden left-0 top-0">
-            <div id="main-bg" class="h-screen w-screen absolute top-0 left-0 z-0 blur-xl overflow-hidden">
+            class="min-h-full grid justify-center items-center w-full bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 fixed overflow-hidden left-0 top-0">
+            <div id="main-bg" class="h-full w-full absolute top-0 left-0 z-0 blur-xl overflow-hidden">
                 <Blobs />
             </div>
             <div class="flex flex-col p-10 gap-2 relative animate-scaling-up">
@@ -91,7 +91,7 @@ const availableLocales = computed(() => {
                     {{ $t('main-text') }}
                 </p>
             </div>
-            <div class="flex gap-4 absolute bottom-4-env md:right-4 left-4 md:left-auto">
+            <div class="flex gap-4 absolute bottom-4-env lg:right-4 left-4 lg:left-auto">
                 <NuxtLink to="https://github.com/bruno00o" target="_blank" aria-label="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-8 w-8 fill-slate-900 hover:fill-slate-700 dark:fill-slate-100 dark:hover:fill-slate-300 animate-[pop-in-late_1s_ease-in-out]"
@@ -118,11 +118,15 @@ const availableLocales = computed(() => {
                 </NuxtLink>
             </div>
             <div
-                class="flex justify-center items-end md:items-center gap-4 absolute bottom-4-env md:top-4 right-4 md:left-auto h-12 z-20">
+                class="flex justify-center items-end lg:items-center gap-4 absolute bottom-4-env lg:top-4 right-4 lg:left-auto h-12 z-20">
                 <button @click="setColorTheme($colorMode.preference as Theme)" aria-label="Toggle color theme"
                     class="h-6 w-6 flex items-center justify-center animate-[pop-in-late_1s_ease-in-out]">
                     <div v-if="$colorMode.preference === 'system'">
-                        🖥️
+                        <svg class="h-6 w-6 fill-slate-900 dark:fill-slate-100" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 576 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V352H64V64H512z" />
+                        </svg>
                         <!-- <img src="img/display-solid.svg" alt=""> -->
                     </div>
                     <div v-else-if="$colorMode.preference === 'dark'">
@@ -141,7 +145,7 @@ const availableLocales = computed(() => {
                         </svg>
                     </div>
                 </button>
-                <div class="relative">
+                <div class="relative animate-[pop-in-late_1s_ease-in-out]">
                     <button @click="langDropdown ? langDropdown = false : langDropdown = true"
                         class="flex items-center gap-2">
                         <span>{{ actualLanguage }}</span>
@@ -157,7 +161,7 @@ const availableLocales = computed(() => {
                     </button>
                     <Transition name="dropdown">
                         <div v-show="langDropdown"
-                            class="absolute bottom-full md:bottom-auto md:top-full right-0 w-32 bg-white dark:bg-gray-900 shadow-lg rounded-md py-2 flex flex-col gap-2 md:mt-2 mb-2 md:mb-0"
+                            class="absolute bottom-full lg:bottom-auto lg:top-full right-0 w-32 bg-white dark:bg-gray-900 shadow-lg rounded-md py-2 flex flex-col gap-2 lg:mt-2 mb-2 lg:mb-0"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                             <NuxtLink v-for="locale in availableLocales" :key="locale.code"
                                 :to="switchLocalePath(locale.code)"
@@ -339,4 +343,9 @@ export default defineComponent({
 .carousel__prev,
 .carousel__next {
     box-sizing: content-box;
+}
+
+.bottom-4-env {
+    bottom: 1rem;
+    padding-bottom: env(safe-area-inset-bottom);
 }</style>

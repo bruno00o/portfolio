@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div v-if="isMounted" class="relative w-screen h-screen">
+    <div v-if="isMounted" class="relative h-full w-full">
         <svg class="blob absolute" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="display: none;" filter="blur(0px)"
             transform="rotate(0)">
             <path>
