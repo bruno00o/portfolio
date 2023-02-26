@@ -1,21 +1,4 @@
-
-const darkBlobsColors = [
-    "#9E4770",
-    "#44BBA4",
-    "#5F758E",
-    "#E01A4F",
-    "#F15A29",
-]
-
-const lightBlobsColors = [
-    "#FFBA08",
-    "#E2C2FF",
-    "#B0D0D3",
-    "#9CDE9F",
-    "#95B8D1",
-]
-
-const getFourRandomBlobs = (blobs) => {
+function getFourRandomBlobs(blobs) {
     const randomBlobs = [];
     for (let i = 0; i < 4; i++) {
         const random = Math.floor(Math.random() * blobs.length);
@@ -26,11 +9,9 @@ const getFourRandomBlobs = (blobs) => {
     return randomBlobs;
 };
 
-const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
-
-const windowWidth = window.innerWidth;
-
-const randomBlobSize = () => {
+function randomBlobSize() {
+    const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+    const windowWidth = window.innerWidth;
     if (windowWidth > 1200) return random(400, 800);
     if (windowWidth > 1400) return random(600, 1400);
     if (windowWidth > 1600) return random(800, 1600);
@@ -41,17 +22,33 @@ const randomBlobSize = () => {
     return random(300, 600);
 };
 
-const setWidth = (blobs) => {
+function setWidth(blobs) {
     for (let i = 0; i < blobs.length; i++) {
         const blob = blobs[i];
         blob.style.width = `${randomBlobSize()}px`;
     }
 };
 
-const setColors = (blobs) => {
-    const colors = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? darkBlobsColors
-        : lightBlobsColors
+function setColors(blobs) {
+    const html = document.querySelector('html');
+
+    const darkBlobsColors = [
+        "#9E4770",
+        "#44BBA4",
+        "#5F758E",
+        "#E01A4F",
+        "#F15A29",
+    ]
+
+    const lightBlobsColors = [
+        "#FFBA08",
+        "#E2C2FF",
+        "#B0D0D3",
+        "#9CDE9F",
+        "#95B8D1",
+    ]
+
+    const colors = html.classList.contains('dark') ? darkBlobsColors : lightBlobsColors;
 
     const usedColors = [];
 
@@ -70,7 +67,7 @@ const setColors = (blobs) => {
 };
 
 
-const placeBlobs = () => {
+function placeBlobs() {
     const blobs = Array.from(document.querySelectorAll('.blob'));
 
     const selectedBlobs = getFourRandomBlobs(blobs);
@@ -102,18 +99,26 @@ const placeBlobs = () => {
     }
 };
 
-placeBlobs();
-
-/* window.addEventListener('resize', () => {
-    const activeBlobs = Array.from(document.querySelectorAll('.blob.active'));
-    setWidth(activeBlobs);
-}); */
-
-const colorSchemeQueryList = window.matchMedia('(prefers-color-scheme: dark)');
-
-const setColorScheme = e => {
+function setColorScheme() {
     const activeBlobs = Array.from(document.querySelectorAll('.blob.active'));
     setColors(activeBlobs);
 }
 
-colorSchemeQueryList.addEventListener('change', setColorScheme);
+function checkColorScheme() {
+    const html = document.querySelector('html');
+    
+    const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                setColorScheme();
+            }
+        });
+    });
+
+    mutationObserver.observe(html, {
+        attributes: true,
+    });
+};
+
+placeBlobs();
+checkColorScheme();

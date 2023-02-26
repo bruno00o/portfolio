@@ -49,3 +49,9 @@
         @apply bg-slate-300 dark:bg-slate-700;
     }
 }
+
+@layer utilities {
+    .bottom-4-env {
+        bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+}

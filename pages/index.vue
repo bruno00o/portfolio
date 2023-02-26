@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
 
 const schoolCareer = ref({} as any)
@@ -10,6 +9,7 @@ const textSchoolModal = ref("")
 const titleSchoolModal = ref("")
 
 const projectTypeSelected = ref("")
+
 
 const api = (await $fetch("/api") as any) as any
 schoolCareer.value = api["school-career"] as any
@@ -25,14 +25,34 @@ onBeforeMount(async () => {
         main.style.scale = 1 + (window.scrollY / 20000) + ''
     })
 })
+
+type Theme = 'light' | 'dark' | 'system'
+
+const setColorTheme = (oldTheme: Theme) => {
+    const themes = ['light', 'dark', 'system'] as Theme[]
+    const newTheme = themes[(themes.indexOf(oldTheme) + 1) % themes.length]
+    useColorMode().preference = newTheme
+}
+
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+
+const langDropdown = ref(false)
+const actualLanguage = computed(() => {
+    return (locales.value as any[]).filter((i => i.code === locale.value))[0].name
+})
+
+const availableLocales = computed(() => {
+    return (locales.value as any[])
+})
 </script>
 
 <template>
     <main id="main">
-        <header class="fixed relative w-full flex justify-center h-12 z-10 pt-4 animate-pop-in-late">
+        <header class="fixed relative w-full flex justify-center h-12 z-10 pt-4 animate-pop-in-late pointer-events-none">
             <div
                 class="text-slate-900 dark:text-slate-50 h-12 z-10 fixed w-full max-w-[90vw] sm:max-w-xl rounded-xl before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-50 before:dark:bg-slate-800 z-0 before:rounded-xl before:opacity-90 before:border-2 before:border-slate-300 before:dark:border-slate-700 before:z-0 font-medium">
-                <nav class="h-full z-10 relative">
+                <nav class="h-full z-10 relative pointer-events-auto">
                     <ul class="flex justify-around items-center h-full">
                         <li class="flex justify-center items-center h-full">
                             <NuxtLink to="#main" class="flex justify-center items-center h-full w-full hover:font-bold">
@@ -59,7 +79,7 @@ onBeforeMount(async () => {
             </div>
         </header>
         <section id="top"
-            class="grid justify-center items-center h-screen w-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 fixed min-h-screen overflow-hidden left-0 top-0">
+            class="grid justify-center items-center h-screen w-full bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 fixed min-h-screen overflow-hidden left-0 top-0">
             <div id="main-bg" class="h-screen w-screen absolute top-0 left-0 z-0 blur-xl overflow-hidden">
                 <Blobs />
             </div>
@@ -71,7 +91,7 @@ onBeforeMount(async () => {
                     {{ $t('main-text') }}
                 </p>
             </div>
-            <div class="flex gap-4 absolute bottom-4 md:right-8 left-4 md:left-auto">
+            <div class="flex gap-4 absolute bottom-4-env md:right-4 left-4 md:left-auto">
                 <NuxtLink to="https://github.com/bruno00o" target="_blank" aria-label="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-8 w-8 fill-slate-900 hover:fill-slate-700 dark:fill-slate-100 dark:hover:fill-slate-300 animate-[pop-in-late_1s_ease-in-out]"
@@ -97,6 +117,58 @@ onBeforeMount(async () => {
                     </svg>
                 </NuxtLink>
             </div>
+            <div
+                class="flex justify-center items-end md:items-center gap-4 absolute bottom-4-env md:top-4 right-4 md:left-auto h-12 z-20">
+                <button @click="setColorTheme($colorMode.preference as Theme)" aria-label="Toggle color theme"
+                    class="h-6 w-6 flex items-center justify-center animate-[pop-in-late_1s_ease-in-out]">
+                    <div v-if="$colorMode.preference === 'system'">
+                        🖥️
+                        <!-- <img src="img/display-solid.svg" alt=""> -->
+                    </div>
+                    <div v-else-if="$colorMode.preference === 'dark'">
+                        <svg class="h-6 w-6 fill-slate-900 dark:fill-slate-100" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 384 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
+                        </svg>
+                    </div>
+                    <div v-else-if="$colorMode.preference === 'light'">
+                        <svg class="h-6 w-6 fill-slate-900 dark:fill-slate-100" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path fill-rule="evenodd"
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </button>
+                <div class="relative">
+                    <button @click="langDropdown ? langDropdown = false : langDropdown = true"
+                        class="flex items-center gap-2">
+                        <span>{{ actualLanguage }}</span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4 fill-gray-900 dark:fill-gray-50 transition-all duration-300 ease-in-out origin-center"
+                                :class="langDropdown ? 'transform rotate-180' : ''"
+                                viewBox="0 0 384 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M169.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 274.7 54.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                        </span>
+                    </button>
+                    <Transition name="dropdown">
+                        <div v-show="langDropdown"
+                            class="absolute bottom-full md:bottom-auto md:top-full right-0 w-32 bg-white dark:bg-gray-900 shadow-lg rounded-md py-2 flex flex-col gap-2 md:mt-2 mb-2 md:mb-0"
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                            <NuxtLink v-for="locale in availableLocales" :key="locale.code"
+                                :to="switchLocalePath(locale.code)"
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-50 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                {{
+                                    locale.name
+                                }}</NuxtLink>
+                        </div>
+                    </Transition>
+                </div>
+            </div>
         </section>
         <div class="absolute top-full w-full">
             <section id="about"
@@ -121,7 +193,7 @@ onBeforeMount(async () => {
                                 <picture>
                                     <source :srcset="image.src + '.webp'" type="image/webp" />
                                     <source :srcset="image.src + '.jpg'" type="image/jpeg" />
-                                    <img :src="image.src + '.jpg'" :alt="image.alt" />
+                                    <img :src="image.src + '.jpg'" :alt="image.alt" width="80" height="80" />
                                 </picture>
                             </div>
                         </td>
@@ -136,10 +208,10 @@ onBeforeMount(async () => {
             </section>
             <section id="projects"
                 class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 py-20">
-                <h2 class="text-3xl font-bold sm:text-4xl mb-10">
+                <h2 class="text-3xl font-bold sm:text-4xl mb-5 md:mb-10">
                     {{ $t('projects-title') }}
                 </h2>
-                <nav id="projects-nav" class="mb-10">
+                <nav id="projects-nav" class="mb-5 md:mb-10">
                     <ul
                         class="flex gap-5 sm:flex-row sm:gap-10 md:gap-15 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg p-2">
                         <li v-for="project in projects" :key="project.id"
@@ -153,7 +225,7 @@ onBeforeMount(async () => {
                 <h3 class="text-lg font-bold sm:text-xl">
                     {{ $t(`projects.${projectTypeSelected}.text`) }}
                 </h3>
-                <Carousel class="w-screen h-full max-w-[95vw] lg:max-w-5xl mt-10">
+                <Carousel class="w-screen h-full max-w-[95vw] lg:max-w-5xl mt-5 md:mt-10">
                     <Slide v-for="project, index in projects[projectTypeSelected].projects" :key="project.id">
                         <div
                             class="w-full h-full bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-lg p-10 flex gap-5 items-center justify-center flex-col-reverse md:flex-row">
@@ -161,7 +233,7 @@ onBeforeMount(async () => {
                                 <source :srcset="project.images[0].src + '.webp'" type="image/webp" />
                                 <source :srcset="project.images[0].src + '.png'" type="image/png" />
                                 <img :src="project.images[0].src + '.png'" :alt="project.images[0].alt"
-                                    class="max-w-64 max-h-64" />
+                                    class="max-w-64 max-h-64" width="300" height="300" />
                             </picture>
                             <div>
                                 <h4 class="text-lg font-bold text-left sm:text-xl mb-5">
@@ -170,7 +242,8 @@ onBeforeMount(async () => {
                                 <p class="text-left" v-html="$t(`projects.${projectTypeSelected}.projects[${index}].text`)">
                                 </p>
                                 <div class="flex gap-5 mt-5">
-                                    <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href" target="_blank"
+                                    <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href"
+                                        target="_blank"
                                         class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-300 dark:hover:bg-slate-600">
                                         <span>{{
                                             $t(`projects.${projectTypeSelected}.projects[${index}].links[${index2}].text`)
@@ -195,7 +268,7 @@ onBeforeMount(async () => {
                 Made with&nbsp<NuxtLink to="https://nuxt.com/" target="_blank" class="text-slate-50 hover:underline">Nuxt
                 </NuxtLink>&nbsp&&nbsp<NuxtLink to="https://tailwindcss.com/" target="_blank"
                     class="text-slate-50 hover:underline">Tailwind</NuxtLink>
-                &nbspby&nbsp<NuxtLink to="#main" class="text-slate-50 hover:underline">Me</NuxtLink>
+                &nbspby&nbsp<NuxtLink to="#main" class="text-slate-50 hover:underline">Bruno Seilliebert</NuxtLink>
             </footer>
         </div>
     </main>
@@ -241,6 +314,17 @@ export default defineComponent({
     opacity: 0;
 }
 
+.dropdown-enter-active,
+.dropdown-leave-active {
+    transition: all 0.3s ease;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
 .carousel__item {
     width: 100%;
     display: flex;
@@ -255,5 +339,4 @@ export default defineComponent({
 .carousel__prev,
 .carousel__next {
     box-sizing: content-box;
-}
-</style>
+}</style>

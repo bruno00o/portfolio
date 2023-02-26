@@ -8,8 +8,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/i18n": "^8.0.0-beta.9",
     "@nuxtjs/tailwindcss": "^6.4.1",
+    "@vercel/analytics": "^0.1.10",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "nuxt": "^3.2.0"
