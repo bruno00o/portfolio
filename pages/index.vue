@@ -122,12 +122,7 @@ const availableLocales = computed(() => {
                 <button @click="setColorTheme($colorMode.preference as Theme)" aria-label="Toggle color theme"
                     class="h-6 w-6 flex items-center justify-center animate-[pop-in-late_1s_ease-in-out]">
                     <div v-if="$colorMode.preference === 'system'">
-                        <svg class="h-6 w-6 fill-slate-900 dark:fill-slate-100" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 576 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                            <path
-                                d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V352H64V64H512z" />
-                        </svg>
-                        <!-- <img src="img/display-solid.svg" alt=""> -->
+                        <div class="system h-6 w-6 bg-slate-900 dark:bg-slate-100"></div>
                     </div>
                     <div v-else-if="$colorMode.preference === 'dark'">
                         <svg class="h-6 w-6 fill-slate-900 dark:fill-slate-100" xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +171,7 @@ const availableLocales = computed(() => {
         </section>
         <div class="absolute top-full w-full">
             <section id="about"
-                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
+                class="flex flex-col items-center justify-center w-full h-full p-5 md:p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-0 md:mb-10">
                     {{ $t('about-me') }}
                 </h2>
@@ -193,7 +188,7 @@ const availableLocales = computed(() => {
                         <td
                             class="flex py-3 md:py-0 w-full gap-5 justify-center items-center md:h-40 px-10 bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-t-xl md:rounded-l-xl md:rounded-r-none w-full">
                             <div v-if="year.images" v-for="image in year.images" :key="image"
-                                class="timeline-icon rounded-full overflow-hidden w-20 h-20 bg-white p-3">
+                                class="timeline-icon rounded-full overflow-hidden h-14 w-14 md:w-20 md:h-20 bg-white p-3">
                                 <picture>
                                     <source :srcset="image.src + '.webp'" type="image/webp" />
                                     <source :srcset="image.src + '.jpg'" type="image/jpeg" />
@@ -203,7 +198,7 @@ const availableLocales = computed(() => {
                         </td>
                         <td
                             class="pb-3 md:pb-0 md:rounded-r-xl rounded-b-xl md:rounded-l-none bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 px-5 md:px-0 md:pr-10 w-full">
-                            <p class="text-xl font-bold text-center md:text-left">
+                            <p class="text-base md:text-xl font-bold text-center md:text-left">
                                 {{ $t(`school-career.${year.id}.title`) }}
                             </p>
                         </td>
@@ -211,7 +206,7 @@ const availableLocales = computed(() => {
                 </table>
             </section>
             <section id="projects"
-                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 py-20">
+                class="flex flex-col items-center justify-center w-full h-full p-5 md:p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-5 md:mb-10">
                     {{ $t('projects-title') }}
                 </h2>
@@ -229,31 +224,23 @@ const availableLocales = computed(() => {
                 <h3 class="text-lg font-bold sm:text-xl">
                     {{ $t(`projects.${projectTypeSelected}.text`) }}
                 </h3>
-                <Carousel class="w-screen h-full max-w-[95vw] lg:max-w-5xl mt-5 md:mt-10">
+                <Carousel class="w-screen h-full max-w-[95vw] md:max-w-3xl mt-5 md:mt-10">
                     <Slide v-for="project, index in projects[projectTypeSelected].projects" :key="project.id">
                         <div
-                            class="w-full h-full bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-lg p-10 flex gap-5 items-center justify-center flex-col-reverse md:flex-row">
-                            <picture class="flex-shrink-0">
-                                <source :srcset="project.images[0].src + '.webp'" type="image/webp" />
-                                <source :srcset="project.images[0].src + '.png'" type="image/png" />
-                                <img :src="project.images[0].src + '.png'" :alt="project.images[0].alt"
-                                    class="max-w-64 max-h-64" width="300" height="300" />
-                            </picture>
-                            <div>
-                                <h4 class="text-lg font-bold text-left sm:text-xl mb-5">
-                                    {{ $t(`projects.${projectTypeSelected}.projects[${index}].title`) }}
-                                </h4>
-                                <p class="text-left" v-html="$t(`projects.${projectTypeSelected}.projects[${index}].text`)">
-                                </p>
-                                <div class="flex gap-5 mt-5">
-                                    <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href"
-                                        target="_blank"
-                                        class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-300 dark:hover:bg-slate-600">
-                                        <span>{{
-                                            $t(`projects.${projectTypeSelected}.projects[${index}].links[${index2}].text`)
-                                        }}</span>
-                                    </NuxtLink>
-                                </div>
+                            class="w-full h-full bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-lg px-12 md:px-16 py-8 flex gap-3 items-start justify-center flex-col">
+                            <h4 class="text-lg font-bold text-left sm:text-xl">
+                                {{ $t(`projects.${projectTypeSelected}.projects[${index}].title`) }}
+                            </h4>
+                            <p class="text-left" v-html="$t(`projects.${projectTypeSelected}.projects[${index}].text`)">
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href"
+                                    target="_blank"
+                                    class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-300 dark:hover:bg-slate-600">
+                                    <span>{{
+                                        $t(`projects.${projectTypeSelected}.projects[${index}].links[${index2}].text`)
+                                    }}</span>
+                                </NuxtLink>
                             </div>
                         </div>
                     </Slide>
@@ -263,7 +250,7 @@ const availableLocales = computed(() => {
                 </Carousel>
             </section>
             <section id="contact"
-                class="flex flex-col items-center justify-center w-full h-full p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
+                class="flex flex-col items-center justify-center w-full h-full p-5 md:p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-10">
                     {{ $t('contact-me-title') }}
                 </h2>
@@ -280,13 +267,23 @@ const availableLocales = computed(() => {
         <Transition name="modal" appear>
             <div v-if="schoolModal" class="fixed inset-0 z-40 flex items-center justify-center">
                 <div class="absolute inset-0 bg-black opacity-70" @click="schoolModal = false"></div>
-                <div class="bg-white rounded-lg shadow-lg p-5 z-50 w-11/12 max-w-2xl dark:bg-slate-800 dark:text-slate-50">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-5 md:p-10 z-50 w-11/12 max-w-2xl dark:bg-slate-800 dark:text-slate-50 relative">
                     <div class="flex flex-col gap-5">
-                        <h3 class="text-xl font-bold sm:text-xl self-start">
+                        <h3 class="text-lg font-bold sm:text-xl self-start">
                             {{ titleSchoolModal }}
                         </h3>
-                        <p class="text-justify font-serif text-lg" v-html="textSchoolModal"></p>
+                        <p class="text-justify font-base sm:text-lg" v-html="textSchoolModal"></p>
                     </div>
+                    <button
+                        class="absolute top-[-8px] right-[-8px] bg-gray-500 rounded-full h-6 w-6 flex items-center justify-center hover:bg-gray-400"
+                        @click="schoolModal = false">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-white"
+                            viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </Transition>
@@ -348,4 +345,10 @@ export default defineComponent({
 .bottom-4-env {
     bottom: 1rem;
     padding-bottom: env(safe-area-inset-bottom);
-}</style>
+}
+
+.system {
+    -webkit-mask: url('/img/display-solid.svg') no-repeat center;
+    mask: url('/img/display-solid.svg') no-repeat center;
+}
+</style>

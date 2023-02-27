@@ -36,7 +36,7 @@ module.exports = {
             },
             fontFamily: {
                 sans: ['Space Grotesk', 'sans-serif'],
-                serif: ['Zilla Slab', 'serif'],
+                /* serif: ['Zilla Slab', 'serif'], */
             },
         },
     },
