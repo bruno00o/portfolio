@@ -45,6 +45,42 @@ const actualLanguage = computed(() => {
 const availableLocales = computed(() => {
     return (locales.value as any[])
 })
+
+const formName = ref("")
+const formEmail = ref("")
+const formTel = ref("")
+const formMessage = ref("")
+const formError = ref(false)
+const formSuccess = ref(false)
+
+const sendMail = async () => {
+    if (formName.value === "" || formEmail.value === "" || formMessage.value === "") {
+        formError.value = true
+        return
+    }
+    formError.value = false
+    const res = await $fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify({
+            lang: locale.value,
+            name: formName.value,
+            email: formEmail.value,
+            tel: formTel.value,
+            message: formMessage.value
+        })
+    })
+    if (res.statusCode === 200) {
+        formSuccess.value = true
+        formName.value = ""
+        formEmail.value = ""
+        formTel.value = ""
+        formMessage.value = ""
+    } else {
+        formError.value = true
+        formSuccess.value = false
+    }
+}
+
 </script>
 
 <template>
@@ -171,7 +207,7 @@ const availableLocales = computed(() => {
         </section>
         <div class="absolute top-full w-full">
             <section id="about"
-                class="flex flex-col items-center justify-center w-full h-full p-5 md:p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
+                class="flex flex-col items-center justify-center w-full h-full p-5 md:px-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-0 md:mb-10">
                     {{ $t('about-me') }}
                 </h2>
@@ -206,7 +242,7 @@ const availableLocales = computed(() => {
                 </table>
             </section>
             <section id="projects"
-                class="flex flex-col items-center justify-center w-full h-full p-5 md:p-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 py-20">
+                class="flex flex-col items-center justify-center w-full h-full p-5 md:px-10 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-5 md:mb-10">
                     {{ $t('projects-title') }}
                 </h2>
@@ -250,16 +286,64 @@ const availableLocales = computed(() => {
                 </Carousel>
             </section>
             <section id="contact"
-                class="flex flex-col items-center justify-center w-full h-full p-5 md:p-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
+                class="flex flex-col items-center justify-center w-full h-full p-5 md:px-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-10">
                     {{ $t('contact-me-title') }}
                 </h2>
+                <form class="flex flex-col gap-5 md:gap-10 w-full max-w-[95vw] md:max-w-3xl" @submit.prevent="sendMail">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="name" class="text-lg font-bold">
+                                {{ $t('contact-me.name') }}
+                            </label>
+                            <input type="text" id="name" v-model="formName"
+                                class="rounded-lg p-2 text-slate-900 focus:outline-slate-900" required />
+                        </div>
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="email" class="text-lg font-bold">
+                                {{ $t('contact-me.email') }}
+                            </label>
+                            <input type="email" id="email" v-model="formEmail"
+                                class="rounded-lg p-2 text-slate-900 focus:outline-slate-900
+                                " required />
+                        </div>
+                        <div class="flex flex-col gap-2 w-full">
+                            <label for="tel" class="text-lg font-bold">
+                                {{ $t('contact-me.tel') }}
+                            </label>
+                            <input type="tel" id="tel" v-model="formTel"
+                                class="rounded-lg p-2 text-slate-900 focus:outline-slate-900" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 w-full">
+                        <label for="message" class="text-lg font-bold">
+                            {{ $t('contact-me.message') }}
+                        </label>
+                        <textarea id="message" v-model="formMessage"
+                            class="rounded-lg p-2 text-slate-900 h-36 focus:outline-slate-900" required></textarea>
+                    </div>
+                    <div class="flex flex-col gap-2 w-full justify-center items-center">
+                        <button type="submit"
+                            class="bg-slate-700 text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-400 hover:bg-slate-600 min-w-[150px]">
+                            {{ $t('contact-me.send') }}
+                        </button>
+                    </div>
+                </form>
+                <p v-if="formSuccess" class="mt-8 text-lg font-bold">
+                    {{ $t('contact-me.success') }}
+                </p>
+                <p v-if="formError" class="mt-8 text-lg font-bold">
+                    {{ $t('contact-me.error') }}
+                </p>
             </section>
-            <footer class="flex justify-center items-center w-full h-20 bg-slate-900 text-slate-50">
-                Made with&nbsp<NuxtLink to="https://nuxt.com/" target="_blank" class="text-slate-50 hover:underline">Nuxt
-                </NuxtLink>&nbsp&&nbsp<NuxtLink to="https://tailwindcss.com/" target="_blank"
-                    class="text-slate-50 hover:underline">Tailwind</NuxtLink>
-                &nbspby&nbsp<NuxtLink to="#main" class="text-slate-50 hover:underline">Bruno Seilliebert</NuxtLink>
+            <footer class="w-full h-14 bg-slate-900 text-slate-50 flex items-center justify-center">
+                <div class="text-sm text-center">
+                    Made with&nbsp<NuxtLink to="https://nuxt.com/" target="_blank" class="text-slate-50 hover:underline">
+                        Nuxt
+                    </NuxtLink>&nbsp&&nbsp<NuxtLink to="https://tailwindcss.com/" target="_blank"
+                        class="text-slate-50 hover:underline">Tailwind</NuxtLink>
+                    &nbspby&nbsp<NuxtLink to="#main" class="text-slate-50 hover:underline">Bruno Seilliebert</NuxtLink>
+                </div>
             </footer>
         </div>
     </main>

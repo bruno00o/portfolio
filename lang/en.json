@@ -155,5 +155,14 @@
             ]
         }
     },
-    "contact-me-title": "Contact"
+    "contact-me-title": "Contact",
+    "contact-me": {
+        "name": "Name",
+        "email": "Email",
+        "tel": "Phone number (optional)",
+        "message": "Your message",
+        "send": "Send",
+        "success": "Your message has been successfully sent!",
+        "error": "An error occurred while sending your message."
+    }
 }

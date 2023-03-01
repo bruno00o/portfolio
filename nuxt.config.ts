@@ -70,4 +70,10 @@ export default defineNuxtConfig({
     plugins: [
         { src: '~/plugins/vercel.ts', mode: 'client' },
     ],
+    runtimeConfig: {
+        smtpHost: process.env.SMTP_HOST,
+        smtpPort: process.env.SMTP_PORT,
+        mailUser: process.env.MAIL_USER,
+        mailPass: process.env.MAIL_PASS,
+    },
 })
