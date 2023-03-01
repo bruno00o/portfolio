@@ -13,9 +13,6 @@ export default defineEventHandler(async (event) => {
             user: runtimeConfig.mailUser,
             pass: runtimeConfig.mailPass,
         },
-        tls: {
-            rejectUnauthorized: false
-        }
     });
 
     const message = body.message.replace(/\r?\n/g, '<br>');
@@ -49,6 +46,10 @@ export default defineEventHandler(async (event) => {
 
     return {
         statusCode: 200,
-        body: 'Email sent'
+        body: 'Email sent',
+        api: {
+            runtimeConfig: runtimeConfig,
+            body: body
+        }
     };
 });
