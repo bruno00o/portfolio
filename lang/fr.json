@@ -25,7 +25,7 @@
                 }
             ],
             "title": "3ème année de licence informatique à l'Université Gustave Eiffel, en alternance chez Kynova",
-            "text": "J'ai choisi de faire ma troisième année en alternance afin de pouvoir mettre en pratique ce que j'ai appris en cours et de pouvoir acquérir de l'expérience dans le monde du travail. J'ai donc choisi de faire mon alternance chez Kynova, une agence de communication dans laquelle j'ai été embauché en tant que développeur web.<br>Parallellement à mon alternance, je suis des cours de programmation avancée en C et en base de données, je découvre le Java ainsi que la programmation fonctionnelle en Haskell. Je suis également des cours de compilation, de réseaux et d'algorithmique des graphes."
+            "text": "En 3ème année, afin d'acquérir de l'expérience professionnelle et d'appliquer les connaissances théoriques acquises en cours, j'ai effectué une alternance chez Kynova, une agence de communication.<br>Parallèlement, en cours, j'ai découvert le développement en Java et le réseaux. J'ai suivi des cours de compilation, de programmation fonctionnelle, de programmation système et d'algorithmique des graphes. J'ai également pu approfondir mes connaissances en C et en base de données."
         },
         "l1-l2": {
             "id": "l1-l2",
@@ -47,7 +47,7 @@
                 }
             ],
             "title": "Baccalauréat scientifique au lycée Champlain",
-            "text": "En 2019, j'obtiens mon baccalauréat scientifique option sciences de la vie et de la terre. Suite à cela, j'intègre la première année commune aux études de santé (PACES) à l'Université Paris-Est Créteil. Cependant, je décide de changer de voie et de faire une licence informatique à l'Université Gustave Eiffel."
+            "text": "En 2019, j'obtiens mon baccalauréat scientifique option sciences de la vie et de la terre. Suite à cela, j'intègre la première année commune aux études de santé (PACES) à l'Université Paris-Est Créteil. Après une année, je décide de changer de voie et de faire une licence informatique."
         }
     },
     "projects-title": "Projets",
@@ -70,7 +70,7 @@
                             "alt": "Capture d'écran du jeu Stealth"
                         }
                     ],
-                    "text": "Jeu d'infiltration en 2D réalisé en C avec la bibliothèque graphique de l'université basée sur SDL2. Le but du jeu est de récupérer les objets dans la pièce sans se faire repérer par les gardes. Le joueur ramasse du mana en se déplaçant et peut utiliser des sorts pour se déplacer plus rapidement ou pour devenir invisible.",
+                    "text": "Projet de jeu d'infiltration en 2D réalisé en C avec la bibliothèque graphique de l'université basée sur SDL2. Le but du jeu est de récupérer les objets dans la pièce sans se faire repérer par les gardes. Le joueur ramasse du mana en se déplaçant et peut utiliser des sorts pour se déplacer plus rapidement ou pour devenir invisible.",
                     "links": [
                         {
                             "href": "https://github.com/bruno00o/stealth",
@@ -90,13 +90,58 @@
                             "alt": "Capture d'écran du jeu Patchwork"
                         }
                     ],
-                    "text": "Version du jeu du Patchwork réalisée en Java. Le but du jeu est de remplir son plateau de tuiles et de déplacer son pion jusqu'à la ligne d'arrivée.",
+                    "text": "Version du jeu du Patchwork réalisée en Java. Le but du jeu est de remplir son plateau de tuiles et de déplacer son pion jusqu'à la ligne d'arrivée. Ce projet, réalisé en binome, comporte une interface graphique (toujours avec une librairie de l'université) et une interface en ligne de commande.",
                     "links": [
                         {
                             "href": "https://github.com/bruno00o/Patchwork",
                             "text": "Voir le code source"
                         }
                     ]
+                },
+                {
+                    "id": "les-archives-de-babel",
+                    "title": "Les archives de Babel",
+                    "languages": [
+                        "PHP",
+                        "PgSQL"
+                    ],
+                    "images": [],
+                    "text": "Projet de site web réalisé en PHP avec une base de données PostgreSQL dans le cadre du cours de base de données de 2ème année. Le site affiche des articles scientifiques (que j'ai scrapé sur le web en dehors du projet). Ce projet a été réalisé en binome.",
+                    "links": [
+                        {
+                            "href": "https://upem.brunoseilliebert.com/Projets/babel/",
+                            "text": "Voir une archive du site"
+                        }
+                    ]
+                },
+                {
+                    "id": "slitherlink",
+                    "title": "Jeu Slitherlink",
+                    "languages": [
+                        "Python"
+                    ],
+                    "images": [],
+                    "text": "Projet de jeu de plateau réalisé en Python avec la bibliothèque graphique de l'université en 1ère année. Le but du jeu est de relier les cases entre elles en respectant les nombres indiqués. Ce projet avait pour but de nous familiariser avec le concept de la récursivité.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/slitherlink-python",
+                            "text": "Voir le code source"
+                        },
+                        {
+                            "href": "https://replit.com/[at]bruno00o/slitherlink?v=1",
+                            "text": "Voir le jeu en ligne"
+                        }
+                    ]
+                },
+                {
+                    "id": "attaxx",
+                    "title": "Jeu Attaxx",
+                    "languages": [
+                        "C"
+                    ],
+                    "images": [],
+                    "text": "Projet de jeu de plateau réalisé en C avec la bibliothèque graphique de l'université basée sur SDL2. Le but du jeu est de capturer toutes les cases du plateau. Ce projet, réalisé en binome en 2ème année, avait pour but de nous faire découvrir la programmation en C ainsi que la librairie graphique.",
+                    "links": []
                 }
             ]
         },

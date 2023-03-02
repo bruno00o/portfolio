@@ -85,6 +85,11 @@ const sendMail = async () => {
     sendButtonBlock.value = false
 }
 
+const scrollTo = (id: string) => {
+    const el = document.querySelector(id) as HTMLElement
+    el.scrollIntoView({ behavior: 'smooth' })
+}
+
 </script>
 
 <template>
@@ -95,24 +100,28 @@ const sendMail = async () => {
                 <nav class="h-full z-10 relative pointer-events-auto">
                     <ul class="flex justify-around items-center h-full">
                         <li class="flex justify-center items-center h-full">
-                            <NuxtLink to="#main" class="flex justify-center items-center h-full w-full hover:font-bold">
+                            <div @click="scrollTo('#main')"
+                                class="flex justify-center items-center h-full w-full hover:font-bold cursor-pointer">
                                 <span>{{ $t('nav.main') }}</span>
-                            </NuxtLink>
+                            </div>
                         </li>
                         <li class="flex justify-center items-center h-full">
-                            <NuxtLink to="#about" class="flex justify-center items-center h-full w-full hover:font-bold">
+                            <div @click="scrollTo('#about')"
+                                class="flex justify-center items-center h-full w-full hover:font-bold cursor-pointer">
                                 <span>{{ $t('nav.about') }}</span>
-                            </NuxtLink>
+                            </div>
                         </li>
                         <li class="flex justify-center items-center h-full">
-                            <NuxtLink to="#projects" class="flex justify-center items-center h-full w-full hover:font-bold">
+                            <div @click="scrollTo('#projects')"
+                                class="flex justify-center items-center h-full w-full hover:font-bold cursor-pointer">
                                 <span>{{ $t('nav.projects') }}</span>
-                            </NuxtLink>
+                            </div>
                         </li>
                         <li class="flex justify-center items-center h-full">
-                            <NuxtLink to="#contact" class="flex justify-center items-center h-full w-full hover:font-bold">
+                            <div @click="scrollTo('#contact')"
+                                class="flex justify-center items-center h-full w-full hover:font-bold cursor-pointer">
                                 <span>{{ $t('nav.contact') }}</span>
-                            </NuxtLink>
+                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -222,7 +231,7 @@ const sendMail = async () => {
                             <h3>{{ $t('school-career-title') }}</h3>
                         </td>
                     </tr>
-                    <tr v-if="schoolCareer" v-for="year in schoolCareer" :key="year.id"
+                    <tr v-if="schoolCareer" v-for="year in schoolCareer" :key="year.id" :id="year.id"
                         class="flex flex-col md:table-row justify-center items-center w-full hover:animate-pulse hover:cursor-pointer"
                         @click="schoolModal = true, textSchoolModal = $t(`school-career.${year.id}.text`), titleSchoolModal = $t(`school-career.${year.id}.title`)">
                         <td
@@ -274,7 +283,7 @@ const sendMail = async () => {
                             <p class="text-left" v-html="$t(`projects.${projectTypeSelected}.projects[${index}].text`)">
                             </p>
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href"
+                                <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href.replace('[at]', '@')"
                                     target="_blank"
                                     class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-300 dark:hover:bg-slate-600">
                                     <span>{{
@@ -307,9 +316,8 @@ const sendMail = async () => {
                             <label for="email" class="text-lg font-bold">
                                 {{ $t('contact-me.email') }}
                             </label>
-                            <input type="email" id="email" v-model="formEmail"
-                                class="rounded-lg p-2 text-slate-900 focus:outline-slate-900
-                                " required />
+                            <input type="email" id="email" v-model="formEmail" class="rounded-lg p-2 text-slate-900 focus:outline-slate-900
+                                    " required />
                         </div>
                         <div class="flex flex-col gap-2 w-full">
                             <label for="tel" class="text-lg font-bold">

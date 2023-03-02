@@ -25,7 +25,7 @@
                 }
             ],
             "title": "3rd year Computer Science student at Gustave Eiffel University, working at Kynova as an apprentice",
-            "text": "I chose to do my third year as an apprentice so that I could apply what I learned in class and gain experience in the workplace. Therefore, I chose to do my apprenticeship at Kynova, a communication agency where I was hired as a web developer.<br>Parallel to my apprenticeship, I am taking advanced programming courses in C and database, discovering Java as well as functional programming in Haskell. I am also taking courses in compilation, networks, and graph algorithms."
+            "text": "In my third year of studies, I completed an internship at Kynova, a communication agency, in order to gain professional experience and apply the theoretical knowledge I had acquired in class.<br>At the same time, during my courses, I discovered Java development and networking. I took classes in compilation, functional programming, system programming, and graph algorithms. I also had the opportunity to deepen my knowledge in C and databases."
         },
         "l1-l2": {
             "id": "l1-l2",
@@ -36,7 +36,7 @@
                 }
             ],
             "title": "1st and 2nd year Computer Science student at Gustave Eiffel University",
-            "text": "In September 2020, I joined Gustave Eiffel University to do a Computer Science degree.<br>The first year being common to the Mathematics degree, I was able to take courses in mathematics as well as programming and algorithms in Python and JavaScript.<br>The second year is more focused on computer science, so I was able to start learning C, continue with Python, but also discover databases, automata, and tree algorithms."
+            "text": "In September 2020, I joined Gustave Eiffel University to pursue a degree in Computer Science.<br>The first year of the program is common to the Mathematics degree, so I was able to take classes in both Mathematics and Programming and Algorithms in Python and JavaScript.<br>The second year is more focused on Computer Science, so I was able to start learning C, continue with Python, and also discover topics such as databases, automata, and tree algorithms"
         },
         "lycee": {
             "id": "lycee",
@@ -47,7 +47,7 @@
                 }
             ],
             "title": "Bachelor of Science from Champlain High School",
-            "text": "In 2019, I obtained my Bachelor of Science with an option in Life and Earth Sciences. Following that, I joined the first year of common health studies (PACES) at the University of Paris-Est Créteil. However, I decided to change paths and do a Computer Science degree at Gustave Eiffel University."
+            "text": "In 2019, I obtained my french scientific baccalauréat with a focus on life and earth sciences. Following this, I enrolled in the first year of health studies (PACES) at the University of Paris-Est Créteil. After a year, I decided to change my path and pursue a degree in Computer Science."
         }
     },
     "projects-title": "Projects",
@@ -70,7 +70,7 @@
                             "alt": "Screenshot of the Stealth game"
                         }
                     ],
-                    "text": "2D stealth game made in C with the university's graphic library based on SDL2. The objective of the game is to collect objects in the room without being detected by the guards. The player collects mana while moving and can use spells to move faster or become invisible.",
+                    "text": "A 2D stealth game project developed using C programming language and the university's graphic library based on SDL2. The objective of the game is to retrieve objects in the room without being detected by guards. The player collects mana as they move and can use spells to move faster or become invisible.",
                     "links": [
                         {
                             "href": "https://github.com/bruno00o/stealth",
@@ -90,13 +90,58 @@
                             "alt": "Screenshot of the Patchwork game"
                         }
                     ],
-                    "text": "Version of the Patchwork game made in Java. The goal of the game is to fill the board with tiles and move the pawn to the finish line.",
+                    "text": "A version of the Patchwork game developed using Java programming language. The objective of the game is to fill the game board with tiles and move the player's pawn to the finish line. This project was developed in a team of two and includes a graphical user interface (also using a library provided by the university) and a command-line interface.",
                     "links": [
                         {
                             "href": "https://github.com/bruno00o/Patchwork",
                             "text": "View source code"
                         }
                     ]
+                },
+                {
+                    "id": "les-archives-de-babel",
+                    "title": "Les archives de Babel",
+                    "languages": [
+                        "PHP",
+                        "PgSQL"
+                    ],
+                    "images": [],
+                    "text": "A website project developed using PHP with a PostgreSQL database for the second-year database course. The website displays scientific articles (which were scraped by me from the web outside of the project). This project was developed in a team of two.",
+                    "links": [
+                        {
+                            "href": "https://upem.brunoseilliebert.com/Projets/babel/",
+                            "text": "View an archive of the site"
+                        }
+                    ]
+                },
+                {
+                    "id": "slitherlink",
+                    "title": "Slitherlink Game",
+                    "languages": [
+                        "Python"
+                    ],
+                    "images": [],
+                    "text": "A board game project developed in Python and the university's graphic library during the first year of studies. The objective of the game is to connect the cells together while respecting the numbers indicated. This project aimed to introduce the concept of recursion to the students.",
+                    "links": [
+                        {
+                            "href": "https://github.com/bruno00o/slitherlink-python",
+                            "text": "View source code"
+                        },
+                        {
+                            "href": "https://replit.com/[at]bruno00o/slitherlink?v=1",
+                            "text": "Play online"
+                        }
+                    ]
+                },
+                {
+                    "id": "attaxx",
+                    "title": "Attaxx Game",
+                    "languages": [
+                        "C"
+                    ],
+                    "images": [],
+                    "text": "A board game project developed in C and the university's graphic library based on SDL2 during the second year of studies. The objective of the game is to capture all the cells on the board. This project was developed in a team of two and aimed to introduce students to C programming language and the graphic library.",
+                    "links": []
                 }
             ]
         },
@@ -120,7 +165,7 @@
                             "alt": "Screenshot of the Aroma UGE website"
                         }
                     ],
-                    "text": "Website allowing University Gustave Eiffel students to view their schedules and those of their friends. The website is made with Vue.js and Node.js with Express.js. The data is automatically retrieved from the university's ENT",
+                    "text": "Website allowing University Gustave Eiffel students to view their schedules and those of their friends. The website is made with Vue.js and Node.js with Express.js. The data is automatically retrieved from the university's digital work environment",
                     "links": [
                         {
                             "href": "https://github.com/bruno00o/aroma-uge",
