@@ -53,7 +53,10 @@ const formMessage = ref("")
 const formError = ref(false)
 const formSuccess = ref(false)
 
+const sendButtonBlock = ref(false)
+
 const sendMail = async () => {
+    sendButtonBlock.value = true
     if (formName.value === "" || formEmail.value === "" || formMessage.value === "") {
         formError.value = true
         return
@@ -79,6 +82,7 @@ const sendMail = async () => {
         formError.value = true
         formSuccess.value = false
     }
+    sendButtonBlock.value = false
 }
 
 </script>
@@ -324,7 +328,8 @@ const sendMail = async () => {
                     </div>
                     <div class="flex flex-col gap-2 w-full justify-center items-center">
                         <button type="submit"
-                            class="bg-slate-700 text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-400 hover:bg-slate-600 min-w-[150px]">
+                            class="bg-slate-700 text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-400 hover:bg-slate-600 min-w-[150px] disabled:opacity-50"
+                            :disabled="sendButtonBlock">
                             {{ $t('contact-me.send') }}
                         </button>
                     </div>
