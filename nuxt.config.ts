@@ -18,10 +18,11 @@ export default defineNuxtConfig({
                 href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap",
                 rel: "stylesheet"
             },
-                /* {
-                    href: 'https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;700&display=swap',
-                    rel: 'stylesheet'
-                }, */
+            {
+                rel: 'icon',
+                type: 'image/x-icon',
+                href: '/favicon.ico'
+            }
             ],
         },
     },
@@ -29,7 +30,6 @@ export default defineNuxtConfig({
         '@nuxtjs/robots',
         '@nuxtjs/i18n',
         '@nuxtjs/tailwindcss',
-        '@vueuse/nuxt',
         '@nuxtjs/color-mode',
     ],
     colorMode: {
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
         lazy: true,
         langDir: './lang/',
         defaultLocale: 'fr',
-        baseUrl: 'http://localhost:3000',
+        baseUrl: 'https://brunoseilliebert.com',
     },
     tailwindcss: {
         cssPath: '~/assets/css/tailwind.css',

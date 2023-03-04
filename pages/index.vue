@@ -355,7 +355,7 @@ const scrollTo = (id: string) => {
                         Nuxt
                     </NuxtLink>&nbsp&&nbsp<NuxtLink to="https://tailwindcss.com/" target="_blank"
                         class="text-slate-50 hover:underline">Tailwind</NuxtLink>
-                    &nbspby&nbsp<NuxtLink to="#main" class="text-slate-50 hover:underline">Bruno Seilliebert</NuxtLink>
+                    &nbspby&nbsp<NuxtLink to="https://brunoseilliebert.com" class="text-slate-50 hover:underline">Bruno Seilliebert</NuxtLink>
                 </div>
             </footer>
         </div>
