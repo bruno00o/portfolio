@@ -7,6 +7,7 @@ const projects = ref([] as any)
 const schoolModal = ref(false)
 const textSchoolModal = ref("")
 const titleSchoolModal = ref("")
+const status = ref("")
 
 const projectTypeSelected = ref("")
 
@@ -14,15 +15,18 @@ const projectTypeSelected = ref("")
 const api = (await $fetch("/api") as any) as any
 schoolCareer.value = api["school-career"] as any
 projects.value = api.projects as any
+status.value = api.status as any
 
 projectTypeSelected.value = projects.value.school.id
 
 onBeforeMount(async () => {
     window.addEventListener('scroll', () => {
         const main = document.querySelector('#top') as HTMLElement
-        const blur = (window.scrollY / 100)
-        main.style.filter = `blur(${blur}px)`
-        main.style.scale = 1 + (window.scrollY / 20000) + ''
+        if (window.scrollY >= 0) {
+            const blur = (window.scrollY / 100)
+            main.style.filter = `blur(${blur}px)`
+            main.style.scale = 1 + (window.scrollY / 20000) + ''
+        }
     })
 })
 
@@ -94,9 +98,9 @@ const scrollTo = (id: string) => {
 
 <template>
     <main id="main">
-        <header class="fixed relative w-full flex justify-center h-12 z-10 pt-4 animate-pop-in-late pointer-events-none">
+        <header class="fixed w-full flex justify-center h-12 z-10 pt-4 animate-pop-in-late pointer-events-none">
             <div
-                class="text-slate-900 dark:text-slate-50 h-12 z-10 fixed w-full max-w-[90vw] sm:max-w-xl rounded-xl before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-50 before:dark:bg-slate-800 z-0 before:rounded-xl before:opacity-90 before:border-2 before:border-slate-300 before:dark:border-slate-700 before:z-0 font-medium">
+                class="text-slate-900 dark:text-slate-50 h-12 z-10 fixed w-full max-w-[90vw] sm:max-w-xl rounded-xl before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-50 before:dark:bg-slate-800 before:rounded-xl before:opacity-90 before:border-2 before:border-slate-300 before:dark:border-slate-700 before:z-0 font-medium">
                 <nav class="h-full z-10 relative pointer-events-auto">
                     <ul class="flex justify-around items-center h-full">
                         <li class="flex justify-center items-center h-full">
@@ -133,12 +137,15 @@ const scrollTo = (id: string) => {
                 <Blobs />
             </div>
             <div class="flex flex-col p-10 gap-2 relative animate-scaling-up">
-                <h1 class="text-6xl font-bold sm:text-7xl">
-                    Bruno Seilliebert
-                </h1>
+                <Name />
                 <p class="text-xl sm:text-2xl sm:font-semibold">
                     {{ $t('main-text') }}
                 </p>
+                <div v-if="!(status == '')"
+                    class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-xl p-3 sm:p-4 mt-4 w-fit flex items-center gap-4">
+                    <div class="rounded-full bg-green-600 min-w-[0.5em] min-h-[0.5em] animate-pulse"></div>
+                    {{ $t('status') }}
+                </div>
             </div>
             <div class="flex gap-4 absolute bottom-4-env lg:right-4 left-4 lg:left-auto">
                 <NuxtLink to="https://github.com/bruno00o" target="_blank" aria-label="GitHub">
@@ -235,7 +242,7 @@ const scrollTo = (id: string) => {
                         class="flex flex-col md:table-row justify-center items-center w-full hover:animate-pulse hover:cursor-pointer"
                         @click="schoolModal = true, textSchoolModal = $t(`school-career.${year.id}.text`), titleSchoolModal = $t(`school-career.${year.id}.title`)">
                         <td
-                            class="flex py-3 md:py-0 w-full gap-5 justify-center items-center md:h-40 px-10 bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-t-xl md:rounded-l-xl md:rounded-r-none w-full">
+                            class="flex py-3 md:py-0 gap-5 justify-center items-center md:h-40 px-10 bg-slate-300 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded-t-xl md:rounded-l-xl md:rounded-r-none w-full">
                             <div v-if="year.images" v-for="image in year.images" :key="image"
                                 class="timeline-icon rounded-full overflow-hidden h-14 w-14 md:w-20 md:h-20 bg-white p-3">
                                 <picture>
@@ -283,8 +290,8 @@ const scrollTo = (id: string) => {
                             <p class="text-left" v-html="$t(`projects.${projectTypeSelected}.projects[${index}].text`)">
                             </p>
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <NuxtLink v-for="link, index2 in project.links" :key="link.id" :to="link.href.replace('[at]', '@')"
-                                    target="_blank"
+                                <NuxtLink v-for="link, index2 in project.links" :key="link.id"
+                                    :to="link.href.replace('[at]', '@')" target="_blank"
                                     class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-300 dark:hover:bg-slate-600">
                                     <span>{{
                                         $t(`projects.${projectTypeSelected}.projects[${index}].links[${index2}].text`)
@@ -299,10 +306,14 @@ const scrollTo = (id: string) => {
                 </Carousel>
             </section>
             <section id="contact"
-                class="flex flex-col items-center justify-center w-full h-full p-5 md:px-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
+                class="relative flex flex-col items-center justify-center w-full h-full p-5 md:px-10 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 py-20">
                 <h2 class="text-3xl font-bold sm:text-4xl mb-10">
                     {{ $t('contact-me-title') }}
                 </h2>
+                <div class="flex flex-col gap-5 md:gap-10 w-full max-w-[95vw] md:max-w-3xl mb-4">
+                    <p v-html="$t('contact-me-linkedin')"></p>
+                    <p>{{ $t('contact-me-text') }}</p>
+                </div>
                 <form class="flex flex-col gap-5 md:gap-10 w-full max-w-[95vw] md:max-w-3xl" @submit.prevent="sendMail">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
                         <div class="flex flex-col gap-2 w-full">
@@ -317,7 +328,7 @@ const scrollTo = (id: string) => {
                                 {{ $t('contact-me.email') }}
                             </label>
                             <input type="email" id="email" v-model="formEmail" class="rounded-lg p-2 text-slate-900 focus:outline-slate-900
-                                    " required />
+                                                                        " required />
                         </div>
                         <div class="flex flex-col gap-2 w-full">
                             <label for="tel" class="text-lg font-bold">
@@ -336,7 +347,7 @@ const scrollTo = (id: string) => {
                     </div>
                     <div class="flex flex-col gap-2 w-full justify-center items-center">
                         <button type="submit"
-                            class="bg-slate-700 text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-400 hover:bg-slate-600 min-w-[150px] disabled:opacity-50"
+                            class="bg-slate-700 text-slate-50 rounded-lg py-1 px-3 hover:bg-slate-400 dark:hover:bg-slate-600 min-w-[150px] disabled:opacity-50"
                             :disabled="sendButtonBlock">
                             {{ $t('contact-me.send') }}
                         </button>
@@ -351,11 +362,13 @@ const scrollTo = (id: string) => {
             </section>
             <footer class="w-full h-14 bg-slate-900 text-slate-50 flex items-center justify-center">
                 <div class="text-sm text-center">
-                    Made with&nbsp<NuxtLink to="https://nuxt.com/" target="_blank" class="text-slate-50 hover:underline">
+                    Made with<NuxtLink to="https://nuxt.com/" target="_blank" class="text-slate-50 hover:underline">
                         Nuxt
-                    </NuxtLink>&nbsp&&nbsp<NuxtLink to="https://tailwindcss.com/" target="_blank"
-                        class="text-slate-50 hover:underline">Tailwind</NuxtLink>
-                    &nbspby&nbsp<NuxtLink to="https://brunoseilliebert.com" class="text-slate-50 hover:underline">Bruno Seilliebert</NuxtLink>
+                    </NuxtLink>
+                    <NuxtLink to="https://tailwindcss.com/" target="_blank" class="text-slate-50 hover:underline">Tailwind
+                    </NuxtLink>
+                    <NuxtLink to="https://brunoseilliebert.com" class="text-slate-50 hover:underline">Bruno
+                        Seilliebert</NuxtLink>
                 </div>
             </footer>
         </div>
