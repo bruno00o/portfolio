@@ -141,11 +141,6 @@ const scrollTo = (id: string) => {
                 <p class="text-xl sm:text-2xl sm:font-semibold">
                     {{ $t('main-text') }}
                 </p>
-                <div v-if="!(status == '')"
-                    class="bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-50 rounded-xl p-3 sm:p-4 mt-4 w-fit flex items-center gap-4">
-                    <div class="rounded-full bg-green-600 min-w-[0.5em] min-h-[0.5em] animate-pulse"></div>
-                    {{ $t('status') }}
-                </div>
             </div>
             <div class="flex gap-4 absolute bottom-4-env lg:right-4 left-4 lg:left-auto">
                 <NuxtLink to="https://github.com/bruno00o" target="_blank" aria-label="GitHub">
