@@ -201,8 +201,7 @@
         }
     },
     "contact-me-title": "Contact",
-    "contact-me-linkedin": "Vous pouvez me contacter sur <a href=\"https://www.linkedin.com/in/bruno-seilliebert/\">LinkedIn</a>.",
-    "contact-me-text": "Vous pouvez aussi me contacter via le formulaire ci-dessous.",
+    "contact-me-text": "Vous pouvez me contacter via le formulaire ci-dessous.",
     "contact-me": {
         "name": "Nom",
         "email": "Email",

@@ -31,6 +31,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
         '@nuxtjs/tailwindcss',
         '@nuxtjs/color-mode',
+        '@nuxtjs/device',
     ],
     colorMode: {
         classSuffix: '',

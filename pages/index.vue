@@ -243,7 +243,8 @@ const scrollTo = (id: string) => {
                                 <picture>
                                     <source :srcset="image.src + '.webp'" type="image/webp" />
                                     <source :srcset="image.src + '.jpg'" type="image/jpeg" />
-                                    <img :src="image.src + '.jpg'" :alt="image.alt" width="80" height="80" />
+                                    <img class="rounded-lg" :src="image.src + '.jpg'" :alt="image.alt" width="80"
+                                        height="80" />
                                 </picture>
                             </div>
                         </td>
@@ -306,7 +307,6 @@ const scrollTo = (id: string) => {
                     {{ $t('contact-me-title') }}
                 </h2>
                 <div class="flex flex-col gap-5 md:gap-10 w-full max-w-[95vw] md:max-w-3xl mb-4">
-                    <p v-html="$t('contact-me-linkedin')"></p>
                     <p>{{ $t('contact-me-text') }}</p>
                 </div>
                 <form class="flex flex-col gap-5 md:gap-10 w-full max-w-[95vw] md:max-w-3xl" @submit.prevent="sendMail">
@@ -323,7 +323,7 @@ const scrollTo = (id: string) => {
                                 {{ $t('contact-me.email') }}
                             </label>
                             <input type="email" id="email" v-model="formEmail" class="rounded-lg p-2 text-slate-900 focus:outline-slate-900
-                                                                        " required />
+                                                                                " required />
                         </div>
                         <div class="flex flex-col gap-2 w-full">
                             <label for="tel" class="text-lg font-bold">
@@ -362,6 +362,7 @@ const scrollTo = (id: string) => {
                     </NuxtLink>
                     <NuxtLink to="https://tailwindcss.com/" target="_blank" class="text-slate-50 hover:underline">Tailwind
                     </NuxtLink>
+                    by
                     <NuxtLink to="https://brunoseilliebert.com" class="text-slate-50 hover:underline">Bruno
                         Seilliebert</NuxtLink>
                 </div>
