@@ -58,6 +58,9 @@ export default defineNuxtConfig({
                 file: "fr.json",
             },
         ],
+        precompile: {
+            strictMessage: false
+        },
         lazy: true,
         langDir: './lang/',
         defaultLocale: 'fr',
