@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { formatKind } from '../content/helpers';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  lang: Lang;
+}
+
+const { entry, lang } = Astro.props as Props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const hasBody = entry.body != null && entry.body.trim().length > 0;
+const backHref = `${getLocalizedPath('/', lang)}#work`;
+---
+
+<article class="detail">
+  <a class="detail__back" href={backHref}>← {t('work.label')}</a>
+
+  <div class="detail__meta">
+    <span class="detail__meta-lead">{entry.data.num}</span>
+    <span>{formatKind(entry.data.kind, lang)}</span>
+  </div>
+
+  <h1 class="detail__title">{entry.data.title}</h1>
+  <p class="detail__dek">{entry.data.desc}</p>
+
+  <div class="detail__stack">
+    {entry.data.stack.map((s) => <span>{s}</span>)}
+  </div>
+
+  {
+    (entry.data.repo || entry.data.live) && (
+      <div class="detail__links">
+        {entry.data.repo && (
+          <a class="detail__link" href={entry.data.repo} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+            </svg>
+            <span>{t('detail.links.repo')}</span>
+          </a>
+        )}
+        {entry.data.live && (
+          <a class="detail__link" href={entry.data.live} target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H8M17 7v9" />
+            </svg>
+            <span>{t('detail.links.live')}</span>
+          </a>
+        )}
+      </div>
+    )
+  }
+
+  {
+    hasBody ? (
+      <div class="detail__body">
+        <Content />
+      </div>
+    ) : (
+      <p class="detail__empty">{t('detail.empty.project')}</p>
+    )
+  }
+</article>

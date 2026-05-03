@@ -12,6 +12,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.8"
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/preact": "^5.1.1",
+    "@astrojs/sitemap": "^3.7.2",
+    "@fontsource-variable/geist": "^5.2.8",
+    "@fontsource-variable/geist-mono": "^5.2.7",
+    "@fontsource/geist-mono": "^5.2.7",
+    "@fontsource/geist-sans": "^5.2.5",
+    "@resvg/resvg-js": "^2.6.2",
+    "astro": "^6.1.8",
+    "preact": "^10.29.1",
+    "satori": "^0.26.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "sharp": "^0.34.5",
+    "typescript": "^6.0.3"
   }
 }

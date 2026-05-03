@@ -1,0 +1,69 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
+---
+
+<section class="now" id="now" aria-labelledby="now-label">
+  <div class="now__card">
+    <div class="now__bar">
+      <span class="now__bar-left" id="now-label">
+        <span class="pulse"></span>{t('now.label')}
+      </span>
+      <span class="now__bar-right">
+        {t('now.city')} · <span data-now-time data-now-locale={locale}>--:--</span>
+      </span>
+    </div>
+
+    <div class="now__body">
+      <div class="now-line">
+        <span class="now-line__prompt">{t('now.building')}</span>
+        <span class="now-line__text">
+          <em class="hl">Jarvis</em>, <em class="hl">GameRoute</em>.
+        </span>
+      </div>
+
+      <div class="now-line">
+        <span class="now-line__prompt">{t('now.exploring')}</span>
+        <span class="now-line__text">{t('now.exploring_text')}</span>
+      </div>
+
+      <div class="now-line">
+        <span class="now-line__prompt">{t('now.running')}</span>
+        <span class="now-line__text">
+          {t('now.running_pre')}<span class="mono-inline">Going Merry</span>
+          <span class="now__caret" aria-hidden="true"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-now-time]');
+  if (el) {
+    const locale = el.dataset.nowLocale || 'en-GB';
+    let last = '';
+    const update = () => {
+      const next = new Date().toLocaleTimeString(locale, {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Europe/Paris',
+      });
+      if (next !== last) {
+        el.textContent = next;
+        last = next;
+      }
+    };
+    update();
+    setInterval(update, 30_000);
+  }
+</script>

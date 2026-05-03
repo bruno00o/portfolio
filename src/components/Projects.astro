@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import Reveal from './Reveal.astro';
+import { getProjectHref, formatKind } from '../content/helpers';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = (
+  await getCollection('projects', (entry) => entry.data.locale === lang)
+).sort((a, b) => a.data.order - b.data.order);
+
+const indexLabel =
+  projects.length > 0
+    ? `Index · ${projects[0]!.data.num} - ${projects[projects.length - 1]!.data.num}`
+    : '';
+---
+
+<section class="projects" id="work" aria-labelledby="work-label">
+  <div class="projects__head">
+    <Reveal as="span" class="projects__label">
+      <span id="work-label">{t('work.label')}</span>
+    </Reveal>
+    <Reveal as="span" class="projects__index" delay={80}>
+      <span>{indexLabel}</span>
+    </Reveal>
+  </div>
+
+  <div class="projects__grid">
+    {
+      projects.map((p, i) => {
+        return (
+          <a
+            class="project"
+            href={getProjectHref(p, lang)}
+            style={`transition-delay: ${i * 40}ms`}
+          >
+            <span class="project__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7M17 7H8M17 7v9" />
+              </svg>
+            </span>
+
+            <div class="project__top">
+              <span class="project__num">{p.data.num}</span>
+              <span class="project__kind">{formatKind(p.data.kind, lang)}</span>
+            </div>
+
+            <div class="project__body">
+              <h3 class="project__title">{p.data.title}</h3>
+              <div class="project__stack-slot">
+                <div class="project__stack-wrap">
+                  <div class="project__stack">
+                    {p.data.stack.map((s) => <span>{s}</span>)}
+                  </div>
+                </div>
+              </div>
+              <div class="project__desc-slot">
+                <p class="project__desc">{p.data.desc}</p>
+              </div>
+            </div>
+          </a>
+        );
+      })
+    }
+    {
+      Array.from({ length: (3 - (projects.length % 3)) % 3 }).map(() => (
+        <div class="project project--empty" aria-hidden="true" />
+      ))
+    }
+  </div>
+</section>

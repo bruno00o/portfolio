@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import { getLocalizedPaths } from '../../content/helpers';
+import { site } from '../../config';
+
+export const getStaticPaths = () => getLocalizedPaths('projects', 'en');
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<SiteLayout
+  lang="en"
+  title={`${entry.data.title} · ${site.name}`}
+  description={entry.data.desc}
+  ogType="article"
+>
+  <ProjectDetail entry={entry} lang="en" />
+</SiteLayout>

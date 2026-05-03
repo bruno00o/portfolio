@@ -1,0 +1,47 @@
+---
+type AsTag = 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'section' | 'article' | 'li';
+
+interface Props {
+  as?: AsTag;
+  class?: string;
+  delay?: number;
+  immediate?: boolean;
+}
+
+const { as: Tag = 'span', class: className = '', delay = 0, immediate = false } = Astro.props as Props;
+const style = delay ? `transition-delay: ${delay}ms` : undefined;
+---
+
+<Tag
+  class:list={['reveal', className]}
+  style={style}
+  data-reveal
+  data-reveal-immediate={immediate ? 'true' : undefined}
+>
+  <span class="reveal__inner"><slot /></span>
+</Tag>
+
+<script>
+  const reveals = document.querySelectorAll<HTMLElement>('[data-reveal]');
+  if (reveals.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.target instanceof HTMLElement) {
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -8% 0px' },
+    );
+
+    reveals.forEach((el) => {
+      if (el.dataset.revealImmediate === 'true') {
+        setTimeout(() => el.classList.add('is-in'), 40);
+      } else {
+        io.observe(el);
+      }
+    });
+  }
+</script>

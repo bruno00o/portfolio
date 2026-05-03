@@ -1,0 +1,90 @@
+---
+import { useTranslations, getAlternatePath, getLocalizedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import RogueDot from './RogueDot.tsx';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const otherLang: Lang = lang === 'en' ? 'fr' : 'en';
+const alternateHref = getAlternatePath(Astro.url, otherLang);
+const homeHref = getLocalizedPath('/', lang);
+---
+
+<header class="nav" data-scrolled="false">
+  <a class="mark" href={homeHref} draggable={false}>
+    <span class="mark__word">bruno</span>
+    <RogueDot client:idle />
+    <span class="mark__hint">{t('nav.drag_hint')}</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href={`${homeHref}#work`}><span class="dot-cursor"></span>{t('nav.work')}</a>
+    <a href={`${homeHref}#writing`}><span class="dot-cursor"></span>{t('nav.writing')}</a>
+    <a href={`${homeHref}#contact`}><span class="dot-cursor"></span>{t('nav.contact')}</a>
+  </nav>
+
+  <div class="nav__controls" aria-label="Site controls">
+    <a class="lang-toggle" href={alternateHref} data-target-lang={otherLang} aria-label={`${t('toggle.lang')}: EN / FR`}>
+      <span class="lang-toggle__slot" data-active={lang === 'en'}>EN</span>
+      <span class="lang-toggle__sep" aria-hidden="true">/</span>
+      <span class="lang-toggle__slot" data-active={lang === 'fr'}>FR</span>
+    </a>
+
+    <button class="toggle" data-theme-toggle type="button" aria-label={t('toggle.theme')}>
+      <span class="toggle__track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"></path>
+        </svg>
+      </span>
+      <span class="toggle__handle">
+        <svg data-theme-icon="dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"></path>
+        </svg>
+        <svg data-theme-icon="light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const html = document.documentElement;
+  const nav = document.querySelector<HTMLElement>('.nav');
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+
+  button?.addEventListener('click', () => {
+    const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = next;
+    try { localStorage.setItem('bruno-theme', next); } catch {}
+  });
+
+  const langLink = document.querySelector<HTMLAnchorElement>('.lang-toggle[data-target-lang]');
+  langLink?.addEventListener('click', () => {
+    const target = langLink.dataset.targetLang;
+    if (target) {
+      try { localStorage.setItem('bruno-lang', target); } catch {}
+    }
+  });
+
+  let lastScrolled = '';
+  const onScroll = () => {
+    if (!nav) return;
+    const next = window.scrollY > 8 ? 'true' : 'false';
+    if (next !== lastScrolled) {
+      nav.dataset.scrolled = next;
+      lastScrolled = next;
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

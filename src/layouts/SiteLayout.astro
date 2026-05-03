@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n/ui';
+import '../styles/detail.css';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+}
+
+const { lang, title, description, ogType, ogImage } = Astro.props as Props;
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  ogType={ogType}
+  ogImage={ogImage}
+>
+  <div class="app">
+    <Nav lang={lang} />
+    <main class="page">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </div>
+</BaseLayout>

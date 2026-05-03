@@ -1,0 +1,55 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang, TranslationKey } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+type StackItem = string | [label: string, tag: string];
+type StackRow = { labelKey: TranslationKey; items: StackItem[] };
+
+const rows: StackRow[] = [
+  { labelKey: 'stack.languages', items: ['TypeScript', 'Java', 'Scala', 'Kotlin', 'C/C++', 'Python', 'PHP', 'Go', 'Rust'] },
+  { labelKey: 'stack.data', items: ['Spark', 'Kafka', 'SQL', 'Neo4j', 'ClickHouse', 'MongoDB', 'Redis'] },
+  { labelKey: 'stack.infra', items: ['Docker', 'Kubernetes', 'Talos'] },
+  { labelKey: 'stack.frameworks', items: ['Next.js', 'Tanstack Start', 'Java Spring', 'Hono', 'Tauri'] },
+  { labelKey: 'stack.ci', items: ['GitHub Actions', 'GitLab CI'] },
+  { labelKey: 'stack.ai', items: ['Claude', 'MCP', 'Ollama', 'LM Studio'] },
+];
+---
+
+<section class="stack" id="stack" aria-labelledby="stack-label">
+  <div class="stack__head">
+    <span class="stack__label" id="stack-label">{t('stack.label')}</span>
+  </div>
+
+  <div class="stack__card">
+    {
+      rows.map((row) => (
+        <div class="stack-row">
+          <span class="stack-row__k">{t(row.labelKey)}</span>
+          <span class="stack-row__v">
+            {row.items.map((it, i) => {
+              const isPair = Array.isArray(it);
+              const label = isPair ? it[0] : it;
+              const tag = isPair ? it[1] : null;
+              return (
+                <>
+                  {i > 0 && <span class="sep">/</span>}
+                  <span>
+                    {label}
+                    {tag && <em>{tag}</em>}
+                  </span>
+                </>
+              );
+            })}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

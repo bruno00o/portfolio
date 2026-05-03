@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import PostDetail from '../../../components/PostDetail.astro';
+import { getLocalizedPaths } from '../../../content/helpers';
+import { site } from '../../../config';
+
+export const getStaticPaths = () => getLocalizedPaths('writing', 'fr');
+
+interface Props {
+  entry: CollectionEntry<'writing'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<SiteLayout
+  lang="fr"
+  title={`${entry.data.title} · ${site.name}`}
+  description={entry.data.dek}
+  ogType="article"
+>
+  <PostDetail entry={entry} lang="fr" />
+</SiteLayout>

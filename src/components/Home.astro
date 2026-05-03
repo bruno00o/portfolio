@@ -1,0 +1,60 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Experience from './Experience.astro';
+import Projects from './Projects.astro';
+import Stack from './Stack.astro';
+import Now from './Now.astro';
+import Writing from './Writing.astro';
+import Contact from './Contact.astro';
+import Reveal from './Reveal.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props as Props;
+const t = useTranslations(lang);
+
+const fullName = 'Bruno Seilliebert';
+---
+
+<SiteLayout lang={lang} title={t('meta.title')} description={t('meta.description')}>
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="hero__content">
+      <span class="hero__eyebrow">
+        <span class="pulse"></span>
+        {t('hero.eyebrow')}
+      </span>
+
+      <Reveal as="h1" class="hero__name" immediate>
+        <span id="hero-name">
+          <span class="sr-only">{fullName}</span>
+          <span aria-hidden="true">
+            {Array.from(fullName).map((ch) => (
+              ch === ' '
+                ? <span class="hero__name-space">&nbsp;</span>
+                : <span class="hero__name-letter">{ch}</span>
+            ))}
+          </span>
+        </span>
+      </Reveal>
+
+      <Reveal as="h2" class="hero__title" immediate delay={140}>
+        <span>{t('hero.title')}<span class="accent-dot"></span></span>
+      </Reveal>
+
+      <Reveal as="p" class="hero__oneliner" immediate delay={280}>
+        <span>{t('hero.oneliner')}</span>
+      </Reveal>
+    </div>
+  </section>
+
+  <Projects lang={lang} />
+  <Stack lang={lang} />
+  <Experience lang={lang} />
+  <Now lang={lang} />
+  <Writing lang={lang} />
+  <Contact lang={lang} />
+</SiteLayout>

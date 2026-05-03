@@ -1,0 +1,339 @@
+/* ============================================================
+   Bruno Portfolio · Core Tokens
+   Typography + Color + Spacing + Motion
+   ============================================================ */
+
+:root {
+  /* -- Type families ----------------------------------------- */
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* -- Type scale (fluid, display-leaning) ------------------- */
+  --fs-xs:     11px;   /* meta, labels, caps */
+  --fs-sm:     13px;   /* secondary ui */
+  --fs-base:   15px;   /* body */
+  --fs-md:     17px;   /* lead paragraph */
+  --fs-lg:     22px;
+  --fs-xl:     32px;
+  --fs-2xl:    48px;
+  --fs-3xl:    72px;
+  --fs-4xl:   104px;   /* commanding */
+  --fs-5xl:   160px;   /* hero moments */
+
+  /* -- Weights ----------------------------------------------- */
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+
+  /* -- Line heights ------------------------------------------ */
+  --lh-tight:  1.05;
+  --lh-snug:   1.18;
+  --lh-body:   1.5;
+  --lh-loose:  1.7;
+
+  /* -- Letter spacing ---------------------------------------- */
+  --tracking-hero:   -0.035em;
+  --tracking-tight:  -0.02em;
+  --tracking-normal: -0.005em;
+  --tracking-wide:    0.02em;
+  --tracking-caps:    0.08em;
+
+  /* -- Color: Neutrals (cool, true-ish) ---------------------- */
+  /* Light mode defaults */
+  --zinc-0:   #ffffff;
+  --zinc-50:  #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
+
+  /* -- Accent (Electric Blue) -------------------------------- */
+  --accent:        #1F9DFF;
+  --accent-hover:  #47B5FF;
+  --accent-press:  #0E7EE5;
+  --accent-text:   #006FCF;   /* AA-compliant on white for foreground text */
+  --accent-soft:   rgba(31, 157, 255, 0.14);
+  --accent-line:   rgba(31, 157, 255, 0.30);
+
+  /* -- Semantic: Light mode (default) ------------------------ */
+  --bg:            var(--zinc-0);
+  --bg-elevated:   var(--zinc-50);
+  --bg-sunken:     var(--zinc-100);
+  --bg-overlay:    rgba(255, 255, 255, 0.72);
+
+  --fg:            var(--zinc-950);   /* primary text */
+  --fg-muted:      var(--zinc-600);   /* secondary text */
+  --fg-subtle:     var(--zinc-500);   /* tertiary, meta */
+  --fg-faint:      #62626b;           /* placeholder, disabled (AA on white + bg-sunken) */
+
+  --border:        var(--zinc-200);
+  --border-strong: var(--zinc-300);
+  --border-soft:   var(--zinc-100);
+
+  --selection-bg:  var(--accent);
+  --selection-fg:  #ffffff;
+
+  /* -- Spacing (4px base, 8px primary) ----------------------- */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10: 128px;
+  --space-11: 192px;
+
+  /* -- Radii (restrained) ------------------------------------ */
+  --r-none:  0;
+  --r-xs:    2px;
+  --r-sm:    4px;
+  --r-md:    6px;
+  --r-lg:    10px;
+  --r-xl:    16px;
+  --r-full:  999px;
+
+  /* -- Shadows (soft, cool, mostly for light mode) ----------- */
+  --shadow-xs: 0 1px 2px rgba(9, 9, 11, 0.04);
+  --shadow-sm: 0 1px 2px rgba(9, 9, 11, 0.06), 0 1px 3px rgba(9, 9, 11, 0.04);
+  --shadow-md: 0 4px 8px -2px rgba(9, 9, 11, 0.06), 0 2px 4px -2px rgba(9, 9, 11, 0.04);
+  --shadow-lg: 0 12px 24px -6px rgba(9, 9, 11, 0.08), 0 4px 8px -4px rgba(9, 9, 11, 0.04);
+  --shadow-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+
+  /* -- Motion ------------------------------------------------ */
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart:  cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --dur-instant: 80ms;
+  --dur-fast:    160ms;
+  --dur-base:    240ms;
+  --dur-slow:    420ms;
+  --dur-glide:   720ms;
+
+  /* -- Layout ------------------------------------------------ */
+  --container:       1280px;
+  --container-read:  680px;   /* essay/prose max-width */
+  --container-wide:  1440px;
+  --page-gutter:     32px;
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+:root[data-theme="dark"],
+:root.dark {
+  --bg:            var(--zinc-950);
+  --bg-elevated:   var(--zinc-900);
+  --bg-sunken:     #000000;
+  --bg-overlay:    rgba(9, 9, 11, 0.72);
+
+  --fg:            var(--zinc-0);
+  --fg-muted:      var(--zinc-400);
+  --fg-subtle:     var(--zinc-500);
+  --fg-faint:      var(--zinc-600);
+
+  --border:        var(--zinc-800);
+  --border-strong: var(--zinc-700);
+  --border-soft:   var(--zinc-900);
+
+  --accent-soft:   rgba(31, 157, 255, 0.18);
+  --accent-line:   rgba(31, 157, 255, 0.40);
+  --accent-text:   var(--accent-hover);   /* lighter blue passes on dark bg */
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40), 0 1px 3px rgba(0, 0, 0, 0.30);
+  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.45), 0 2px 4px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 24px -6px rgba(0, 0, 0, 0.55), 0 4px 8px -4px rgba(0, 0, 0, 0.35);
+  --shadow-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ============================================================
+   BASE ELEMENTS (semantic styles)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  font-feature-settings: 'ss01' on, 'cv11' on;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+/* -- Headings: commanding, tight, slightly negative tracking */
+h1, .h1 {
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-hero);
+  margin: 0;
+}
+
+h2, .h2 {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+h3, .h3 {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+h4, .h4 {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+h5, .h5 {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-normal);
+  margin: 0;
+}
+
+/* -- Body copy -------------------------------------------- */
+p, .body {
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--fg);
+  margin: 0 0 var(--space-4) 0;
+  text-wrap: pretty;
+}
+
+.lead {
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+  color: var(--fg-muted);
+  letter-spacing: var(--tracking-normal);
+}
+
+.meta, .caption {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg-subtle);
+  text-transform: uppercase;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-muted);
+  text-transform: uppercase;
+}
+
+small {
+  font-size: var(--fs-sm);
+  color: var(--fg-muted);
+}
+
+/* -- Links: restrained underline that animates ----------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out-quart);
+}
+
+a.link {
+  color: var(--fg);
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 1px;
+  transition: border-color var(--dur-base) var(--ease-out-expo),
+              color var(--dur-base) var(--ease-out-expo);
+}
+a.link:hover {
+  color: var(--accent-text);
+  border-bottom-color: var(--accent-text);
+}
+
+/* -- Code ------------------------------------------------- */
+code, .code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 1px 6px;
+  color: var(--fg);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+  margin: 0;
+}
+
+/* -- Horizontal rule -------------------------------------- */
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--space-6) 0;
+}
+
+/* ============================================================
+   UTILITY CLASSES (token-driven)
+   ============================================================ */
+.mono { font-family: var(--font-mono); }
+.sans { font-family: var(--font-sans); }
+.caps { text-transform: uppercase; letter-spacing: var(--tracking-caps); }
+.muted { color: var(--fg-muted); }
+.subtle { color: var(--fg-subtle); }
+.faint { color: var(--fg-faint); }
+.accent { color: var(--accent-text); }
+
+/* Magnetic / hover ease helper for JS components */
+.u-transition { transition: all var(--dur-base) var(--ease-out-expo); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

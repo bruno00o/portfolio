@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { formatPostDate, getWritingHref } from '../content/helpers';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const posts = (
+  await getCollection('writing', (entry) => entry.data.locale === lang)
+).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const countLabel = `${String(posts.length).padStart(2, '0')} ${t('writing.notes')}`;
+---
+
+<section class="writing" id="writing" aria-labelledby="writing-label">
+  <div class="writing__head">
+    <span class="writing__label" id="writing-label">{t('writing.label')}</span>
+    <span class="writing__meta">
+      <span>{countLabel}</span>
+      <a class="view-all" href="#writing">{t('writing.archive')}</a>
+    </span>
+  </div>
+
+  <div class="writing__list">
+    {
+      posts.map((p) => (
+        <a class="post" href={getWritingHref(p, lang)}>
+          <span class="post__date">{formatPostDate(p.data.date)}</span>
+          <div class="post__main">
+            <span class="post__title">{p.data.title}</span>
+            <span class="post__dek">{p.data.dek}</span>
+          </div>
+          <span class={`post__tag ${p.data.draft ? 'post__tag--draft' : ''}`}>
+            <span class="status-dot" />
+            {p.data.draft ? t('writing.draft') : p.data.tag}
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</section>

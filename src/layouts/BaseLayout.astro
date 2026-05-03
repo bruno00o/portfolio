@@ -1,0 +1,137 @@
+---
+import { defaultLang, ogLocales, type Lang } from '../i18n/ui';
+import { getLocalizedPath, stripLangPrefix } from '../i18n/utils';
+import { site } from '../config';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '../styles/tokens.css';
+import '../styles/home.css';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+}
+
+const { lang, title, description, ogImage, ogType = 'website' } = Astro.props as Props;
+
+const siteUrl = Astro.site!;
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+
+const bareAltPath = stripLangPrefix(Astro.url.pathname);
+const altEn = new URL(getLocalizedPath(bareAltPath, 'en'), siteUrl).toString();
+const altFr = new URL(getLocalizedPath(bareAltPath, 'fr'), siteUrl).toString();
+const xDefault = new URL(bareAltPath, siteUrl).toString();
+
+const bareSlug = bareAltPath.replace(/^\/|\/$/g, '') || 'home';
+const ogSlug = lang === defaultLang ? bareSlug : `${lang}/${bareSlug}`;
+const ogImageUrl = new URL(
+  ogImage ?? `/og/${ogSlug}.png`,
+  siteUrl,
+).toString();
+
+const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" id="favicon" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang="en" href={altEn} />
+    <link rel="alternate" hreflang="fr" href={altFr} />
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={ogLocales[lang]} />
+    <meta property="og:locale:alternate" content={ogLocales[otherLang]} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('bruno-theme');
+          if (stored === 'dark' || stored === 'light') {
+            document.documentElement.dataset.theme = stored;
+            return;
+          }
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+
+    <script is:inline>
+      (function () {
+        try {
+          var path = window.location.pathname;
+          var onFr = path === '/fr' || path === '/fr/' || path.indexOf('/fr/') === 0;
+          var stored = localStorage.getItem('bruno-lang');
+          if (stored) {
+            if (onFr) localStorage.setItem('bruno-lang', 'fr');
+            return;
+          }
+          if (onFr) {
+            localStorage.setItem('bruno-lang', 'fr');
+            return;
+          }
+          if (path !== '/') return;
+          var langs = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ''];
+          var prefersFr = false;
+          for (var i = 0; i < langs.length; i++) {
+            var l = (langs[i] || '').toLowerCase();
+            if (l.indexOf('fr') === 0) { prefersFr = true; break; }
+            if (l.indexOf('en') === 0) break;
+          }
+          if (!prefersFr) {
+            localStorage.setItem('bruno-lang', 'en');
+            return;
+          }
+          localStorage.setItem('bruno-lang', 'fr');
+          window.location.replace('/fr' + window.location.search + window.location.hash);
+        } catch (e) {}
+      })();
+    </script>
+
+    <script is:inline>
+      (function () {
+        var active = '/favicon.svg';
+        var inactive = '/favicon-inactive.svg';
+        function update() {
+          var link = document.getElementById('favicon');
+          if (!link) return;
+          var on = !document.hidden && document.hasFocus();
+          link.href = on ? active : inactive;
+        }
+        document.addEventListener('visibilitychange', update);
+        window.addEventListener('focus', update);
+        window.addEventListener('blur', update);
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

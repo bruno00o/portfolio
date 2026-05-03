@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { formatPostDate } from '../content/helpers';
+
+interface Props {
+  entry: CollectionEntry<'writing'>;
+  lang: Lang;
+}
+
+const { entry, lang } = Astro.props as Props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const hasBody = entry.body != null && entry.body.trim().length > 0;
+
+const formattedDate = formatPostDate(entry.data.date);
+const backHref = `${getLocalizedPath('/', lang)}#writing`;
+const tagLabel = entry.data.draft ? t('writing.draft') : entry.data.tag;
+---
+
+<article class="detail">
+  <a class="detail__back" href={backHref}>← {t('writing.label')}</a>
+
+  <div class="detail__meta">
+    <span class="detail__meta-lead">{formattedDate}</span>
+    <span>{tagLabel}</span>
+  </div>
+
+  <h1 class="detail__title">{entry.data.title}</h1>
+  <p class="detail__dek">{entry.data.dek}</p>
+
+  {
+    hasBody ? (
+      <div class="detail__body">
+        <Content />
+      </div>
+    ) : (
+      <p class="detail__empty">{t('detail.empty.post')}</p>
+    )
+  }
+</article>

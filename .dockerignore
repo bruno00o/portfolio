@@ -1,0 +1,15 @@
+.DS_Store
+.git
+.gitignore
+.github
+.vscode
+.idea
+.astro
+.archive
+.design
+.env
+.env.*
+node_modules
+dist
+README.md
+*.log
