@@ -130,6 +130,15 @@ const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
         window.addEventListener('blur', update);
       })();
     </script>
+
+    {import.meta.env.PROD && (
+      <script
+        is:inline
+        defer
+        src="https://umami.seilliebert.dev/script.js"
+        data-website-id="df1e9ccb-0ed1-44c0-99e2-de1e0dcb7ff8"
+      />
+    )}
   </head>
   <body>
     <slot />
