@@ -88,6 +88,7 @@ const en = {
 
   // ---------- FOOTER ----------
   'footer.copy': '© Bruno · {year}',
+  'footer.built': 'built with astro',
 
   // ---------- TOGGLES (aria) ----------
   'toggle.theme': 'Toggle theme',
@@ -165,6 +166,7 @@ const fr: Record<TranslationKey, string> = {
   'contact.copied': '// copié',
 
   'footer.copy': '© Bruno · {year}',
+  'footer.built': 'fait avec astro',
 
   'toggle.theme': 'Changer le thème',
   'toggle.lang': 'Changer de langue',
