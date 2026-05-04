@@ -1178,6 +1178,7 @@ html[data-theme="dark"]  [data-theme-icon="light"] { display: none; }
 @media (max-width: 960px) {
   .projects__grid { grid-template-columns: 1fr; }
   .project { min-height: 260px; }
+  .project--empty { display: none; }
   .stack-row { grid-template-columns: 90px 1fr; gap: 16px; padding: 14px 18px; }
   .post { grid-template-columns: 1fr; gap: 10px; padding: 22px 8px; }
   .post__date { padding-top: 0; }
