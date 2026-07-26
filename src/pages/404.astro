@@ -2,7 +2,7 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 ---
 
-<SiteLayout lang="en" title="404 — Bruno Seilliebert" description="Page not found">
+<SiteLayout lang="en" title="404 · Bruno Seilliebert" description="Page not found">
   <section class="hero" aria-labelledby="nf-title">
     <div class="hero__content">
       <span class="hero__eyebrow">
@@ -28,7 +28,6 @@ import SiteLayout from '../layouts/SiteLayout.astro';
   (function () {
     if (!window.location.pathname.startsWith('/fr')) return;
     document.documentElement.lang = 'fr';
-    document.title = '404 — Bruno Seilliebert';
     document.querySelectorAll('[data-fr]').forEach(function (el) {
       el.textContent = el.getAttribute('data-fr');
     });
