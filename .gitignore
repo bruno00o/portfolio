@@ -26,3 +26,7 @@ pnpm-debug.log*
 # local-only experiments / archived code
 .archive/
 .design/
+
+*.md
+!README.md
+!src/**/*.md
