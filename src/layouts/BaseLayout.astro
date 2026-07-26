@@ -88,7 +88,13 @@ const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
           var onFr = path === '/fr' || path === '/fr/' || path.indexOf('/fr/') === 0;
           var stored = localStorage.getItem('bruno-lang');
           if (stored) {
-            if (onFr) localStorage.setItem('bruno-lang', 'fr');
+            if (onFr) {
+              localStorage.setItem('bruno-lang', 'fr');
+              return;
+            }
+            if (stored === 'fr' && path === '/') {
+              window.location.replace('/fr' + window.location.search + window.location.hash);
+            }
             return;
           }
           if (onFr) {
