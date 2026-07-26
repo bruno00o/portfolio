@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/bruno00o/portfolio/compare/v1.0.0...v1.0.1) (2026-07-26)
+
+
+### Bug Fixes
+
+* **build:** allow esbuild and sharp build scripts under pnpm 11 ([cb30747](https://github.com/bruno00o/portfolio/commit/cb3074789e75fd459a8974c96db558fa7e303f50))
+
 ## [1.0.0](https://github.com/bruno00o/portfolio/compare/v0.0.1...v1.0.0) (2026-07-26)
 
 
