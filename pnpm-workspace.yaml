@@ -1,0 +1,5 @@
+# pnpm 11 blocks dependency build scripts unless listed here.
+# esbuild and sharp both need theirs to fetch their native binaries.
+allowBuilds:
+  esbuild: true
+  sharp: true
