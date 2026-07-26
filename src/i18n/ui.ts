@@ -17,7 +17,6 @@ const en = {
   // ---------- NAV ----------
   'nav.work': 'Work',
   'nav.writing': 'Notes',
-  'nav.now': 'Now',
   'nav.contact': 'Contact',
   'nav.drag_hint': '// drag me',
 
@@ -59,7 +58,6 @@ const en = {
   'xp.e1.tag': 'Apprenticeship',
   'xp.e2.role': "Bachelor's, Computer Science",
   'xp.e2.sub': 'Université Gustave Eiffel',
-  'xp.e2.tag': '',
 
   // ---------- NOW ----------
   'now.label': 'Now',
@@ -73,7 +71,6 @@ const en = {
   // ---------- WRITING (chrome only) ----------
   'writing.label': 'Notes',
   'writing.notes': 'notes',
-  'writing.archive': 'archive',
   'writing.draft': 'DRAFT',
 
   // ---------- DETAIL ----------
@@ -104,7 +101,6 @@ const fr: Record<TranslationKey, string> = {
 
   'nav.work': 'Projets',
   'nav.writing': 'Notes',
-  'nav.now': 'Actuel',
   'nav.contact': 'Contact',
   'nav.drag_hint': '// attrape-moi',
 
@@ -142,7 +138,6 @@ const fr: Record<TranslationKey, string> = {
   'xp.e1.tag': 'alternance',
   'xp.e2.role': 'Licence, Informatique',
   'xp.e2.sub': 'Université Gustave Eiffel',
-  'xp.e2.tag': '',
 
   'now.label': 'Actuel',
   'now.city': 'Paris',
@@ -154,7 +149,6 @@ const fr: Record<TranslationKey, string> = {
 
   'writing.label': 'Notes',
   'writing.notes': 'notes',
-  'writing.archive': 'archive',
   'writing.draft': 'BROUILLON',
 
   'detail.empty.project': '// contenu à venir',
