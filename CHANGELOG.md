@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/bruno00o/portfolio/compare/v1.0.1...v1.0.2) (2026-07-26)
+
+
+### Bug Fixes
+
+* **deps:** upgrade to Astro 7 and drop unused @astrojs/mdx ([49bb812](https://github.com/bruno00o/portfolio/commit/49bb812611739af65eeb6f89770ab0e27c3390d4))
+* **deps:** upgrade to Astro 7 and drop unused @astrojs/mdx ([e1dd018](https://github.com/bruno00o/portfolio/commit/e1dd018280e00b0e2c31c3c3e2a1ef9b3bcf2fd6))
+
 ## [1.0.1](https://github.com/bruno00o/portfolio/compare/v1.0.0...v1.0.1) (2026-07-26)
 
 
