@@ -33,6 +33,8 @@ export const getStaticPaths = (async () => {
   const paths: { params: { slug: string }; props: OgProps }[] = [
     { params: { slug: 'home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Software engineer' } },
     { params: { slug: 'fr/home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Ingénieur logiciel' } },
+    // Single static 404.html served for every unknown path, so a single OG image.
+    { params: { slug: '404' }, props: { title: '404', subtitle: 'Page not found' } },
   ];
 
   for (const p of projects) {
