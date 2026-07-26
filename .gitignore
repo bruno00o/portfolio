@@ -29,4 +29,5 @@ pnpm-debug.log*
 
 *.md
 !README.md
+!CHANGELOG.md
 !src/**/*.md
