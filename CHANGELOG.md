@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/bruno00o/portfolio/compare/v1.0.2...v1.0.3) (2026-07-26)
+
+
+### Bug Fixes
+
+* **deps:** update preact, zod, fontsource, satori and sharp ([413c2ca](https://github.com/bruno00o/portfolio/commit/413c2ca11036b49056e647c86d7dc3da12a87bc6))
+
 ## [1.0.2](https://github.com/bruno00o/portfolio/compare/v1.0.1...v1.0.2) (2026-07-26)
 
 
