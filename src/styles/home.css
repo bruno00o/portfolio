@@ -851,14 +851,6 @@ svg { max-width: 100%; }
   gap: 18px;
   align-items: baseline;
 }
-.writing__meta .view-all {
-  color: var(--fg-subtle);
-  text-decoration: none;
-  transition: color var(--dur-base);
-}
-.writing__meta .view-all:hover { color: var(--accent-text); }
-.writing__meta .view-all::after { content: ' →'; }
-
 .writing__list {
   display: flex;
   flex-direction: column;
