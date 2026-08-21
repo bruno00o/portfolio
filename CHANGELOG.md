@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/bruno00o/portfolio/compare/v1.0.4...v1.1.0) (2026-08-21)
+
+
+### Features
+
+* add a bilingual legal notice page ([df600c3](https://github.com/bruno00o/portfolio/commit/df600c33ea6f5b5b2ec75c495aee2750eb37e287))
+* **ui:** rework the typographic system ([977f47f](https://github.com/bruno00o/portfolio/commit/977f47fb5f3bcba123185cb30dd17cbb32f0d1a8))
+
+
+### Bug Fixes
+
+* **og:** resolve the {present} placeholder in project subtitles ([a79bab6](https://github.com/bruno00o/portfolio/commit/a79bab6caef693893f5c917401b955d166e6ec3f))
+
 ## [1.0.4](https://github.com/bruno00o/portfolio/compare/v1.0.3...v1.0.4) (2026-08-21)
 
 
