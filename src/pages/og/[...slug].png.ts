@@ -33,8 +33,8 @@ export const getStaticPaths = (async () => {
   const paths: { params: { slug: string }; props: OgProps }[] = [
     { params: { slug: 'home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Software engineer' } },
     { params: { slug: 'fr/home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Ingénieur logiciel' } },
-    { params: { slug: 'legal' }, props: { title: 'Legal notice', subtitle: 'Bruno Seilliebert' } },
-    { params: { slug: 'fr/legal' }, props: { title: 'Mentions légales', subtitle: 'Bruno Seilliebert' } },
+    { params: { slug: 'legal' }, props: { title: 'Legal notice', subtitle: 'Publisher, hosting and personal data' } },
+    { params: { slug: 'fr/legal' }, props: { title: 'Mentions légales', subtitle: 'Éditeur, hébergement et données personnelles' } },
     // Single static 404.html served for every unknown path, so a single OG image.
     { params: { slug: '404' }, props: { title: '404', subtitle: 'Page not found' } },
   ];
@@ -70,12 +70,15 @@ export const GET: APIRoute<OgProps> = async ({ props }) => {
   const { title, subtitle } = props;
   const fonts = await fontsP;
 
+  // Titles share a baseline, so long ones must step down instead of pushing upward
+  // into the wordmark. Thresholds are tuned to keep every title at three lines or fewer.
+  const titleSize = title.length > 55 ? 52 : title.length > 28 ? 64 : 80;
+
   const tree = el(
     'div',
     {
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-between',
       width: '100%',
       height: '100%',
       background: '#09090b',
@@ -100,13 +103,21 @@ export const GET: APIRoute<OgProps> = async ({ props }) => {
       ),
       el(
         'div',
-        { display: 'flex', flexDirection: 'column', gap: 24, maxWidth: '90%' },
+        {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          flex: 1,
+          gap: 20,
+          paddingBottom: 48,
+          maxWidth: '90%',
+        },
         [
           el(
             'div',
             {
               display: 'flex',
-              fontSize: 80,
+              fontSize: titleSize,
               color: '#fafafa',
               fontWeight: 500,
               letterSpacing: '-0.035em',
@@ -118,11 +129,9 @@ export const GET: APIRoute<OgProps> = async ({ props }) => {
             'div',
             {
               display: 'flex',
-              fontSize: 22,
+              fontSize: 24,
               color: '#a1a1aa',
-              fontFamily: 'Geist Mono',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
+              letterSpacing: '-0.01em',
             },
             subtitle,
           ),
@@ -150,6 +159,6 @@ export const GET: APIRoute<OgProps> = async ({ props }) => {
   const png = new Resvg(svg).render().asPng();
 
   return new Response(new Uint8Array(png), {
-    headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=31536000, immutable' },
+    headers: { 'Content-Type': 'image/png' },
   });
 };
