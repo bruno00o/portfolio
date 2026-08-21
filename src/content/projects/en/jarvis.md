@@ -2,7 +2,7 @@
 title: Jarvis
 num: "004"
 locale: en
-kind: "Personal · 2026 → {present}"
+kind: "2026 → {present}"
 stack: [TypeScript, Bun, Ollama, mlx-audio, MCP]
 desc: "A local voice assistant for the home, inspired by Tony Stark's Jarvis (as any self-respecting assistant should be), wired into my homelab services."
 order: 4

@@ -10,19 +10,17 @@ export const ogLocales: Record<Lang, string> = {
 
 const en = {
   // ---------- META ----------
-  'meta.title': 'Bruno Seilliebert · Software engineer',
+  'meta.title': 'Bruno Seilliebert, software engineer',
   'meta.description':
-    'Bruno Seilliebert · Software engineer. I build systems end-to-end, from the data pipeline to the pixel.',
+    'Bruno Seilliebert, software engineer. I build systems end-to-end, from the data pipeline to the pixel.',
 
   // ---------- NAV ----------
   'nav.work': 'Work',
   'nav.writing': 'Notes',
   'nav.contact': 'Contact',
   'nav.home': 'Home',
-  'nav.drag_hint': '// drag me',
 
   // ---------- HERO ----------
-  'hero.eyebrow': 'Paris · currently at SFR',
   'hero.title': 'Software engineer',
   'hero.oneliner':
     "I enjoy building systems end-to-end, from the data to the display. I'm currently helping build a real-time digital twin of the SFR network.",
@@ -42,8 +40,6 @@ const en = {
   // ---------- EXPERIENCE ----------
   'xp.label': 'Experience',
   'xp.edu_label': 'Education',
-  'xp.entries': 'entries',
-  'xp.entry': 'entry',
   'common.present': 'present',
   'xp.w1.role': 'Software engineer',
   'xp.w1.sub': 'SFR',
@@ -71,8 +67,7 @@ const en = {
 
   // ---------- WRITING (chrome only) ----------
   'writing.label': 'Notes',
-  'writing.notes': 'notes',
-  'writing.draft': 'DRAFT',
+  'writing.draft': 'Draft',
 
   // ---------- DETAIL ----------
   'detail.empty.project': '// full write-up coming',
@@ -85,8 +80,7 @@ const en = {
   'contact.copied': '// copied',
 
   // ---------- FOOTER ----------
-  'footer.copy': '© Bruno · {year}',
-  'footer.built': 'built with astro',
+  'footer.built': 'Built with Astro',
   'footer.legal': 'Legal notice',
 
   // ---------- TOGGLES (aria) ----------
@@ -97,17 +91,15 @@ const en = {
 export type TranslationKey = keyof typeof en;
 
 const fr: Record<TranslationKey, string> = {
-  'meta.title': 'Bruno Seilliebert · Ingénieur logiciel',
+  'meta.title': 'Bruno Seilliebert, ingénieur logiciel',
   'meta.description':
-    "Bruno Seilliebert · Ingénieur logiciel. Je construis des systèmes de bout en bout, du pipeline de données jusqu'au pixel.",
+    "Bruno Seilliebert, ingénieur logiciel. Je construis des systèmes de bout en bout, du pipeline de données jusqu'au pixel.",
 
   'nav.work': 'Projets',
   'nav.writing': 'Notes',
   'nav.contact': 'Contact',
   'nav.home': 'Accueil',
-  'nav.drag_hint': '// attrape-moi',
 
-  'hero.eyebrow': 'Paris · actuellement chez SFR',
   'hero.title': 'Ingénieur logiciel',
   'hero.oneliner':
     "J'aime construire des systèmes de bout en bout, de la donnée jusqu'à l'affichage. Je participe actuellement à la construction d'un jumeau numérique temps réel du réseau SFR.",
@@ -124,21 +116,19 @@ const fr: Record<TranslationKey, string> = {
 
   'xp.label': 'Expérience',
   'xp.edu_label': 'Formation',
-  'xp.entries': 'entrées',
-  'xp.entry': 'entrée',
   'common.present': "aujourd'hui",
   'xp.w1.role': 'Ingénieur logiciel',
   'xp.w1.sub': 'SFR',
   'xp.w1.tag': 'CDI',
   'xp.w2.role': 'Ingénieur logiciel',
   'xp.w2.sub': 'SFR',
-  'xp.w2.tag': 'alternance',
+  'xp.w2.tag': 'Alternance',
   'xp.w3.role': 'Développeur web et mobile',
   'xp.w3.sub': 'Kynova',
-  'xp.w3.tag': 'alternance',
+  'xp.w3.tag': 'Alternance',
   'xp.e1.role': 'Master, Logiciel et Ingénierie des Données',
   'xp.e1.sub': 'Université Gustave Eiffel',
-  'xp.e1.tag': 'alternance',
+  'xp.e1.tag': 'Alternance',
   'xp.e2.role': 'Licence, Informatique',
   'xp.e2.sub': 'Université Gustave Eiffel',
 
@@ -151,8 +141,7 @@ const fr: Record<TranslationKey, string> = {
   'now.running_pre': 'Un cluster Kubernetes homelab nommé ',
 
   'writing.label': 'Notes',
-  'writing.notes': 'notes',
-  'writing.draft': 'BROUILLON',
+  'writing.draft': 'Brouillon',
 
   'detail.empty.project': '// contenu à venir',
   'detail.empty.post': '// article à venir',
@@ -162,8 +151,7 @@ const fr: Record<TranslationKey, string> = {
   'contact.label': 'Contact',
   'contact.copied': '// copié',
 
-  'footer.copy': '© Bruno · {year}',
-  'footer.built': 'fait avec astro',
+  'footer.built': 'Fait avec Astro',
   'footer.legal': 'Mentions légales',
 
   'toggle.theme': 'Changer le thème',

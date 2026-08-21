@@ -1,7 +1,7 @@
 ---
 title: "Claude meets Gaspard and helps me remember 5 years of CS classes"
 dek: "An MCP server plugged into a LightRAG index (graph + vectors) over 5 years of class material, callable straight from claude.ai. All local on the Mac and the Talos cluster, zero tokens billed server-side."
-tag: "RAG · MCP"
+tags: [RAG, MCP]
 locale: en
 date: 2026-05-02
 ---

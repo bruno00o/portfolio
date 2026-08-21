@@ -237,10 +237,6 @@ export default function RogueDot() {
 
   useEffect(() => {
     rogueActiveRef.current = !!rogue;
-    const mark = dotRef.current?.closest<HTMLAnchorElement>('a.mark');
-    if (!mark) return;
-    if (rogue) mark.dataset.rogue = 'true';
-    else delete mark.dataset.rogue;
   }, [rogue]);
 
   useEffect(() => {

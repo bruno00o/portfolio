@@ -49,7 +49,7 @@ export const getStaticPaths = (async () => {
   for (const w of writing) {
     paths.push({
       params: { slug: ogSlugFor('writing', w) },
-      props: { title: w.data.title, subtitle: w.data.tag },
+      props: { title: w.data.title, subtitle: w.data.tags.join(' / ') },
     });
   }
 

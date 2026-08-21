@@ -24,8 +24,11 @@ export function getWritingHref(entry: CollectionEntry<'writing'>, lang: Lang): s
   return getLocalizedPath(`/writing/${getEntrySlug(entry)}`, lang);
 }
 
-export function formatPostDate(d: Date): string {
-  return `${d.getFullYear()} · ${String(d.getMonth() + 1).padStart(2, '0')}`;
+export function formatPostDate(d: Date, lang: Lang): string {
+  return d.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', {
+    month: 'long',
+    year: 'numeric',
+  });
 }
 
 export async function getLocalizedPaths<C extends LocalizedCollection>(collection: C, lang: Lang) {

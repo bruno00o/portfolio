@@ -2,7 +2,7 @@
 title: GameRoute
 num: "002"
 locale: en
-kind: "Personal · 2026 → {present}"
+kind: "2026 → {present}"
 stack: [Tauri, Rust, React]
 desc: "A Windows app that automatically identifies the servers of running games and traces the network path to them."
 order: 2

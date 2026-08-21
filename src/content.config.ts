@@ -23,7 +23,7 @@ const writing = defineCollection({
   schema: z.object({
     title: z.string(),
     dek: z.string(),
-    tag: z.string(),
+    tags: z.array(z.string()),
     locale: z.enum(languages),
     date: z.coerce.date(),
     draft: z.boolean().optional().default(false),

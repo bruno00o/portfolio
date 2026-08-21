@@ -23,11 +23,6 @@ const fullName = 'Bruno Seilliebert';
 <SiteLayout lang={lang} title={t('meta.title')} description={t('meta.description')}>
   <section class="hero" aria-labelledby="hero-name">
     <div class="hero__content">
-      <span class="hero__eyebrow">
-        <span class="pulse"></span>
-        {t('hero.eyebrow')}
-      </span>
-
       <Reveal as="h1" class="hero__name" immediate>
         <span id="hero-name">
           <span class="sr-only">{fullName}</span>
@@ -42,7 +37,7 @@ const fullName = 'Bruno Seilliebert';
       </Reveal>
 
       <Reveal as="h2" class="hero__title" immediate delay={140}>
-        <span>{t('hero.title')}<span class="accent-dot"></span></span>
+        <span>{t('hero.title')}</span>
       </Reveal>
 
       <Reveal as="p" class="hero__oneliner" immediate delay={280}>

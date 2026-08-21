@@ -17,24 +17,21 @@ type XpItem = {
 };
 
 const work: XpItem[] = [
-  { dates: `2025 - ${t('common.present')}`, roleKey: 'xp.w1.role', subKey: 'xp.w1.sub', tagKey: 'xp.w1.tag' },
-  { dates: '2023 - 2025', roleKey: 'xp.w2.role', subKey: 'xp.w2.sub', tagKey: 'xp.w2.tag' },
-  { dates: '2022 - 2023', roleKey: 'xp.w3.role', subKey: 'xp.w3.sub', tagKey: 'xp.w3.tag' },
+  { dates: `2025 → ${t('common.present')}`, roleKey: 'xp.w1.role', subKey: 'xp.w1.sub', tagKey: 'xp.w1.tag' },
+  { dates: '2023 → 2025', roleKey: 'xp.w2.role', subKey: 'xp.w2.sub', tagKey: 'xp.w2.tag' },
+  { dates: '2022 → 2023', roleKey: 'xp.w3.role', subKey: 'xp.w3.sub', tagKey: 'xp.w3.tag' },
 ];
 
 const education: XpItem[] = [
-  { dates: '2023 - 2025', roleKey: 'xp.e1.role', subKey: 'xp.e1.sub', tagKey: 'xp.e1.tag' },
-  { dates: '2020 - 2023', roleKey: 'xp.e2.role', subKey: 'xp.e2.sub' },
+  { dates: '2023 → 2025', roleKey: 'xp.e1.role', subKey: 'xp.e1.sub', tagKey: 'xp.e1.tag' },
+  { dates: '2020 → 2023', roleKey: 'xp.e2.role', subKey: 'xp.e2.sub' },
 ];
 
-const countLabel = (n: number) =>
-  `${String(n).padStart(2, '0')} ${n === 1 ? t('xp.entry') : t('xp.entries')}`;
-
-type Column = { label: string; count: string; items: XpItem[]; anchor: string };
+type Column = { label: string; items: XpItem[]; anchor: string };
 
 const columns: Column[] = [
-  { label: t('xp.label'), count: countLabel(work.length), items: work, anchor: 'experience' },
-  { label: t('xp.edu_label'), count: countLabel(education.length), items: education, anchor: 'education' },
+  { label: t('xp.label'), items: work, anchor: 'experience' },
+  { label: t('xp.edu_label'), items: education, anchor: 'education' },
 ];
 ---
 
@@ -44,7 +41,6 @@ const columns: Column[] = [
       <div class="xp__col" aria-labelledby={`xp-label-${col.anchor}`}>
         <div class="xp__head">
           <span class="xp__label" id={`xp-label-${col.anchor}`}>{col.label}</span>
-          <span class="xp__count">{col.count}</span>
         </div>
 
         <div class="xp__list">

@@ -2,7 +2,7 @@
 title: Homelab
 num: "003"
 locale: en
-kind: "Personal · 2025 → {present}"
+kind: "2025 → {present}"
 stack: [Kubernetes, Talos, Cilium, Flux]
 desc: "A self-hosted Kubernetes cluster running my apps, my personal services and the connected home."
 order: 3

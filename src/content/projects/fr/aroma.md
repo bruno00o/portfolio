@@ -2,7 +2,7 @@
 title: Aroma
 num: "001"
 locale: fr
-kind: "Personnel · 2022 → 2025"
+kind: "2022 → 2025"
 stack: [Next.js, PocketBase, PWA]
 desc: "Une web app pour consulter son emploi du temps universitaire sur mobile, là où ADE (la plateforme utilisée par plusieurs universités françaises) n'est pas lisible sur mobile. Cours actuel et salle visibles à l'ouverture."
 order: 1

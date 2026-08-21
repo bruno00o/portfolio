@@ -16,19 +16,12 @@ const projects = (
   await getCollection('projects', (entry) => entry.data.locale === lang)
 ).sort((a, b) => a.data.order - b.data.order);
 
-const indexLabel =
-  projects.length > 0
-    ? `Index · ${projects[0]!.data.num} - ${projects[projects.length - 1]!.data.num}`
-    : '';
 ---
 
 <section class="projects" id="work" aria-labelledby="work-label">
   <div class="projects__head">
     <Reveal as="span" class="projects__label">
       <span id="work-label">{t('work.label')}</span>
-    </Reveal>
-    <Reveal as="span" class="projects__index" delay={80}>
-      <span>{indexLabel}</span>
     </Reveal>
   </div>
 

@@ -2,7 +2,7 @@
 title: random-gif
 num: "005"
 locale: en
-kind: "Personal · 2023 → {present}"
+kind: "2023 → {present}"
 stack: [Hono, TypeScript, discord.js]
 desc: "A Discord bot that sends a random GIF, fully random or filtered by keywords."
 order: 5

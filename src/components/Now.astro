@@ -19,7 +19,8 @@ const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
         <span class="pulse"></span>{t('now.label')}
       </span>
       <span class="now__bar-right">
-        {t('now.city')} · <span data-now-time data-now-locale={locale}>--:--</span>
+        <span>{t('now.city')}</span>
+        <span data-now-time data-now-locale={locale}>--:--</span>
       </span>
     </div>
 
@@ -40,7 +41,6 @@ const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
         <span class="now-line__prompt">{t('now.running')}</span>
         <span class="now-line__text">
           {t('now.running_pre')}<span class="mono-inline">Going Merry</span>
-          <span class="now__caret" aria-hidden="true"></span>
         </span>
       </div>
     </div>

@@ -15,29 +15,28 @@ const posts = (
   await getCollection('writing', (entry) => entry.data.locale === lang)
 ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const countLabel = `${String(posts.length).padStart(2, '0')} ${t('writing.notes')}`;
 ---
 
 <section class="writing" id="writing" aria-labelledby="writing-label">
   <div class="writing__head">
     <span class="writing__label" id="writing-label">{t('writing.label')}</span>
-    <span class="writing__meta">
-      <span>{countLabel}</span>
-    </span>
   </div>
 
   <div class="writing__list">
     {
       posts.map((p) => (
         <a class="post" href={getWritingHref(p, lang)}>
-          <span class="post__date">{formatPostDate(p.data.date)}</span>
+          <span class="post__date">{formatPostDate(p.data.date, lang)}</span>
           <div class="post__main">
             <span class="post__title">{p.data.title}</span>
             <span class="post__dek">{p.data.dek}</span>
           </div>
-          <span class={`post__tag ${p.data.draft ? 'post__tag--draft' : ''}`}>
-            <span class="status-dot" />
-            {p.data.draft ? t('writing.draft') : p.data.tag}
+          <span class="post__tags">
+            {p.data.draft ? (
+              <span class="post__tag post__tag--draft">{t('writing.draft')}</span>
+            ) : (
+              p.data.tags.map((tag) => <span class="post__tag">{tag}</span>)
+            )}
           </span>
         </a>
       ))

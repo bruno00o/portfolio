@@ -15,9 +15,9 @@ const t = useTranslations(lang);
 const { Content } = await render(entry);
 const hasBody = entry.body != null && entry.body.trim().length > 0;
 
-const formattedDate = formatPostDate(entry.data.date);
+const formattedDate = formatPostDate(entry.data.date, lang);
 const backHref = `${getLocalizedPath('/', lang)}#writing`;
-const tagLabel = entry.data.draft ? t('writing.draft') : entry.data.tag;
+const tags = entry.data.draft ? [t('writing.draft')] : entry.data.tags;
 ---
 
 <article class="detail">
@@ -25,7 +25,7 @@ const tagLabel = entry.data.draft ? t('writing.draft') : entry.data.tag;
 
   <div class="detail__meta">
     <span class="detail__meta-lead">{formattedDate}</span>
-    <span>{tagLabel}</span>
+    {tags.map((tag) => <span>{tag}</span>)}
   </div>
 
   <h1 class="detail__title">{entry.data.title}</h1>

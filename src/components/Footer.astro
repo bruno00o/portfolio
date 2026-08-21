@@ -10,16 +10,17 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const year = new Date().getFullYear();
 const legalHref = getLocalizedPath('/legal', lang);
 ---
 
 <footer class="footer">
-  <span>{t('footer.copy').replace('{year}', String(year))}</span>
-  <span class="footer__right">
-    <a href={site.github} target="_blank" rel="noopener">github</a>
-    <a href={site.linkedin} target="_blank" rel="noopener">linkedin</a>
+  <span>{site.name}</span>
+  <span class="footer__group">
+    <a href={site.github} target="_blank" rel="noopener">GitHub</a>
+    <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
     <a href={`mailto:${site.email}`}>{site.email}</a>
+  </span>
+  <span class="footer__group footer__group--meta">
     <a href={legalHref}>{t('footer.legal')}</a>
     <a href="https://astro.build" target="_blank" rel="noopener">{t('footer.built')}</a>
   </span>

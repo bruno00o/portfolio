@@ -1,7 +1,7 @@
 ---
 title: "Claude rencontre Gaspard et m'aide à me souvenir de mes 5 ans d'études à la fac"
 dek: "Un serveur MCP branché à un index LightRAG (graphe + vecteurs) sur 5 ans de cours, accessible directement depuis claude.ai. Tout en local sur le Mac et le cluster Talos, sans payer un token côté serveur."
-tag: "RAG · MCP"
+tags: [RAG, MCP]
 locale: fr
 date: 2026-05-02
 ---
