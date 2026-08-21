@@ -18,6 +18,7 @@ const en = {
   'nav.work': 'Work',
   'nav.writing': 'Notes',
   'nav.contact': 'Contact',
+  'nav.home': 'Home',
   'nav.drag_hint': '// drag me',
 
   // ---------- HERO ----------
@@ -86,6 +87,7 @@ const en = {
   // ---------- FOOTER ----------
   'footer.copy': '© Bruno · {year}',
   'footer.built': 'built with astro',
+  'footer.legal': 'Legal notice',
 
   // ---------- TOGGLES (aria) ----------
   'toggle.theme': 'Toggle theme',
@@ -102,6 +104,7 @@ const fr: Record<TranslationKey, string> = {
   'nav.work': 'Projets',
   'nav.writing': 'Notes',
   'nav.contact': 'Contact',
+  'nav.home': 'Accueil',
   'nav.drag_hint': '// attrape-moi',
 
   'hero.eyebrow': 'Paris · actuellement chez SFR',
@@ -161,6 +164,7 @@ const fr: Record<TranslationKey, string> = {
 
   'footer.copy': '© Bruno · {year}',
   'footer.built': 'fait avec astro',
+  'footer.legal': 'Mentions légales',
 
   'toggle.theme': 'Changer le thème',
   'toggle.lang': 'Changer de langue',
