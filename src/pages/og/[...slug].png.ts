@@ -4,7 +4,7 @@ import { Resvg } from '@resvg/resvg-js';
 import { getCollection } from 'astro:content';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { getEntrySlug } from '../../content/helpers';
+import { getEntrySlug, formatKind } from '../../content/helpers';
 import { getLocalizedPath } from '../../i18n/utils';
 
 const FONT_DIR = resolve(process.cwd(), 'node_modules/@fontsource');
@@ -40,7 +40,7 @@ export const getStaticPaths = (async () => {
   for (const p of projects) {
     paths.push({
       params: { slug: ogSlugFor('work', p) },
-      props: { title: p.data.title, subtitle: p.data.kind },
+      props: { title: p.data.title, subtitle: formatKind(p.data.kind, p.data.locale) },
     });
   }
 
