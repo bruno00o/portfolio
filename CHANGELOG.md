@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/bruno00o/portfolio/compare/v1.0.3...v1.0.4) (2026-08-21)
+
+
+### Bug Fixes
+
+* **deps:** update astro, satori, preact and astro check ([cda7e6f](https://github.com/bruno00o/portfolio/commit/cda7e6f01b6d7c6edaefee52ef1d7f74b163e415))
+
 ## [1.0.3](https://github.com/bruno00o/portfolio/compare/v1.0.2...v1.0.3) (2026-07-26)
 
 
