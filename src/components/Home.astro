@@ -7,6 +7,7 @@ import Now from './Now.astro';
 import Writing from './Writing.astro';
 import Contact from './Contact.astro';
 import Reveal from './Reveal.astro';
+import HeroHead from './HeroHead';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
@@ -44,6 +45,10 @@ const fullName = 'Bruno Seilliebert';
         <span>{t('hero.oneliner')}</span>
       </Reveal>
     </div>
+
+    {/* client:media takes a static string, so 900px is repeated in home.css. Lower it
+        here alone and three.js runs behind a display:none element. */}
+    <HeroHead client:media="(min-width: 900px)" />
   </section>
 
   <Projects lang={lang} />

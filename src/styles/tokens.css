@@ -63,6 +63,10 @@
   --accent-soft:   rgba(31, 157, 255, 0.14);
   --accent-line:   rgba(31, 157, 255, 0.30);
 
+  /* -- Hero bust (3D), read at runtime by HeroHead ------------ */
+  --head-clay:     var(--zinc-200);
+  --head-fill:     var(--accent);
+
   /* -- Semantic: Light mode (default) ------------------------ */
   --bg:            var(--zinc-0);
   --bg-elevated:   var(--zinc-50);
@@ -151,6 +155,9 @@
   --accent-soft:   rgba(31, 157, 255, 0.18);
   --accent-line:   rgba(31, 157, 255, 0.40);
   --accent-text:   var(--accent-hover);   /* lighter blue passes on dark bg */
+
+  --head-clay:     var(--zinc-500);
+  --head-fill:     #d4d8dc;
 
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40), 0 1px 3px rgba(0, 0, 0, 0.30);
