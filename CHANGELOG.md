@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/bruno00o/portfolio/compare/v1.1.0...v1.2.0) (2026-08-22)
+
+
+### Features
+
+* **hero:** add a themed 3D bust beside the name ([0b48409](https://github.com/bruno00o/portfolio/commit/0b48409b52d96d2696827db2897299fedded1b47))
+* **og:** align the social cards on the site typographic system ([5106388](https://github.com/bruno00o/portfolio/commit/51063884fab010ef681c881b2c667951372204db))
+* **seo:** add og:image dimensions and alt text ([9ad87d3](https://github.com/bruno00o/portfolio/commit/9ad87d354cc50d35c5cae5afbea69e5ba5c21aa2))
+
 ## [1.1.0](https://github.com/bruno00o/portfolio/compare/v1.0.4...v1.1.0) (2026-08-21)
 
 
