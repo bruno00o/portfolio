@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.4.0](https://github.com/bruno00o/portfolio/compare/v1.3.0...v1.4.0) (2026-08-23)
+
+
+### Features
+
+* **content:** add bilingual llms.txt indexes ([254481d](https://github.com/bruno00o/portfolio/commit/254481d51d9112c23b3f399bd7617b8204a565cb))
+* **content:** expose raw Markdown endpoints for projects and writing ([eb14e5d](https://github.com/bruno00o/portfolio/commit/eb14e5da6fe42529209a2d7dbacd41bbec6ac3cc))
+* **seo:** add JSON-LD structured data for the person, projects and posts ([2f62750](https://github.com/bruno00o/portfolio/commit/2f6275004bfe710bd22cc03dc5087dd208f15e56))
+* **seo:** serve robots.txt with content signals and the sitemap ([fba6266](https://github.com/bruno00o/portfolio/commit/fba6266dcc838770f17a6a275b50d18368e8f161))
+
+
+### Bug Fixes
+
+* **nginx:** serve .md as text/markdown instead of octet-stream ([52d1e89](https://github.com/bruno00o/portfolio/commit/52d1e899fa0e04badf452cef9c307b9c595e44de))
+
 ## [1.3.0](https://github.com/bruno00o/portfolio/compare/v1.2.0...v1.3.0) (2026-08-23)
 
 
