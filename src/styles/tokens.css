@@ -145,8 +145,8 @@
 
   --fg:            var(--zinc-0);
   --fg-muted:      var(--zinc-400);
-  --fg-subtle:     var(--zinc-500);
-  --fg-faint:      var(--zinc-600);
+  --fg-subtle:     #91919b;           /* tertiary, meta (AA on bg + bg-elevated) */
+  --fg-faint:      #85858f;           /* placeholder, disabled (AA on bg-sunken) */
 
   --border:        var(--zinc-800);
   --border-strong: var(--zinc-700);
