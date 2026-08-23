@@ -698,8 +698,8 @@ svg { max-width: 100%; }
   color: var(--fg-muted);
 }
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(31, 157, 255, 0.20); }
-  50%      { box-shadow: 0 0 0 8px rgba(31, 157, 255, 0.00); }
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%      { transform: scale(1.5); opacity: 0; }
 }
 .now__bar .pulse {
   position: relative;
