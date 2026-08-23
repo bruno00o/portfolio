@@ -27,9 +27,10 @@ const homeHref = getLocalizedPath('/', lang);
   </nav>
 
   <div class="nav__controls" aria-label="Site controls">
-    <a class="lang-toggle" href={alternateHref} data-target-lang={otherLang} aria-label={`${t('toggle.lang')}: EN / FR`}>
+    <a class="lang-toggle" href={alternateHref} data-target-lang={otherLang}>
+      <span class="sr-only">{t('toggle.lang')}</span>
       <span class="lang-toggle__slot" data-active={lang === 'en'}>EN</span>
-      <span class="lang-toggle__sep" aria-hidden="true">/</span>
+      <span class="lang-toggle__sep">/</span>
       <span class="lang-toggle__slot" data-active={lang === 'fr'}>FR</span>
     </a>
 
