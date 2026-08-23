@@ -14,6 +14,11 @@ const en = {
   'meta.description':
     'Bruno Seilliebert, software engineer. I build systems end-to-end, from the data pipeline to the pixel.',
 
+  // ---------- LLMS.TXT ----------
+  'llms.markdown':
+    'Every project and note is also available as raw Markdown: append .md to its URL.',
+  'llms.alternate': 'French version of this file:',
+
   // ---------- NAV ----------
   'nav.work': 'Work',
   'nav.writing': 'Notes',
@@ -94,6 +99,10 @@ const fr: Record<TranslationKey, string> = {
   'meta.title': 'Bruno Seilliebert, ingénieur logiciel',
   'meta.description':
     "Bruno Seilliebert, ingénieur logiciel. Je construis des systèmes de bout en bout, du pipeline de données jusqu'au pixel.",
+
+  'llms.markdown':
+    "Chaque projet et chaque note est aussi disponible en Markdown brut : ajoutez .md à son URL.",
+  'llms.alternate': "Version anglaise de ce fichier :",
 
   'nav.work': 'Projets',
   'nav.writing': 'Notes',

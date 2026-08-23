@@ -1,6 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 import { getLocalizedPath, useTranslations } from '../i18n/utils';
+import { site } from '../config';
 import type { Lang } from '../i18n/ui';
 
 export function formatKind(kind: string, lang: Lang): string {
@@ -97,6 +98,48 @@ export function writingToMarkdown(
     '---',
     '',
     entry.body?.trim() ?? '',
+    '',
+  ].join('\n');
+}
+
+export async function buildLlmsTxt(lang: Lang, origin: URL): Promise<string> {
+  const t = useTranslations(lang);
+  const abs = (path: string) => new URL(path, origin).toString();
+  const other: Lang = lang === 'fr' ? 'en' : 'fr';
+
+  const projects = (await getCollection('projects', (e) => e.data.locale === lang)).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+  const writing = (await getCollection('writing', (e) => e.data.locale === lang)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+
+  return [
+    `# ${site.name}`,
+    '',
+    `> ${t('meta.description')}`,
+    '',
+    t('hero.oneliner'),
+    '',
+    t('llms.markdown'),
+    '',
+    `${t('llms.alternate')} ${abs(getLocalizedPath('/llms.txt', other))}`,
+    '',
+    `## ${t('nav.work')}`,
+    '',
+    ...projects.map(
+      (e) => `- [${e.data.title}](${abs(getProjectHref(e, lang))}.md): ${e.data.desc}`,
+    ),
+    '',
+    `## ${t('nav.writing')}`,
+    '',
+    ...writing.map((e) => `- [${e.data.title}](${abs(getWritingHref(e, lang))}.md): ${e.data.dek}`),
+    '',
+    `## ${t('nav.contact')}`,
+    '',
+    `- [GitHub](${site.github})`,
+    `- [LinkedIn](${site.linkedin})`,
+    `- ${site.email}`,
     '',
   ].join('\n');
 }
