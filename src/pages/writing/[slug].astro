@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import PostDetail from '../../components/PostDetail.astro';
-import { getLocalizedPaths } from '../../content/helpers';
+import { getLocalizedPaths, getWritingHref } from '../../content/helpers';
 import { site } from '../../config';
 
 export const getStaticPaths = () => getLocalizedPaths('writing', 'en');
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+const markdownHref = `${getWritingHref(entry, 'en')}.md`;
 ---
 
 <SiteLayout
@@ -19,6 +20,7 @@ const { entry } = Astro.props;
   title={`${entry.data.title} | ${site.name}`}
   description={entry.data.dek}
   ogType="article"
+  markdownHref={markdownHref}
 >
   <PostDetail entry={entry} lang="en" />
 </SiteLayout>

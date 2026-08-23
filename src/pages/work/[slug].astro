@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import ProjectDetail from '../../components/ProjectDetail.astro';
-import { getLocalizedPaths } from '../../content/helpers';
+import { getLocalizedPaths, getProjectHref } from '../../content/helpers';
 import { site } from '../../config';
 
 export const getStaticPaths = () => getLocalizedPaths('projects', 'en');
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+const markdownHref = `${getProjectHref(entry, 'en')}.md`;
 ---
 
 <SiteLayout
@@ -19,6 +20,7 @@ const { entry } = Astro.props;
   title={`${entry.data.title} | ${site.name}`}
   description={entry.data.desc}
   ogType="article"
+  markdownHref={markdownHref}
 >
   <ProjectDetail entry={entry} lang="en" />
 </SiteLayout>

@@ -12,9 +12,10 @@ interface Props {
   description: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
+  markdownHref?: string;
 }
 
-const { lang, title, description, ogImage, ogType = 'website' } = Astro.props as Props;
+const { lang, title, description, ogImage, ogType = 'website', markdownHref } = Astro.props as Props;
 
 const siteUrl = Astro.site!;
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
@@ -48,6 +49,7 @@ const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {markdownHref && <link rel="alternate" type="text/markdown" href={markdownHref} />}
 
     <link rel="alternate" hreflang="en" href={altEn} />
     <link rel="alternate" hreflang="fr" href={altFr} />

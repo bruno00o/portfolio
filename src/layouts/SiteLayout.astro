@@ -11,9 +11,10 @@ interface Props {
   description: string;
   ogType?: 'website' | 'article';
   ogImage?: string;
+  markdownHref?: string;
 }
 
-const { lang, title, description, ogType, ogImage } = Astro.props as Props;
+const { lang, title, description, ogType, ogImage, markdownHref } = Astro.props as Props;
 ---
 
 <BaseLayout
@@ -22,6 +23,7 @@ const { lang, title, description, ogType, ogImage } = Astro.props as Props;
   description={description}
   ogType={ogType}
   ogImage={ogImage}
+  markdownHref={markdownHref}
 >
   <div class="app">
     <Nav lang={lang} />
