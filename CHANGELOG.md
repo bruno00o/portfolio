@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/bruno00o/portfolio/compare/v1.4.0...v1.4.1) (2026-08-23)
+
+
+### Bug Fixes
+
+* **a11y:** raise dark-mode muted text contrast to AA ([577078c](https://github.com/bruno00o/portfolio/commit/577078c279e59698057011cfc92874df2392f7b3))
+
 ## [1.4.0](https://github.com/bruno00o/portfolio/compare/v1.3.0...v1.4.0) (2026-08-23)
 
 
