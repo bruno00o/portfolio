@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import type { Lang } from '../i18n/ui';
+import type { StructuredData } from '../seo';
 import '../styles/detail.css';
 
 interface Props {
@@ -12,9 +13,10 @@ interface Props {
   ogType?: 'website' | 'article';
   ogImage?: string;
   markdownHref?: string;
+  structuredData?: StructuredData;
 }
 
-const { lang, title, description, ogType, ogImage, markdownHref } = Astro.props as Props;
+const { lang, title, description, ogType, ogImage, markdownHref, structuredData } = Astro.props as Props;
 ---
 
 <BaseLayout
@@ -24,6 +26,7 @@ const { lang, title, description, ogType, ogImage, markdownHref } = Astro.props 
   ogType={ogType}
   ogImage={ogImage}
   markdownHref={markdownHref}
+  structuredData={structuredData}
 >
   <div class="app">
     <Nav lang={lang} />

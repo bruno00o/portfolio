@@ -2,6 +2,7 @@
 import { defaultLang, ogLocales, type Lang } from '../i18n/ui';
 import { getLocalizedPath, stripLangPrefix } from '../i18n/utils';
 import { site } from '../config';
+import { buildJsonLd, type StructuredData } from '../seo';
 import { Font } from 'astro:assets';
 import '../styles/tokens.css';
 import '../styles/home.css';
@@ -13,9 +14,10 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   markdownHref?: string;
+  structuredData?: StructuredData;
 }
 
-const { lang, title, description, ogImage, ogType = 'website', markdownHref } = Astro.props as Props;
+const { lang, title, description, ogImage, ogType = 'website', markdownHref, structuredData } = Astro.props as Props;
 
 const siteUrl = Astro.site!;
 const canonical = new URL(Astro.url.pathname, siteUrl).toString();
@@ -33,6 +35,10 @@ const ogImageUrl = new URL(
 ).toString();
 
 const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
+
+const jsonLd = structuredData
+  ? buildJsonLd(structuredData, { lang, canonical, image: ogImageUrl, origin: siteUrl })
+  : null;
 ---
 
 <!doctype html>
@@ -73,6 +79,8 @@ const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={title} />
+
+    {jsonLd && <script type="application/ld+json" is:inline set:html={jsonLd} />}
 
     <script is:inline>
       (function () {

@@ -21,6 +21,7 @@ const markdownHref = `${getProjectHref(entry, 'en')}.md`;
   description={entry.data.desc}
   ogType="article"
   markdownHref={markdownHref}
+  structuredData={{ type: 'project', entry }}
 >
   <ProjectDetail entry={entry} lang="en" />
 </SiteLayout>

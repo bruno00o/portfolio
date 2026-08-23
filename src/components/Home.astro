@@ -21,7 +21,12 @@ const t = useTranslations(lang);
 const fullName = 'Bruno Seilliebert';
 ---
 
-<SiteLayout lang={lang} title={t('meta.title')} description={t('meta.description')}>
+<SiteLayout
+  lang={lang}
+  title={t('meta.title')}
+  description={t('meta.description')}
+  structuredData={{ type: 'person' }}
+>
   <section class="hero" aria-labelledby="hero-name">
     <div class="hero__content">
       <Reveal as="h1" class="hero__name" immediate>

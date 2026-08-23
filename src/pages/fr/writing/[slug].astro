@@ -21,6 +21,7 @@ const markdownHref = `${getWritingHref(entry, 'fr')}.md`;
   description={entry.data.dek}
   ogType="article"
   markdownHref={markdownHref}
+  structuredData={{ type: 'post', entry }}
 >
   <PostDetail entry={entry} lang="fr" />
 </SiteLayout>
