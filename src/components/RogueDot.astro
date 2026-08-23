@@ -79,7 +79,7 @@
       el.addEventListener('pointerup', onRogueUp);
       el.addEventListener('pointercancel', onRogueUp);
       el.addEventListener('pointerdown', onRepick);
-      el.addEventListener('dblclick', land);
+      el.addEventListener('dblclick', flyHome);
       window.addEventListener('scroll', onScroll, { passive: true });
 
       dot.style.visibility = 'hidden';
@@ -131,7 +131,7 @@
 
     function onRepick(e: PointerEvent) {
       const s = rogue;
-      if (!s) return;
+      if (!s || s.returning) return;
       e.preventDefault();
       s.dragging = true;
       s.offX = e.clientX - s.x;
