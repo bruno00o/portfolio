@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.3.0](https://github.com/bruno00o/portfolio/compare/v1.2.0...v1.3.0) (2026-08-23)
+
+
+### Features
+
+* **security:** send security headers from nginx ([6fdf3b0](https://github.com/bruno00o/portfolio/commit/6fdf3b029e2b4f086a76ff50ea7be168a59f1401))
+
+
+### Bug Fixes
+
+* **a11y:** align the language toggle accessible name with its visible text ([92360da](https://github.com/bruno00o/portfolio/commit/92360da33a689bac391a63a96271afec878ce535))
+* **nav:** send the rogue dot flying home on double-click ([90ae949](https://github.com/bruno00o/portfolio/commit/90ae9495f5c5d33af393ce702fcaded93dfa16b3))
+
+
+### Performance Improvements
+
+* **fonts:** serve Geist through the native Astro fonts API ([2774348](https://github.com/bruno00o/portfolio/commit/2774348dea2f9a82040205ccbfc456ed13775883))
+* **nav:** rebuild the rogue dot without a Preact island ([1490ed4](https://github.com/bruno00o/portfolio/commit/1490ed4b1445aafd5f4faf5629cfb68579b7fdea))
+* **ui:** composite the now-bar pulse animation ([dc5f2a4](https://github.com/bruno00o/portfolio/commit/dc5f2a46062ce92418c72265db67666dfc34190c))
+
 ## [1.2.0](https://github.com/bruno00o/portfolio/compare/v1.1.0...v1.2.0) (2026-08-22)
 
 
