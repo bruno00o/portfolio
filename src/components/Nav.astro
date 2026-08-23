@@ -1,7 +1,7 @@
 ---
 import { useTranslations, getAlternatePath, getLocalizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
-import RogueDot from './RogueDot.tsx';
+import RogueDot from './RogueDot.astro';
 
 interface Props {
   lang: Lang;
@@ -17,7 +17,7 @@ const homeHref = getLocalizedPath('/', lang);
 <header class="nav" data-scrolled="false">
   <a class="mark" href={homeHref} draggable={false}>
     <span class="mark__word">bruno</span>
-    <RogueDot client:idle />
+    <RogueDot />
   </a>
 
   <nav class="nav__links" aria-label="Primary">

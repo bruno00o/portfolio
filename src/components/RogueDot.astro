@@ -1,0 +1,247 @@
+<span class="mark__dot" aria-label="Drag me"></span>
+
+<script>
+  interface Rogue {
+    el: HTMLSpanElement;
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    dragging: boolean;
+    returning: boolean;
+    offX: number;
+    offY: number;
+    lastX: number;
+    lastY: number;
+    lastT: number;
+    rafId: number;
+    lastTrail: number;
+    scrollY: number;
+  }
+
+  const DRAG_THRESHOLD_PX = 5;
+
+  const dot = document.querySelector<HTMLSpanElement>('.mark__dot');
+  const mark = dot?.closest<HTMLAnchorElement>('a.mark');
+  if (dot && mark) init(dot, mark);
+
+  function init(dot: HTMLSpanElement, mark: HTMLAnchorElement) {
+    let rogue: Rogue | null = null;
+    let trails: HTMLSpanElement[] = [];
+    const trailTimers = new Set<number>();
+
+    let startX = 0;
+    let startY = 0;
+    let pointerId = -1;
+    let armed = false;
+    let suppressClick = false;
+
+    mark.addEventListener('pointerdown', (e) => {
+      if (rogue) return;
+      armed = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      pointerId = e.pointerId;
+    });
+
+    mark.addEventListener('pointermove', (e) => {
+      if (!armed || e.pointerId !== pointerId) return;
+      if (Math.hypot(e.clientX - startX, e.clientY - startY) < DRAG_THRESHOLD_PX) return;
+      armed = false;
+      suppressClick = true;
+      e.preventDefault();
+      const rect = dot.getBoundingClientRect();
+      goRogue(rect.left + rect.width / 2, rect.top + rect.height / 2, e);
+    });
+
+    const disarm = () => { armed = false; };
+    mark.addEventListener('pointerup', disarm);
+    mark.addEventListener('pointercancel', disarm);
+
+    mark.addEventListener('click', (e) => {
+      if (suppressClick || rogue) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        suppressClick = false;
+      }
+    }, true);
+
+    function goRogue(x: number, y: number, e: PointerEvent) {
+      const el = document.createElement('span');
+      el.className = 'rogue-dot';
+      el.title = 'Double-click to send home';
+      el.style.transform = 'translate(-50%, -50%)';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.dataset.dragging = 'true';
+
+      el.addEventListener('pointermove', onRogueMove);
+      el.addEventListener('pointerup', onRogueUp);
+      el.addEventListener('pointercancel', onRogueUp);
+      el.addEventListener('pointerdown', onRepick);
+      el.addEventListener('dblclick', land);
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      dot.style.visibility = 'hidden';
+      document.body.appendChild(el);
+
+      rogue = {
+        el,
+        x, y,
+        vx: 0, vy: 0,
+        dragging: true,
+        returning: false,
+        offX: e.clientX - x,
+        offY: e.clientY - y,
+        lastX: x,
+        lastY: y,
+        lastT: performance.now(),
+        rafId: 0,
+        lastTrail: 0,
+        scrollY: window.scrollY,
+      };
+
+      try { el.setPointerCapture(e.pointerId); } catch {}
+      rogue.rafId = requestAnimationFrame(tick);
+    }
+
+    function onRogueMove(e: PointerEvent) {
+      const s = rogue;
+      if (!s || !s.dragging) return;
+      const now = performance.now();
+      const dt = Math.max(1, now - s.lastT);
+      const nx = e.clientX - s.offX;
+      const ny = e.clientY - s.offY;
+      s.vx = ((nx - s.lastX) / dt) * 16;
+      s.vy = ((ny - s.lastY) / dt) * 16;
+      s.lastX = s.x = nx;
+      s.lastY = s.y = ny;
+      s.lastT = now;
+      s.el.style.left = s.x + 'px';
+      s.el.style.top = s.y + 'px';
+    }
+
+    function onRogueUp(e: PointerEvent) {
+      const s = rogue;
+      if (!s || !s.dragging) return;
+      s.dragging = false;
+      s.el.dataset.dragging = 'false';
+      try { s.el.releasePointerCapture(e.pointerId); } catch {}
+    }
+
+    function onRepick(e: PointerEvent) {
+      const s = rogue;
+      if (!s) return;
+      e.preventDefault();
+      s.dragging = true;
+      s.offX = e.clientX - s.x;
+      s.offY = e.clientY - s.y;
+      s.lastX = s.x;
+      s.lastY = s.y;
+      s.lastT = performance.now();
+      s.vx = 0;
+      s.vy = 0;
+      try { s.el.setPointerCapture(e.pointerId); } catch {}
+      s.el.dataset.dragging = 'true';
+    }
+
+    function tick() {
+      const s = rogue;
+      if (!s || s.returning) return;
+      if (!s.dragging) {
+        s.vy += 0.35;
+        s.vx *= 0.992;
+        s.vy *= 0.998;
+        s.x += s.vx;
+        s.y += s.vy;
+
+        const W = window.innerWidth;
+        const H = window.innerHeight;
+        const R = 5;
+        if (s.x < R) { s.x = R; s.vx = -s.vx * 0.7; }
+        if (s.x > W - R) { s.x = W - R; s.vx = -s.vx * 0.7; }
+        if (s.y < R) { s.y = R; s.vy = -s.vy * 0.7; }
+        if (s.y > H - R) { s.y = H - R; s.vy = -s.vy * 0.6; }
+
+        s.el.style.left = s.x + 'px';
+        s.el.style.top = s.y + 'px';
+
+        const speed = Math.hypot(s.vx, s.vy);
+        const now = performance.now();
+        if (speed > 1.4 && now - s.lastTrail > 50) {
+          dropTrail(s.x, s.y);
+          s.lastTrail = now;
+        }
+      }
+      s.rafId = requestAnimationFrame(tick);
+    }
+
+    function dropTrail(x: number, y: number) {
+      const el = document.createElement('span');
+      el.className = 'rogue-dot__trail';
+      el.style.left = x - 3 + 'px';
+      el.style.top = y - 3 + 'px';
+      document.body.appendChild(el);
+
+      trails.push(el);
+      while (trails.length > 12) trails.shift()?.remove();
+
+      const timer = window.setTimeout(() => {
+        trailTimers.delete(timer);
+        const i = trails.indexOf(el);
+        if (i !== -1) trails.splice(i, 1);
+        el.remove();
+      }, 500);
+      trailTimers.add(timer);
+    }
+
+    function onScroll() {
+      const s = rogue;
+      if (!s || s.returning) return;
+      if (Math.abs(window.scrollY - s.scrollY) > 4) flyHome();
+    }
+
+    function flyHome() {
+      const s = rogue;
+      if (!s || s.returning) return;
+      s.returning = true;
+      s.dragging = false;
+      cancelAnimationFrame(s.rafId);
+
+      const rect = dot.getBoundingClientRect();
+      const homeX = rect.left + rect.width / 2;
+      const homeY = rect.top + rect.height / 2;
+      const fromX = s.x;
+      const fromY = s.y;
+      const startT = performance.now();
+
+      const step = () => {
+        const t = Math.min(1, (performance.now() - startT) / 480);
+        const p = 1 - Math.pow(1 - t, 3);
+        s.el.style.left = fromX + (homeX - fromX) * p + 'px';
+        s.el.style.top = fromY + (homeY - fromY) * p + 'px';
+        s.el.style.opacity = String(1 - p * 0.6);
+        if (t < 1) {
+          s.rafId = requestAnimationFrame(step);
+        } else {
+          land();
+        }
+      };
+      s.rafId = requestAnimationFrame(step);
+    }
+
+    function land() {
+      const s = rogue;
+      if (!s) return;
+      cancelAnimationFrame(s.rafId);
+      window.removeEventListener('scroll', onScroll);
+      s.el.remove();
+      trailTimers.forEach((t) => window.clearTimeout(t));
+      trailTimers.clear();
+      trails.forEach((el) => el.remove());
+      trails = [];
+      dot.style.visibility = 'visible';
+      rogue = null;
+    }
+  }
+</script>
