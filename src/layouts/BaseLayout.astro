@@ -2,8 +2,7 @@
 import { defaultLang, ogLocales, type Lang } from '../i18n/ui';
 import { getLocalizedPath, stripLangPrefix } from '../i18n/utils';
 import { site } from '../config';
-import '@fontsource-variable/geist';
-import '@fontsource-variable/geist-mono';
+import { Font } from 'astro:assets';
 import '../styles/tokens.css';
 import '../styles/home.css';
 
@@ -42,6 +41,9 @@ const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" id="favicon" />
     <meta name="generator" content={Astro.generator} />
+
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-geist-mono" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
