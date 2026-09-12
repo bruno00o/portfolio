@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import { getLocalizedPath, useTranslations } from '../i18n/utils';
 import { site } from '../config';
 import type { Lang } from '../i18n/ui';
+import { stackRows, work, education, now, formatDates, type XpItem } from './profile';
+import { legalCopy } from './legal';
 
 export function formatKind(kind: string, lang: Lang): string {
   const t = useTranslations(lang);
@@ -140,6 +142,118 @@ export async function buildLlmsTxt(lang: Lang, origin: URL): Promise<string> {
     `- [GitHub](${site.github})`,
     `- [LinkedIn](${site.linkedin})`,
     `- ${site.email}`,
+    '',
+  ].join('\n');
+}
+
+export async function homeToMarkdown(lang: Lang, origin: URL): Promise<string> {
+  const t = useTranslations(lang);
+  const abs = (path: string) => new URL(path, origin).toString();
+
+  const projects = (await getCollection('projects', (e) => e.data.locale === lang)).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+  const writing = (await getCollection('writing', (e) => e.data.locale === lang)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  const xp = (it: XpItem) =>
+    `- ${formatDates(it, lang)}: ${t(it.roleKey)}, ${t(it.subKey)}${it.tagKey ? ` (${t(it.tagKey)})` : ''}`;
+
+  return [
+    `# ${site.name}`,
+    '',
+    `> ${t('meta.description')}`,
+    '',
+    meta([
+      `- Title: ${t('hero.title')}`,
+      `- Location: ${t('now.city')}`,
+      `- Email: ${site.email}`,
+      `- GitHub: ${site.github}`,
+      `- LinkedIn: ${site.linkedin}`,
+      `- Canonical: ${abs(getLocalizedPath('/', lang)).replace(/\/?$/, '/')}`,
+    ]),
+    '',
+    '---',
+    '',
+    t('hero.oneliner'),
+    '',
+    `## ${t('nav.work')}`,
+    '',
+    ...projects.map(
+      (e) => `- [${e.data.title}](${abs(getProjectHref(e, lang))}.md): ${e.data.desc}`,
+    ),
+    '',
+    `## ${t('stack.label')}`,
+    '',
+    ...stackRows.map((r) => `- ${t(r.labelKey)}: ${r.items.join(', ')}`),
+    '',
+    `## ${t('xp.label')}`,
+    '',
+    ...work.map(xp),
+    '',
+    `## ${t('xp.edu_label')}`,
+    '',
+    ...education.map(xp),
+    '',
+    `## ${t('now.label')}`,
+    '',
+    `- ${t('now.building')}: ${now.building.join(', ')}.`,
+    `- ${t('now.exploring')}: ${t('now.exploring_text')}`,
+    `- ${t('now.running')}: ${t('now.running_pre')}${now.cluster}.`,
+    '',
+    `## ${t('nav.writing')}`,
+    '',
+    ...writing.map((e) => `- [${e.data.title}](${abs(getWritingHref(e, lang))}.md): ${e.data.dek}`),
+    '',
+  ].join('\n');
+}
+
+export function legalToMarkdown(lang: Lang, origin: URL): string {
+  const c = legalCopy[lang];
+  const abs = (path: string) => new URL(path, origin).toString();
+
+  return [
+    `# ${c.title}`,
+    '',
+    `- Canonical: ${abs(getLocalizedPath('/legal', lang))}/`,
+    '',
+    '---',
+    '',
+    `## ${c.publisher.h}`,
+    '',
+    c.publisher.body,
+    '',
+    c.publisher.role,
+    '',
+    site.email,
+    '',
+    `## ${c.hosting.h}`,
+    '',
+    c.hosting.lead,
+    '',
+    c.hosting.fr,
+    '',
+    `## ${c.ip.h}`,
+    '',
+    c.ip.body,
+    '',
+    `${c.ip.source} ${site.github}/portfolio`,
+    '',
+    `## ${c.data.h}`,
+    '',
+    c.data.noCookies,
+    '',
+    c.data.storage,
+    '',
+    c.data.analytics,
+    '',
+    `## ${c.infra.h}`,
+    '',
+    `${c.infra.body} [${c.infra.link}](${abs(getLocalizedPath('/work/homelab', lang))}.md).`,
+    '',
+    `## ${c.contact.h}`,
+    '',
+    site.email,
     '',
   ].join('\n');
 }

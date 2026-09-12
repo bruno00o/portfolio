@@ -8,7 +8,7 @@ import Writing from './Writing.astro';
 import Contact from './Contact.astro';
 import Reveal from './Reveal.astro';
 import HeroHead from './HeroHead';
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -26,6 +26,7 @@ const fullName = 'Bruno Seilliebert';
   title={t('meta.title')}
   description={t('meta.description')}
   structuredData={{ type: 'person' }}
+  markdownHref={getLocalizedPath('/index.md', lang)}
 >
   <section class="hero" aria-labelledby="hero-name">
     <div class="hero__content">

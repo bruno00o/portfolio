@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
+import { now } from '../content/profile';
 
 interface Props {
   lang: Lang;
@@ -28,7 +29,12 @@ const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
       <div class="now-line">
         <span class="now-line__prompt">{t('now.building')}</span>
         <span class="now-line__text">
-          <em class="hl">Jarvis</em>, <em class="hl">GameRoute</em>.
+          {now.building.map((name, i) => (
+            <>
+              {i > 0 && ', '}
+              <em class="hl">{name}</em>
+            </>
+          ))}.
         </span>
       </div>
 
@@ -40,7 +46,7 @@ const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
       <div class="now-line">
         <span class="now-line__prompt">{t('now.running')}</span>
         <span class="now-line__text">
-          {t('now.running_pre')}<span class="mono-inline">Going Merry</span>
+          {t('now.running_pre')}<span class="mono-inline">{now.cluster}</span>
         </span>
       </div>
     </div>

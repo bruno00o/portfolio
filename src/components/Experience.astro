@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from '../i18n/utils';
-import type { Lang, TranslationKey } from '../i18n/ui';
+import type { Lang } from '../i18n/ui';
+import { work, education, formatDates, type XpItem } from '../content/profile';
 
 interface Props {
   lang: Lang;
@@ -8,24 +9,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-
-type XpItem = {
-  dates: string;
-  roleKey: TranslationKey;
-  subKey: TranslationKey;
-  tagKey?: TranslationKey;
-};
-
-const work: XpItem[] = [
-  { dates: `2025 → ${t('common.present')}`, roleKey: 'xp.w1.role', subKey: 'xp.w1.sub', tagKey: 'xp.w1.tag' },
-  { dates: '2023 → 2025', roleKey: 'xp.w2.role', subKey: 'xp.w2.sub', tagKey: 'xp.w2.tag' },
-  { dates: '2022 → 2023', roleKey: 'xp.w3.role', subKey: 'xp.w3.sub', tagKey: 'xp.w3.tag' },
-];
-
-const education: XpItem[] = [
-  { dates: '2023 → 2025', roleKey: 'xp.e1.role', subKey: 'xp.e1.sub', tagKey: 'xp.e1.tag' },
-  { dates: '2020 → 2023', roleKey: 'xp.e2.role', subKey: 'xp.e2.sub' },
-];
 
 type Column = { label: string; items: XpItem[]; anchor: string };
 
@@ -52,7 +35,7 @@ const columns: Column[] = [
                   {t(it.subKey)} {it.tagKey && <em>{t(it.tagKey)}</em>}
                 </span>
               </div>
-              <span class="xp-item__dates">{it.dates}</span>
+              <span class="xp-item__dates">{formatDates(it, lang)}</span>
             </div>
           ))}
         </div>
