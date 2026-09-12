@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/bruno00o/portfolio/compare/v1.4.1...v1.5.0) (2026-09-12)
+
+
+### Features
+
+* **agents:** add markdown twins for home and legal, negotiated on Accept ([e9d59bf](https://github.com/bruno00o/portfolio/commit/e9d59bf6e7c0fcf830c1a5bc19e4887c2d4562d1))
+* **seo:** emit WebSite and ProfilePage JSON-LD on the home page ([4af8299](https://github.com/bruno00o/portfolio/commit/4af8299af816e3353e5069b274957ec9eed31586))
+
 ## [1.4.1](https://github.com/bruno00o/portfolio/compare/v1.4.0...v1.4.1) (2026-08-23)
 
 
