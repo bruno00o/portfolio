@@ -1,0 +1,17 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import ProjectArchive from '../../../components/ProjectArchive.astro';
+import { useTranslations } from '../../../i18n/utils';
+import { site } from '../../../config';
+
+const t = useTranslations('fr');
+---
+
+<SiteLayout
+  lang="fr"
+  title={`${t('archive.title')} | ${site.name}`}
+  description={t('archive.dek')}
+  markdownHref="/fr/work/archive.md"
+>
+  <ProjectArchive lang="fr" />
+</SiteLayout>

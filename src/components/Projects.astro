@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import Reveal from './Reveal.astro';
-import { getProjectHref, formatKind } from '../content/helpers';
+import ProjectGrid from './ProjectGrid.astro';
+import { getArchiveHref } from '../content/helpers';
 
 interface Props {
   lang: Lang;
@@ -12,10 +13,11 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const projects = (
-  await getCollection('projects', (entry) => entry.data.locale === lang)
-).sort((a, b) => a.data.order - b.data.order);
-
+const all = await getCollection('projects', (entry) => entry.data.locale === lang);
+const projects = all
+  .filter((p) => !p.data.archived)
+  .sort((a, b) => a.data.order - b.data.order);
+const hasArchive = all.some((p) => p.data.archived);
 ---
 
 <section class="projects" id="work" aria-labelledby="work-label">
@@ -23,49 +25,19 @@ const projects = (
     <Reveal as="span" class="projects__label">
       <span id="work-label">{t('work.label')}</span>
     </Reveal>
-  </div>
-
-  <div class="projects__grid">
     {
-      projects.map((p, i) => {
-        return (
-          <a
-            class="project"
-            href={getProjectHref(p, lang)}
-            style={`transition-delay: ${i * 40}ms`}
-          >
-            <span class="project__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 17L17 7M17 7H8M17 7v9" />
-              </svg>
-            </span>
-
-            <div class="project__top">
-              <span class="project__num">{p.data.num}</span>
-              <span class="project__kind">{formatKind(p.data.kind, lang)}</span>
-            </div>
-
-            <div class="project__body">
-              <h3 class="project__title">{p.data.title}</h3>
-              <div class="project__stack-slot">
-                <div class="project__stack-wrap">
-                  <div class="project__stack">
-                    {p.data.stack.map((s) => <span>{s}</span>)}
-                  </div>
-                </div>
-              </div>
-              <div class="project__desc-slot">
-                <p class="project__desc">{p.data.desc}</p>
-              </div>
-            </div>
+      hasArchive && (
+        <Reveal as="span" delay={80}>
+          <a class="projects__archive" href={getArchiveHref(lang)}>
+            <span>{t('work.archive')}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M17 7H8M17 7v9" />
+            </svg>
           </a>
-        );
-      })
-    }
-    {
-      Array.from({ length: (3 - (projects.length % 3)) % 3 }).map(() => (
-        <div class="project project--empty" aria-hidden="true" />
-      ))
+        </Reveal>
+      )
     }
   </div>
+
+  <ProjectGrid projects={projects} lang={lang} />
 </section>

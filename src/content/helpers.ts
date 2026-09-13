@@ -27,6 +27,10 @@ export function getWritingHref(entry: CollectionEntry<'writing'>, lang: Lang): s
   return getLocalizedPath(`/writing/${getEntrySlug(entry)}`, lang);
 }
 
+export function getArchiveHref(lang: Lang): string {
+  return getLocalizedPath('/work/archive', lang);
+}
+
 export function formatPostDate(d: Date, lang: Lang): string {
   return d.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', {
     month: 'long',
@@ -58,7 +62,7 @@ export function projectToMarkdown(
   lang: Lang,
   site: URL,
 ): string {
-  const { title, desc, kind, stack, repo, live } = entry.data;
+  const { title, desc, kind, stack, repo, live, video } = entry.data;
   return [
     `# ${title}`,
     '',
@@ -69,6 +73,7 @@ export function projectToMarkdown(
       `- Stack: ${stack.join(', ')}`,
       repo && `- Repo: ${repo}`,
       live && `- Live: ${live}`,
+      video && `- Video: ${new URL(video, site).toString()}`,
       `- Canonical: ${new URL(getProjectHref(entry, lang), site).toString()}`,
     ]),
     '',
@@ -109,9 +114,9 @@ export async function buildLlmsTxt(lang: Lang, origin: URL): Promise<string> {
   const abs = (path: string) => new URL(path, origin).toString();
   const other: Lang = lang === 'fr' ? 'en' : 'fr';
 
-  const projects = (await getCollection('projects', (e) => e.data.locale === lang)).sort(
-    (a, b) => a.data.order - b.data.order,
-  );
+  const projects = (
+    await getCollection('projects', (e) => e.data.locale === lang && !e.data.archived)
+  ).sort((a, b) => a.data.order - b.data.order);
   const writing = (await getCollection('writing', (e) => e.data.locale === lang)).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
@@ -132,6 +137,7 @@ export async function buildLlmsTxt(lang: Lang, origin: URL): Promise<string> {
     ...projects.map(
       (e) => `- [${e.data.title}](${abs(getProjectHref(e, lang))}.md): ${e.data.desc}`,
     ),
+    `- [${t('archive.title')}](${abs(getArchiveHref(lang))}.md): ${t('archive.dek')}`,
     '',
     `## ${t('nav.writing')}`,
     '',
@@ -141,6 +147,8 @@ export async function buildLlmsTxt(lang: Lang, origin: URL): Promise<string> {
     '',
     `- [GitHub](${site.github})`,
     `- [LinkedIn](${site.linkedin})`,
+    `- [CV](${abs(getLocalizedPath('/cv', lang))}.md)`,
+    `- [CV (PDF)](${abs(getLocalizedPath('/cv.pdf', lang))})`,
     `- ${site.email}`,
     '',
   ].join('\n');
@@ -150,9 +158,9 @@ export async function homeToMarkdown(lang: Lang, origin: URL): Promise<string> {
   const t = useTranslations(lang);
   const abs = (path: string) => new URL(path, origin).toString();
 
-  const projects = (await getCollection('projects', (e) => e.data.locale === lang)).sort(
-    (a, b) => a.data.order - b.data.order,
-  );
+  const projects = (
+    await getCollection('projects', (e) => e.data.locale === lang && !e.data.archived)
+  ).sort((a, b) => a.data.order - b.data.order);
   const writing = (await getCollection('writing', (e) => e.data.locale === lang)).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
@@ -170,6 +178,8 @@ export async function homeToMarkdown(lang: Lang, origin: URL): Promise<string> {
       `- Email: ${site.email}`,
       `- GitHub: ${site.github}`,
       `- LinkedIn: ${site.linkedin}`,
+      `- CV: ${abs(getLocalizedPath('/cv', lang))}.md`,
+      `- CV (PDF): ${abs(getLocalizedPath('/cv.pdf', lang))}`,
       `- Canonical: ${abs(getLocalizedPath('/', lang)).replace(/\/?$/, '/')}`,
     ]),
     '',
@@ -182,6 +192,7 @@ export async function homeToMarkdown(lang: Lang, origin: URL): Promise<string> {
     ...projects.map(
       (e) => `- [${e.data.title}](${abs(getProjectHref(e, lang))}.md): ${e.data.desc}`,
     ),
+    `- [${t('archive.title')}](${abs(getArchiveHref(lang))}.md): ${t('archive.dek')}`,
     '',
     `## ${t('stack.label')}`,
     '',
@@ -204,6 +215,30 @@ export async function homeToMarkdown(lang: Lang, origin: URL): Promise<string> {
     `## ${t('nav.writing')}`,
     '',
     ...writing.map((e) => `- [${e.data.title}](${abs(getWritingHref(e, lang))}.md): ${e.data.dek}`),
+    '',
+  ].join('\n');
+}
+
+export async function archiveToMarkdown(lang: Lang, origin: URL): Promise<string> {
+  const t = useTranslations(lang);
+  const abs = (path: string) => new URL(path, origin).toString();
+
+  const projects = (
+    await getCollection('projects', (e) => e.data.locale === lang && e.data.archived)
+  ).sort((a, b) => a.data.order - b.data.order);
+
+  return [
+    `# ${t('archive.title')}`,
+    '',
+    `> ${t('archive.dek')}`,
+    '',
+    `- Canonical: ${abs(getArchiveHref(lang))}/`,
+    '',
+    '---',
+    '',
+    ...projects.map(
+      (e) => `- [${e.data.title}](${abs(getProjectHref(e, lang))}.md): ${e.data.desc}`,
+    ),
     '',
   ].join('\n');
 }

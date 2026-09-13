@@ -1,11 +1,12 @@
 ---
 title: Jarvis
-num: "004"
+num: "006"
 locale: fr
 kind: "2026 → {present}"
 stack: [TypeScript, Bun, Ollama, mlx-audio, MCP]
 desc: "Un assistant vocal local pour la maison, inspiré du Jarvis de Tony Stark (comme tout assistant qui se respecte), branché sur les services de mon homelab."
-order: 4
+order: 6
+cvDesc: "Un assistant vocal local pour la maison, branché sur les services de mon homelab."
 ---
 
 ## Le contexte

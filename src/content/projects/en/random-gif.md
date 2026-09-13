@@ -1,11 +1,12 @@
 ---
 title: random-gif
-num: "005"
+num: "001"
 locale: en
 kind: "2023 → {present}"
 stack: [Hono, TypeScript, discord.js]
 desc: "A Discord bot that sends a random GIF, fully random or filtered by keywords."
-order: 5
+order: 1
+archived: true
 repo: https://github.com/bruno00o/random-gif
 live: https://random-gif.seilliebert.dev
 ---

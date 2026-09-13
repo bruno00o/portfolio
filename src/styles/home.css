@@ -307,6 +307,37 @@ svg { max-width: 100%; }
   color: var(--fg-subtle);
 }
 
+/* Link to /work/archive, top right of the section head */
+.projects__archive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  text-decoration: none;
+  transition: color var(--dur-base) var(--ease-out-expo);
+}
+.projects__archive:hover { color: var(--accent-text); }
+.projects__archive svg {
+  width: 12px;
+  height: 12px;
+  transition: transform var(--dur-base) var(--ease-out-expo);
+}
+.projects__archive:hover svg { transform: translate(2px, -2px); }
+
+/* /work/archive: the same grid as a standalone page, spaced like a detail page */
+.projects.projects--archive {
+  padding-top: 128px;
+  border-top: 0;
+}
+.projects__head--archive {
+  display: block;
+  margin-bottom: 16px;
+}
+
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -993,6 +1024,9 @@ svg { max-width: 100%; }
 }
 .contact__social a:hover { color: var(--accent-text); }
 .contact__social a:hover::after { color: var(--accent-text); transform: translate(3px, -3px); }
+/* Internal link: a straight arrow, no "leaves the site" diagonal */
+.contact__social .contact__cv::after { content: '→'; }
+.contact__social .contact__cv:hover::after { transform: translate(3px, 0); }
 
 /* ============================================================
    FOOTER
@@ -1142,6 +1176,7 @@ html[data-theme="dark"]  [data-theme-icon="light"] { display: none; }
 
   .projects__head,
   .writing__head { margin-bottom: 28px; }
+  .projects.projects--archive { padding-top: 96px; }
   .xp__head,
   .stack__head { margin-bottom: 24px; }
 
@@ -1176,4 +1211,5 @@ html[data-theme="dark"]  [data-theme-icon="light"] { display: none; }
   .contact { padding: 56px 0 72px; }
 
   .detail { padding: 64px 0 48px; }
+  .projects.projects--archive { padding-top: 64px; }
 }

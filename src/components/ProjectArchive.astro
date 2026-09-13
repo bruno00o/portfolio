@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import ProjectGrid from './ProjectGrid.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = (
+  await getCollection('projects', (entry) => entry.data.locale === lang && entry.data.archived)
+).sort((a, b) => a.data.order - b.data.order);
+const backHref = `${getLocalizedPath('/', lang)}#work`;
+---
+
+<section class="projects projects--archive" aria-labelledby="archive-title">
+  <a class="detail__back" href={backHref}>← {t('work.label')}</a>
+
+  <div class="projects__head projects__head--archive">
+    <h1 class="detail__title" id="archive-title">{t('archive.title')}</h1>
+    <p class="detail__dek">{t('archive.dek')}</p>
+  </div>
+
+  <ProjectGrid projects={projects} lang={lang} />
+</section>
