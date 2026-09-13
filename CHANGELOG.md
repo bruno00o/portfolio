@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.0](https://github.com/bruno00o/portfolio/compare/v1.4.1...v1.5.0) (2026-09-13)
+
+
+### Features
+
+* **agents:** add markdown twins for home and legal, negotiated on Accept ([e9d59bf](https://github.com/bruno00o/portfolio/commit/e9d59bf6e7c0fcf830c1a5bc19e4887c2d4562d1))
+* **cv:** render the CV with Typst as PDF, HTML page and markdown twin, with an ATS test ([82c5199](https://github.com/bruno00o/portfolio/commit/82c5199adbaf36706af1f1903a0c580c4eb84e91))
+* **seo:** emit WebSite and ProfilePage JSON-LD on the home page ([4af8299](https://github.com/bruno00o/portfolio/commit/4af8299af816e3353e5069b274957ec9eed31586))
+* **work:** add claude-dial with a demo video and an archive page for older projects ([d7f99a0](https://github.com/bruno00o/portfolio/commit/d7f99a0bf1613e56ff0ac42beb481e644a011ae4))
+* **work:** add Kazimo with a 3D model viewer and a note on running it on Mistral locally ([7bab01e](https://github.com/bruno00o/portfolio/commit/7bab01e8f12e5bad528da5290982d82102def19f))
+
 ## [1.4.1](https://github.com/bruno00o/portfolio/compare/v1.4.0...v1.4.1) (2026-08-23)
 
 
