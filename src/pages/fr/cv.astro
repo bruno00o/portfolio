@@ -1,0 +1,17 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import CvPage from '../../components/CvPage.astro';
+import { useTranslations } from '../../i18n/utils';
+import { site } from '../../config';
+
+const t = useTranslations('fr');
+---
+
+<SiteLayout
+  lang="fr"
+  title={`${t('cv.title')} | ${site.name}`}
+  description={t('cv.description')}
+  markdownHref="/fr/cv.md"
+>
+  <CvPage lang="fr" />
+</SiteLayout>

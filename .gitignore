@@ -4,6 +4,9 @@ dist/
 # generated types
 .astro/
 
+# upstream sources fetched by tests
+.cache/
+
 # dependencies
 node_modules/
 

@@ -1,0 +1,114 @@
+---
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { buildCvPageData, splitBold } from '../cv';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props as Props;
+const t = useTranslations(lang);
+const d = await buildCvPageData(lang, Astro.site!);
+const homeHref = getLocalizedPath('/', lang);
+const pdfHref = getLocalizedPath('/cv.pdf', lang);
+const pdfName = `bruno-seilliebert-cv-${lang}.pdf`;
+---
+
+<article class="detail cv">
+  <a class="detail__back" href={homeHref}>← {t('nav.home')}</a>
+
+  <header class="cv__head">
+    <div>
+      <h1 class="detail__title">{d.name}</h1>
+      <p class="detail__dek">{d.title}, {d.location}</p>
+    </div>
+    <a class="detail__link cv__pdf" href={pdfHref} download={pdfName}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+      </svg>
+      <span>{t('cv.download')}</span>
+    </a>
+  </header>
+
+  <div class="cv__contacts">
+    <a href={`mailto:${d.email}`}>{d.email}</a>
+    <a href={d.github} target="_blank" rel="noopener">{d.githubLabel}</a>
+    <a href={d.linkedin} target="_blank" rel="noopener">{d.linkedinLabel}</a>
+  </div>
+
+  <section class="cv__section" aria-labelledby="cv-profile">
+    <h2 class="cv__label" id="cv-profile">{d.labels.profile}</h2>
+    <p class="cv__summary">{d.summary}</p>
+  </section>
+
+  <section class="cv__section" aria-labelledby="cv-stack">
+    <h2 class="cv__label" id="cv-stack">{d.labels.stack}</h2>
+    <dl class="cv__grid">
+      {d.stack.map((r) => (
+        <>
+          <dt>{r.label}</dt>
+          <dd>{r.items.join(', ')}</dd>
+        </>
+      ))}
+      <dt>{d.labels.languages}</dt>
+      <dd>{d.languages.join(', ')}</dd>
+      <dt>{d.labels.certifications}</dt>
+      <dd>{d.certifications.join(', ')}</dd>
+    </dl>
+  </section>
+
+  <section class="cv__section" aria-labelledby="cv-work">
+    <h2 class="cv__label" id="cv-work">{d.labels.work}</h2>
+    {d.work.map((w) => (
+      <article class="cv__entry">
+        <div class="cv__entry-head">
+          <span>
+            <span class="cv__role">{w.role}</span>
+            <span class="cv__org">{w.org}</span>
+            {w.tag && <span class="cv__tag">{w.tag}</span>}
+          </span>
+          <span class="cv__dates">{w.dates}</span>
+        </div>
+        <p class="cv__lead">{w.lead}</p>
+        <ul class="cv__bullets">
+          {w.bullets.map((b) => (
+            <li>{splitBold(b).map((p) => (p.bold ? <strong>{p.text}</strong> : p.text))}</li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </section>
+
+  <section class="cv__section" aria-labelledby="cv-projects">
+    <h2 class="cv__label" id="cv-projects">{d.labels.projects}</h2>
+    {d.projects.map((p) => (
+      <article class="cv__entry">
+        <div class="cv__entry-head">
+          <span>
+            <a class="cv__role cv__project" href={p.url}>{p.title}</a>
+            <span class="cv__stack">{p.stack.join(', ')}</span>
+          </span>
+        </div>
+        <p class="cv__lead">{p.desc}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="cv__section" aria-labelledby="cv-education">
+    <h2 class="cv__label" id="cv-education">{d.labels.education}</h2>
+    {d.education.map((e) => (
+      <article class="cv__entry">
+        <div class="cv__entry-head">
+          <span>
+            <span class="cv__role">{e.role}</span>
+            <span class="cv__org">{e.org}</span>
+            {e.tag && <span class="cv__tag">{e.tag}</span>}
+          </span>
+          <span class="cv__dates">{e.dates}</span>
+        </div>
+        {e.note && <p class="cv__lead">{e.note}</p>}
+      </article>
+    ))}
+  </section>
+</article>

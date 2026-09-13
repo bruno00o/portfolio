@@ -2,6 +2,7 @@
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import { site } from '../config';
+import { getLocalizedPath } from '../i18n/utils';
 
 interface Props {
   lang: Lang;
@@ -9,6 +10,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const cvHref = getLocalizedPath('/cv', lang);
 ---
 
 <section class="contact" id="contact" aria-labelledby="contact-label">
@@ -35,6 +37,13 @@ const t = useTranslations(lang);
         <circle cx="4" cy="4" r="2" />
       </svg>
       LinkedIn
+    </a>
+    <a class="contact__cv" href={cvHref}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" />
+        <path d="M14 3v5h5M9 13h6M9 17h6" />
+      </svg>
+      {t('contact.cv')}
     </a>
   </div>
 </section>
