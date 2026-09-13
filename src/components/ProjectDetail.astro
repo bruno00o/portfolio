@@ -3,7 +3,8 @@ import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import { useTranslations, getLocalizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
-import { formatKind } from '../content/helpers';
+import { formatKind, getArchiveHref } from '../content/helpers';
+import ModelViewer from './ModelViewer';
 
 interface Props {
   entry: CollectionEntry<'projects'>;
@@ -14,11 +15,15 @@ const { entry, lang } = Astro.props as Props;
 const t = useTranslations(lang);
 const { Content } = await render(entry);
 const hasBody = entry.body != null && entry.body.trim().length > 0;
-const backHref = `${getLocalizedPath('/', lang)}#work`;
+const backHref = entry.data.archived
+  ? getArchiveHref(lang)
+  : `${getLocalizedPath('/', lang)}#work`;
+const backLabel = entry.data.archived ? t('archive.title') : t('work.label');
+const video = entry.data.video;
 ---
 
 <article class="detail">
-  <a class="detail__back" href={backHref}>← {t('work.label')}</a>
+  <a class="detail__back" href={backHref}>← {backLabel}</a>
 
   <div class="detail__meta">
     <span class="detail__meta-lead">{entry.data.num}</span>
@@ -56,6 +61,24 @@ const backHref = `${getLocalizedPath('/', lang)}#work`;
   }
 
   {
+    video && (
+      <figure class="detail__video">
+        <video
+          src={video}
+          poster={video.replace(/\.mp4$/, '.jpg')}
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          preload="metadata"
+          aria-label={t('detail.video.alt')}
+        />
+      </figure>
+    )
+  }
+
+  {
     hasBody ? (
       <div class="detail__body">
         <Content />
@@ -64,4 +87,22 @@ const backHref = `${getLocalizedPath('/', lang)}#work`;
       <p class="detail__empty">{t('detail.empty.project')}</p>
     )
   }
+
+  {
+    entry.data.model && (
+      <figure class="detail__model" aria-label={t('detail.model.alt')}>
+        <ModelViewer client:visible src={entry.data.model} />
+      </figure>
+    )
+  }
 </article>
+
+<script>
+  // Silent demo loops autoplay, unless the visitor asked for less motion.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('.detail__video video').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+</script>

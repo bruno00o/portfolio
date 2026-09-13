@@ -1,11 +1,13 @@
 ---
 title: Aroma
-num: "001"
+num: "002"
 locale: en
 kind: "2022 → 2025"
 stack: [Next.js, PocketBase, PWA]
 desc: "A web app to check your university schedule on mobile, where ADE (the platform used by several French universities) is barely usable on a phone. Current class and room visible the moment you open it."
-order: 1
+order: 2
+cv: true
+cvDesc: "Check your university schedule on mobile, where ADE is barely usable on a phone."
 repo: https://github.com/bruno00o/aroma
 live: https://aroma.seilliebert.dev
 ---
@@ -13,6 +15,10 @@ live: https://aroma.seilliebert.dev
 ## Context
 
 At Université Gustave Eiffel, schedules go through ADE. No mobile app, and the web UI is barely usable on a phone. Between two classes, finding my next room was taking too long. Aroma starts from that use case: open the app, see the current class and where to go. The rest came on top: merging several schedules (lectures, tutorials, labs, electives), sharing with friends, apprenticeship calendar.
+
+![Aroma on a phone: the next class as a card with its time, teacher and room, the date, and the time left before it starts](./aroma-next-class.png)
+
+![Aroma's week view: five day columns, each class as a coloured card with its time, teacher and room](./aroma-dashboard.png)
 
 ## Why a PWA over a native app?
 

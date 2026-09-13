@@ -15,6 +15,14 @@ const projects = defineCollection({
     order: z.number(),
     repo: z.url().optional(),
     live: z.url().optional(),
+    cv: z.boolean().optional().default(false),
+    cvDesc: z.string().optional(),
+    // Path under public/ to a meshopt GLB shown in an interactive viewer after the body.
+    model: z.string().optional(),
+    // Path under public/ to an MP4 shown above the body; its poster is the same path with .jpg.
+    video: z.string().optional(),
+    // Listed on /work/archive instead of the home grid. Numbering restarts at 001 there.
+    archived: z.boolean().optional().default(false),
   }),
 });
 

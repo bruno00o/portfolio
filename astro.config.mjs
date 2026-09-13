@@ -2,6 +2,8 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
+import { satteri } from '@astrojs/markdown-satteri';
+import { mermaid } from './src/markdown/mermaid.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,6 +40,9 @@ export default defineConfig({
       },
     },
   ],
+  markdown: {
+    processor: satteri({ mdastPlugins: [mermaid()] }),
+  },
   integrations: [
     preact(),
     sitemap({

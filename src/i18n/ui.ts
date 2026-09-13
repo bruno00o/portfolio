@@ -10,9 +10,9 @@ export const ogLocales: Record<Lang, string> = {
 
 const en = {
   // ---------- META ----------
-  'meta.title': 'Bruno Seilliebert, software engineer',
+  'meta.title': 'Bruno Seilliebert, Software Engineer',
   'meta.description':
-    'Bruno Seilliebert, software engineer. I build systems end-to-end, from the data pipeline to the pixel.',
+    'Bruno Seilliebert, Software Engineer. I build systems end-to-end, from the data pipeline to the pixel.',
 
   // ---------- LLMS.TXT ----------
   'llms.markdown':
@@ -26,12 +26,17 @@ const en = {
   'nav.home': 'Home',
 
   // ---------- HERO ----------
-  'hero.title': 'Software engineer',
+  'hero.title': 'Software Engineer',
   'hero.oneliner':
     "I enjoy building systems end-to-end, from the data to the display. I'm currently helping build a real-time digital twin of the SFR network.",
 
   // ---------- PROJECTS (chrome only, entries live in content collection) ----------
   'work.label': 'Selected work',
+  'work.archive': 'Archive',
+
+  // ---------- ARCHIVE PAGE ----------
+  'archive.title': 'Archive',
+  'archive.dek': 'Older or smaller projects, kept here for the record.',
 
   // ---------- STACK ----------
   'stack.label': 'Stack',
@@ -46,13 +51,13 @@ const en = {
   'xp.label': 'Experience',
   'xp.edu_label': 'Education',
   'common.present': 'present',
-  'xp.w1.role': 'Software engineer',
+  'xp.w1.role': 'Software Engineer',
   'xp.w1.sub': 'SFR',
   'xp.w1.tag': 'Full-time',
-  'xp.w2.role': 'Software engineer',
+  'xp.w2.role': 'Software Engineer',
   'xp.w2.sub': 'SFR',
   'xp.w2.tag': 'Apprenticeship',
-  'xp.w3.role': 'Web & mobile developer',
+  'xp.w3.role': 'Web & Mobile Developer',
   'xp.w3.sub': 'Kynova',
   'xp.w3.tag': 'Apprenticeship',
   'xp.e1.role': "Master's, Software & Data Engineering",
@@ -79,10 +84,19 @@ const en = {
   'detail.empty.post': '// full write-up coming',
   'detail.links.repo': 'Source',
   'detail.links.live': 'Live',
+  'detail.model.alt': '3D model of the enclosure',
+  'detail.video.alt': 'Demo video',
+
+  // ---------- CV PAGE ----------
+  'cv.title': 'CV',
+  'cv.description':
+    "Bruno Seilliebert's CV: Software Engineer, experience, projects and skills. Also available as a PDF.",
+  'cv.download': 'Download the PDF',
 
   // ---------- CONTACT ----------
   'contact.label': 'Contact',
   'contact.copied': '// copied',
+  'contact.cv': 'CV',
 
   // ---------- FOOTER ----------
   'footer.built': 'Built with Astro',
@@ -114,6 +128,10 @@ const fr: Record<TranslationKey, string> = {
     "J'aime construire des systèmes de bout en bout, de la donnée jusqu'à l'affichage. Je participe actuellement à la construction d'un jumeau numérique temps réel du réseau SFR.",
 
   'work.label': 'Projets sélectionnés',
+  'work.archive': 'Archives',
+
+  'archive.title': 'Archives',
+  'archive.dek': 'Des projets plus anciens ou plus petits, gardés ici pour mémoire.',
 
   'stack.label': 'Stack',
   'stack.languages': 'Langages',
@@ -156,9 +174,17 @@ const fr: Record<TranslationKey, string> = {
   'detail.empty.post': '// article à venir',
   'detail.links.repo': 'Code source',
   'detail.links.live': 'En ligne',
+  'detail.model.alt': 'Modèle 3D du boîtier',
+  'detail.video.alt': 'Vidéo de démonstration',
+
+  'cv.title': 'CV',
+  'cv.description':
+    'CV de Bruno Seilliebert : ingénieur logiciel, expérience, projets et compétences. Aussi disponible en PDF.',
+  'cv.download': 'Télécharger le PDF',
 
   'contact.label': 'Contact',
   'contact.copied': '// copié',
+  'contact.cv': 'CV',
 
   'footer.built': 'Fait avec Astro',
   'footer.legal': 'Mentions légales',

@@ -1,11 +1,11 @@
 ---
 title: GameRoute
-num: "002"
+num: "003"
 locale: en
 kind: "2026 → {present}"
 stack: [Tauri, Rust, React]
 desc: "A Windows app that automatically identifies the servers of running games and traces the network path to them."
-order: 2
+order: 3
 repo: https://github.com/bruno00o/gameroute
 ---
 

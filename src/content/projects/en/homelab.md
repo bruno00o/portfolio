@@ -1,11 +1,12 @@
 ---
 title: Homelab
-num: "003"
+num: "004"
 locale: en
 kind: "2025 → {present}"
 stack: [Kubernetes, Talos, Cilium, Flux]
 desc: "A self-hosted Kubernetes cluster running my apps, my personal services and the connected home."
-order: 3
+order: 4
+cv: true
 repo: https://github.com/bruno00o/homelab
 ---
 

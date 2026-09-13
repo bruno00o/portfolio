@@ -1,11 +1,13 @@
 ---
 title: Aroma
-num: "001"
+num: "002"
 locale: fr
 kind: "2022 → 2025"
 stack: [Next.js, PocketBase, PWA]
 desc: "Une web app pour consulter son emploi du temps universitaire sur mobile, là où ADE (la plateforme utilisée par plusieurs universités françaises) n'est pas lisible sur mobile. Cours actuel et salle visibles à l'ouverture."
-order: 1
+order: 2
+cv: true
+cvDesc: "Consulter son emploi du temps universitaire sur mobile, là où ADE n'est pas lisible sur téléphone."
 repo: https://github.com/bruno00o/aroma
 live: https://aroma.seilliebert.dev
 ---
@@ -13,6 +15,10 @@ live: https://aroma.seilliebert.dev
 ## Le contexte
 
 À l'Université Gustave Eiffel, les emplois du temps passent par ADE. Pas d'app mobile, et l'interface web sur téléphone est peu utilisable. Entre deux cours, retrouver sa prochaine salle me prenait trop de temps. Aroma part de cet usage : on ouvre l'app, on voit le cours actuel et où aller. Le reste est venu se greffer ensuite : fusion de plusieurs emplois du temps (CM, TD, TP, options), partage entre amis, calendrier d'alternance.
+
+![Aroma sur téléphone : le prochain cours en carte avec l'horaire, l'enseignant et la salle, la date, et le temps restant avant le début](./aroma-next-class.png)
+
+![La vue semaine d'Aroma : cinq colonnes, un jour chacune, et chaque cours en carte colorée avec l'horaire, l'enseignant et la salle](./aroma-dashboard.png)
 
 ## Pourquoi une PWA plutôt qu'une app native ?
 

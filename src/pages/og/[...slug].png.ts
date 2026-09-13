@@ -31,10 +31,14 @@ export const getStaticPaths = (async () => {
   ]);
 
   const paths: { params: { slug: string }; props: OgProps }[] = [
-    { params: { slug: 'home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Software engineer' } },
+    { params: { slug: 'home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Software Engineer' } },
     { params: { slug: 'fr/home' }, props: { title: 'Bruno Seilliebert', subtitle: 'Ingénieur logiciel' } },
     { params: { slug: 'legal' }, props: { title: 'Legal notice', subtitle: 'Publisher, hosting and personal data' } },
     { params: { slug: 'fr/legal' }, props: { title: 'Mentions légales', subtitle: 'Éditeur, hébergement et données personnelles' } },
+    { params: { slug: 'cv' }, props: { title: 'CV', subtitle: 'Software Engineer, Paris' } },
+    { params: { slug: 'fr/cv' }, props: { title: 'CV', subtitle: 'Ingénieur logiciel, Paris' } },
+    { params: { slug: 'work/archive' }, props: { title: 'Archive', subtitle: 'Older or smaller projects' } },
+    { params: { slug: 'fr/work/archive' }, props: { title: 'Archives', subtitle: 'Projets plus anciens ou plus petits' } },
     // Single static 404.html served for every unknown path, so a single OG image.
     { params: { slug: '404' }, props: { title: '404', subtitle: 'Page not found' } },
   ];
