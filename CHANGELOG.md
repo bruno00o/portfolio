@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/bruno00o/portfolio/compare/v1.5.0...v1.6.0) (2026-10-16)
+
+
+### Features
+
+* **hero:** replace the bust with a ghibli-style figurine ([8e2fb85](https://github.com/bruno00o/portfolio/commit/8e2fb85c60843a34fb6acb59e1eca67e3baa15b8))
+
 ## [1.5.0](https://github.com/bruno00o/portfolio/compare/v1.4.1...v1.5.0) (2026-09-13)
 
 
