@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/bruno00o/portfolio/compare/v1.6.0...v1.6.1) (2026-10-24)
+
+
+### Bug Fixes
+
+* use full datetimes in profile structured data ([#17](https://github.com/bruno00o/portfolio/issues/17)) ([fb06dc2](https://github.com/bruno00o/portfolio/commit/fb06dc2ed6f46c6da29771204da73cb6409b4f1c))
+
 ## [1.6.0](https://github.com/bruno00o/portfolio/compare/v1.5.0...v1.6.0) (2026-10-16)
 
 
