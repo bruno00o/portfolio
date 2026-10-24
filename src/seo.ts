@@ -15,7 +15,7 @@ interface PageContext {
   origin: URL;
 }
 
-const PROFILE_CREATED = '2026-07-26';
+const PROFILE_CREATED = '2026-07-26T00:00:00+02:00';
 
 export function buildJsonLd(data: StructuredData, ctx: PageContext): string {
   const { lang, canonical, image, origin } = ctx;
@@ -47,7 +47,7 @@ export function buildJsonLd(data: StructuredData, ctx: PageContext): string {
           inLanguage,
           isPartOf: { '@id': websiteId },
           dateCreated: PROFILE_CREATED,
-          dateModified: new Date().toISOString().slice(0, 10),
+          dateModified: new Date().toISOString(),
           mainEntity: { '@id': personId },
         },
         {
